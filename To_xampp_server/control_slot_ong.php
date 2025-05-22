@@ -1,0 +1,1 @@
+<!-- Tela de controle de registrados á vaga selecionada da Ong registrada -->

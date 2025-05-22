@@ -1,0 +1,1 @@
+<!-- Tela de exibição da situação das vagas da Ong registrada -->
