@@ -1,5 +1,7 @@
 @font-face {
-    font-family: 'Horizon';
+/*               Esse é o nome da fonte a ser camada */
+/*     font-family: 'Horizon', sans-serif; */
+    font-family: 'Horizon'; 
     src: url('../fonts/THEBOLDFONT-FREEVERSION.woff2') format('woff2'),
         url('../fonts/THEBOLDFONT-FREEVERSION.woff') format('woff');
     font-weight: bold;
@@ -8,6 +10,8 @@
 }
 
 @font-face {
+/*               Esse é o nome da fonte a ser camada */
+/*     font-family: 'Antique', sans-serif; */
     font-family: 'Antique';
     src: url('../fonts/ArgentumSans-SemiBold.woff2') format('woff2'),
         url('../fonts/ArgentumSans-SemiBold.woff') format('woff');
