@@ -1,159 +1,17 @@
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
+@font-face {
+    font-family: 'Horizon';
+    src: url('../fonts/THEBOLDFONT-FREEVERSION.woff2') format('woff2'),
+        url('../fonts/THEBOLDFONT-FREEVERSION.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
 }
 
-body {
-  background-color: #f2f2f2;
-  color: #ffffff;
-}
-
-#contentMainScreen {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #000;
-}
-
-.header {
-  background-color: #008cff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  height: 75px;
-  position: relative;
-  margin-top: 5px;
-}
-
-.logo-text {
-  font-weight: bold;
-  font-size: 18px;
-  color: #fff;
-}
-
-.header .button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  margin-left: 10px;
-  color: #fff;
-  transition: transform 0.2s;
-}
-
-.header .button:hover {
-  transform: scale(1.1);
-}
-
-.header > div:last-child {
-  display: flex;
-  align-items: center;
-}
-
-.decorLineWrapper {
-  width: 100%;
-  background-color: #4fc3f7;
-  height: 3px;
-  margin-top: 20px;
-  position: relative;
-}
-
-.contgrup {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  padding: 40px 20px;
-  gap: 40px;
-  margin-top: 80px;
-  flex-wrap: wrap;
-}
-
-.formSection{
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: 60%;
-}
-
-
-.imageSection {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.formSection .label {
-  color: #008cff;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.formSection .link {
-  font-size: 15px;
-  color: #4aa0a3;
-  text-decoration: none;
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-
-.formSection .link:hover {
-  text-decoration: underline;
-}
-
-.signupbtn {
-  background-color: #008cff;
-  color: white;
-  font-size: 16px;
-  padding: 12px 30px;
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.signupbtn:hover {
-  background-color: white;
-  color: #008cff;
-}
-
-.imgh{
-  width: auto;
-  height: auto;
-}
-
-@media (max-width: 800px) {
-  .contgrup {
-    flex-direction: column;
-    align-items: center;
-    margin-top: 40px;
-    gap: 30px;
-    padding: 20px;
-  }
-
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .header > div:last-child {
-    justify-content: flex-start;
-    width: 100%;
-  }
-  
-  .imgh{
-    width: 100%;
-  }
-
+@font-face {
+    font-family: 'Antique';
+    src: url('../fonts/ArgentumSans-SemiBold.woff2') format('woff2'),
+        url('../fonts/ArgentumSans-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
 }
