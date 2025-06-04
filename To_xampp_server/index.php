@@ -1,1 +1,276 @@
 <!-- Tela de Menu -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="icon" href="img\Logo_Aba.png">
+  <title>AjundeAi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+    }
+
+    header {
+      background-color: #e76f00;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo img {
+      height: 60px;
+      width: 170px;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn.login {
+      background-color: #ffffff;
+      color: #00c4b4;
+      border: 2px solid #00c4b4;
+      text-decoration: none
+    }
+
+    
+    
+
+    .btn.register {
+      background-color: #00c4b4;
+      color: white;
+      text-decoration: none
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #003a45 60%, #005e55 100%);
+      position: relative;
+      padding: 80px 20px;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+      align-items: center;
+    }
+
+    .search-input {
+      padding: 15px;
+      width: 400px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .search-button {
+      flex-wrap: wrap;
+      background-color: #007f79;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 15px 30px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      align-items: center;
+      gap: 10px;
+      padding: auto;
+    }
+
+    .search-button img {
+      height: 20px;
+    }
+
+    .categories {
+      padding: 60px 20px;
+      background-color: white;
+      text-align: center;
+    }
+
+    .categories-title {
+      color: #e76f00;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .categories-title img {
+      height: 30px;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 35px;
+      width: 40%;
+      margin: 0 auto;
+    }
+
+    .category-item {
+      color: white;
+      border-radius: 8px;
+      padding: 30px 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1.35rem;
+      
+    }
+
+    .category-item:hover {
+      opacity: 0.9;
+    }
+
+    /* Cores específicas */
+    .eventos { background-color: #40d9cd; }
+    .animais, .criancas, .assistencia {
+      background-color: #00a89a; /* Mesma cor azul para os 3 */
+    }
+    .educacao { background-color: #007f79; }
+    .meioambiente { background-color: #40d9cd; }
+    .tecnologia { background-color: #007f79; }
+    .saude { background-color: #40d9cd; }
+    .administracao { background-color: #007f79; }
+
+    footer {
+      background-color: #e76f00;
+      padding: 20px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+    }
+
+    .social-footer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-footer img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .contact-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo img {
+      height: 100px;
+      width: 200px
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <!-- Substitua -->
+      <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+    </div>
+    <div class="header-buttons">
+      <a href="login.php" class="btn login" >ENTRAR</a>
+      <a href="account.php" class="btn register">CADASTRE-SE</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>ENCONTRE SUA VAGA<br/>DE VOLUNTARIADO.</h1>
+    <div class="search-bar">
+      <form method="POST" action="php_functs/filtrer_act.php">
+        <input class="search-input" type="text" placeholder="vaga de caridade, meio ambiente ..." />
+        <button class="search-button">BUSCAR <i class='bx  bx-search-alt'></i> 
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="categories">
+    <div class="categories-title">
+      <i class='bx bxs-circle' style='color:#40d9cd'></i> 
+      VEJA ALGUMAS DISPONÍVEIS
+    </div>
+    <div class="category-grid">
+      <div class="category-item eventos">EVENTOS</div>
+      <div class="category-item animais">ANIMAIS</div>
+      <div class="category-item educacao">EDUCAÇÃO</div>
+      <div class="category-item meioambiente">MEIO AMBIENTE</div>
+      <div class="category-item criancas">CRIANÇAS</div>
+      <div class="category-item tecnologia">TECNOLOGIA</div>
+      <div class="category-item saude">SAÚDE</div>
+      <div class="category-item assistencia">ASSIST. SOCIAL</div>
+      <div class="category-item administracao">ADMINISTRAÇÃO</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="contact-info">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email Icon" />
+      <span>ajundeai_anchieta@gmail.com</span>
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram Icon" />
+      <span>@ajundeai_anchieta</span>
+    </div>
+    <div class="footer-logo">
+      <!-- Substitua -->
+      <img src="img\AJUDEAI Logo.png" alt="Logo AjundeAi" />
+    </div>
+  </footer>
+</body>
+</html>
