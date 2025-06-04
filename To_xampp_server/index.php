@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+include 'php_functs/functions.php';
+
+// busca situação de login do usuário
+$login_state = is_logged();
+
+?>
+
 <!-- Tela de Menu -->
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -222,8 +232,9 @@
 <body>
   <header>
     <div class="logo">
-      <!-- Substitua -->
+      <a href="index.php">
       <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+      </a>
     </div>
     <div class="header-buttons">
       <a href="login.php" class="btn login" >ENTRAR</a>
@@ -235,7 +246,8 @@
     <h1>ENCONTRE SUA VAGA<br/>DE VOLUNTARIADO.</h1>
     <div class="search-bar">
       <form method="POST" action="php_functs/filtrer_act.php">
-        <input class="search-input" type="text" placeholder="vaga de caridade, meio ambiente ..." />
+        <input type="hidden" name="type" value="home_search"/>
+        <input class="search-input" type="text" placeholder="vaga de caridade, meio ambiente ..." name="filter_user"/>
         <button class="search-button">BUSCAR <i class='bx  bx-search-alt'></i> 
         </button>
       </form>
@@ -247,6 +259,7 @@
       <i class='bx bxs-circle' style='color:#40d9cd'></i> 
       VEJA ALGUMAS DISPONÍVEIS
     </div>
+    <!-- nome do form: home_category -->
     <div class="category-grid">
       <div class="category-item eventos">EVENTOS</div>
       <div class="category-item animais">ANIMAIS</div>
@@ -268,7 +281,7 @@
       <span>@ajundeai_anchieta</span>
     </div>
     <div class="footer-logo">
-      <!-- Substitua -->
+      <!--s Substitua -->
       <img src="img\AJUDEAI Logo.png" alt="Logo AjundeAi" />
     </div>
   </footer>

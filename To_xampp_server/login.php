@@ -173,9 +173,11 @@
 <body>
 
     <header>
-        <div class="logo">
-            <img src="img/AJUDEAI Logo.png" alt="Logo AjundeAi" />
-        </div>
+    <div class="logo">
+      <a href="index.php">
+      <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+      </a>
+    </div>
         <div class="header-buttons">
             <button class="btn login">ENTRAR</button>
             <button class="btn register">CADASTRE-SE</button>
