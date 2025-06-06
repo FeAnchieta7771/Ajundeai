@@ -176,7 +176,10 @@ $login_state = is_logged();
       cursor: pointer;
       transition: 0.3s;
       font-size: 1.35rem;
-      
+      width: 210px;
+      margin: 5px;
+      border: none;
+      margin-bottom: 10px
     }
 
     .category-item:hover {
@@ -247,29 +250,34 @@ $login_state = is_logged();
     <div class="search-bar">
       <form method="POST" action="php_functs/filtrer_act.php">
         <input type="hidden" name="type" value="home_search"/>
-        <input class="search-input" type="text" placeholder="vaga de caridade, meio ambiente ..." name="filter_user"/>
+        <input class="search-input" type="text" placeholder="Vaga de meio ambiente, cuidadores, ONG ..." name="filter_user"/>
         <button class="search-button">BUSCAR <i class='bx  bx-search-alt'></i> 
-        </button>
-      </form>
-    </div>
+      </button>
+    </form>
   </div>
+</div>
 
-  <div class="categories">
-    <div class="categories-title">
-      <i class='bx bxs-circle' style='color:#40d9cd'></i> 
-      VEJA ALGUMAS DISPONÍVEIS
-    </div>
-    <!-- nome do form: home_category -->
-    <div class="category-grid">
-      <div class="category-item eventos">EVENTOS</div>
-      <div class="category-item animais">ANIMAIS</div>
-      <div class="category-item educacao">EDUCAÇÃO</div>
-      <div class="category-item meioambiente">MEIO AMBIENTE</div>
-      <div class="category-item criancas">CRIANÇAS</div>
-      <div class="category-item tecnologia">TECNOLOGIA</div>
-      <div class="category-item saude">SAÚDE</div>
-      <div class="category-item assistencia">ASSIST. SOCIAL</div>
-      <div class="category-item administracao">ADMINISTRAÇÃO</div>
+<div class="categories">
+  <div class="categories-title">
+    <i class='bx bxs-circle' style='color:#40d9cd'></i> 
+    VEJA ALGUMAS DISPONÍVEIS
+  </div>
+  <!-- nome do form: home_category -->
+  <div class="category-grid">
+    <form method="POST" action="php_functs/filtrer_act.php">   
+      <input type="hidden" name="type" value="home_category"/>
+      
+      <button type='submit' name='category_button' value = 'eventos' class="category-item eventos">EVENTOS</button>
+      <button type='submit' name='category_button' value = 'animais' class="category-item animais">ANIMAIS</button>
+      <button type='submit' name='category_button' value = 'educação' class="category-item educacao">EDUCAÇÃO</button>
+      <button type='submit' name='category_button' value = 'meio ambiente' class="category-item meioambiente">MEIO AMBIENTE</button>
+      <button type='submit' name='category_button' value = 'crianças' class="category-item criancas">CRIANÇAS</button>
+      <button type='submit' name='category_button' value = 'tecnologia' class="category-item tecnologia">TECNOLOGIA</button>
+      <button type='submit' name='category_button' value = 'saúde' class="category-item saude">SAÚDE</button>
+      <button type='submit' name='category_button' value = 'assistente social' class="category-item assistencia">ASSIST. SOCIAL</button>
+      <button type='submit' name='category_button' value = 'administração' class="category-item administracao">ADMINISTRAÇÃO</button>
+      
+    </form>
     </div>
   </div>
 
