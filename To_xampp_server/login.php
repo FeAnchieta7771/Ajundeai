@@ -29,8 +29,8 @@
         }
 
         .logo img {
-            height: 55px;
-            width: 100px;
+            height: 60px;
+            width: 170px;
         }
 
         .header-buttons {

@@ -5,7 +5,10 @@ include 'php_functs/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
-
+// busca quem está logado
+$is_ong = is_ong_logged();
+// busca botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
 ?>
 
 <!-- Tela de Menu -->
@@ -29,6 +32,8 @@ $login_state = is_logged();
     body {
       background-color: #ffffff;
     }
+
+/* inicio css do header ===================== */
 
     header {
       background-color: #e76f00;
@@ -64,8 +69,46 @@ $login_state = is_logged();
       text-decoration: none
     }
 
-    
-    
+/* fim css do header ===================== */
+
+
+/* inicio css dos botões de acesso ao login ===================== */
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%; /* abaixo do botão principal */
+      right: 0;
+      background-color: #e76f00;
+      min-width: 160px;
+      box-shadow: 0px 10px 20px rgba(22, 14, 173, 0.2);
+      z-index: 1;
+    }
+
+    .submenu button {
+      background-color: white;
+      color: #e76f00;
+      padding: 10px 16px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .submenu button:hover {
+      background-color: #00c4b4;
+      color: white;
+    }
+
+    .menu-text {
+     position: relative;
+     top: -5px; /* eleva o texto */
+     margin-left: 5px;
+    }
+    .menu-container:hover .submenu {
+      display: block;
+    }
+
+/* fim css dos botões de acesso ao login ===================== */
 
     .btn.register {
       background-color: #00c4b4;
@@ -239,10 +282,8 @@ $login_state = is_logged();
       <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
       </a>
     </div>
-    <div class="header-buttons">
-      <a href="login.php" class="btn login" >ENTRAR</a>
-      <a href="account.php" class="btn register">CADASTRE-SE</a>
-    </div>
+    <!-- botões do header -->
+    <?php echo $buttons_header; ?>
   </header>
 
   <div class="hero">
@@ -290,7 +331,7 @@ $login_state = is_logged();
     </div>
     <div class="footer-logo">
       <!--s Substitua -->
-      <img src="img\AJUDEAI Logo.png" alt="Logo AjundeAi" />
+      <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
     </div>
   </footer>
 </body>
