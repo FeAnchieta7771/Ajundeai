@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+include 'php_functs/functions.php';
+
+// busca situação de login do usuário
+$login_state = is_logged();
+// busca quem está logado
+$is_ong = is_ong_logged();
+// busca botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
 <!-- Tela de Login -->
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -5,7 +18,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="icon" href="img/Aj.png">
+    <link rel="icon" href="img\Logo_Aba.png">
     <title>AjundeAi</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -20,42 +33,87 @@
             background-color: #ffffff;
         }
 
+/* inicio css do header ===================== */
+
         header {
-            background-color: #e76f00;
-            padding: 15px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        background-color: #e76f00;
+        padding: 15px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         }
 
         .logo img {
-            height: 60px;
-            width: 170px;
+        height: 60px;
+        width: 170px;
         }
 
         .header-buttons {
-            display: flex;
-            gap: 10px;
+        display: flex;
+        gap: 10px;
         }
 
         .btn {
-            padding: 10px 20px;
-            font-weight: bold;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: none;
+        padding: 10px 20px;
+        font-weight: bold;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: none;
         }
 
         .btn.login {
-            background-color: #ffffff;
-            color: #00c4b4;
-            border: 2px solid #00c4b4;
+        background-color: #ffffff;
+        color: #00c4b4;
+        border: 2px solid #00c4b4;
+        text-decoration: none
         }
+
+/* fim css do header ===================== */
+
+
+/* inicio css dos botões de acesso ao login ===================== */
+        .submenu {
+        display: none;
+        position: absolute;
+        top: 100%; /* abaixo do botão principal */
+        right: 0;
+        background-color: #e76f00;
+        min-width: 160px;
+        box-shadow: 0px 10px 20px rgba(22, 14, 173, 0.2);
+        z-index: 1;
+        }
+
+        .submenu button {
+        background-color: white;
+        color: #e76f00;
+        padding: 10px 16px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        }
+
+        .submenu button:hover {
+        background-color: #00c4b4;
+        color: white;
+        }
+
+        .menu-text {
+        position: relative;
+        top: -5px; /* eleva o texto */
+        margin-left: 5px;
+        }
+        .menu-container:hover .submenu {
+        display: block;
+        }
+
+/* fim css dos botões de acesso ao login ===================== */
 
         .btn.register {
             background-color: #00c4b4;
             color: white;
+            text-emphasis: none;
         }
 
         .log {
@@ -173,15 +231,13 @@
 <body>
 
     <header>
-    <div class="logo">
-      <a href="index.php">
-      <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
-      </a>
-    </div>
-        <div class="header-buttons">
-            <button class="btn login">ENTRAR</button>
-            <button class="btn register">CADASTRE-SE</button>
+        <div class="logo">
+        <a href="index.php">
+        <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+        </a>
         </div>
+        <!-- botões do header -->
+        <?php echo $buttons_header; ?>
     </header>
 
     <div class="log">
