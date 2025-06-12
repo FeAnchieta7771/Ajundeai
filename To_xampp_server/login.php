@@ -19,8 +19,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="icon" href="img\Logo_Aba.png">
-    <title>AjundeAi</title>
+    <title>AjundeAi • Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/header.css">
     <style>
         * {
             box-sizing: border-box;
@@ -31,89 +32,6 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
         body {
             background-color: #ffffff;
-        }
-
-/* inicio css do header ===================== */
-
-        header {
-        background-color: #e76f00;
-        padding: 15px 30px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        }
-
-        .logo img {
-        height: 60px;
-        width: 170px;
-        }
-
-        .header-buttons {
-        display: flex;
-        gap: 10px;
-        }
-
-        .btn {
-        padding: 10px 20px;
-        font-weight: bold;
-        border-radius: 8px;
-        font-size: 0.9rem;
-        cursor: pointer;
-        border: none;
-        }
-
-        .btn.login {
-        background-color: #ffffff;
-        color: #00c4b4;
-        border: 2px solid #00c4b4;
-        text-decoration: none
-        }
-
-/* fim css do header ===================== */
-
-
-/* inicio css dos botões de acesso ao login ===================== */
-        .submenu {
-        display: none;
-        position: absolute;
-        top: 100%; /* abaixo do botão principal */
-        right: 0;
-        background-color: #e76f00;
-        min-width: 160px;
-        box-shadow: 0px 10px 20px rgba(22, 14, 173, 0.2);
-        z-index: 1;
-        }
-
-        .submenu button {
-        background-color: white;
-        color: #e76f00;
-        padding: 10px 16px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        cursor: pointer;
-        }
-
-        .submenu button:hover {
-        background-color: #00c4b4;
-        color: white;
-        }
-
-        .menu-text {
-        position: relative;
-        top: -5px; /* eleva o texto */
-        margin-left: 5px;
-        }
-        .menu-container:hover .submenu {
-        display: block;
-        }
-
-/* fim css dos botões de acesso ao login ===================== */
-
-        .btn.register {
-            background-color: #00c4b4;
-            color: white;
-            text-emphasis: none;
         }
 
         .log {
@@ -177,6 +95,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             width: 500px;
             color: #004652;
             text-align: left;
+            border-radius: 0px 0px 8px 8px;
         }
 
         .forms label {
@@ -226,6 +145,51 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             background-color: #d85f1a;
         }
 
+        /*  */
+
+        .content {
+    display: none
+}
+
+.content.show{
+    display: flex;
+    gap: 14px;
+}
+
+#container{
+    padding: 20px;
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.tab-buttons{
+    display: flex;
+    gap: 6px;
+    width: 500px;
+    justify-items: center;
+    justify-content: center;
+}
+
+.tab-btn {
+    width: 100%;
+    border: none;
+    color: black;
+    font-weight: bold;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color .2s ease;
+    background-color: rgba(137, 151, 172, 0.8);
+    color: rgba(31, 39, 49, 0.8);
+}
+.tab-btn.active{
+    background-color:rgba(255, 255, 255, 0.8);
+    color: #004652;
+    font-size: 20px;
+}
+
+.tab-btn:hover{
+    background-color:rgba(255, 255, 255, 0.59)
+} 
+
     </style>
 </head>
 <body>
@@ -244,29 +208,90 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         <div class="fh1">
             BEM VINDO DE VOLTA!<br><span>FAÇA SEU LOGIN!</span>
         </div>
+        <div id="container">
+          <div class="tab-buttons">
+            <button class="tab-btn active" content-id="home">
+              <i class='bx bxs-user-circle' ></i> Voluntário
+            </button>
 
-        <div class="form-wrapper">
-            <form class="forms">
-                <div class="role-selector">
-                    <label><input type="radio" name="role" checked> VOLUNTÁRIO</label>
-                    <span class="divider">|</span>
-                    <label><input type="radio" name="role"> ONG RESPONSÁVEL</label>
-                </div>
+            <button class="tab-btn" content-id="services">
+              <i class='bx bxs-buildings' ></i> ONG
+            </button>
 
-                <div class="form-container">
-                    <label for="email">NOME OU EMAIL</label>
-                    <input type="text" id="email" placeholder="Insira nome ou email aqui">
-                    <br>
-                    <br>
-                    <label for="password">SENHA</label>
-                    <input type="password" id="password" placeholder="Insira sua senha aqui">
-                </div>
+          </div>
 
-                <p class="signup">Não possui uma conta? <a href="#">CADASTRE-SE</a></p>
-                <button class="btlog" type="submit">LOGIN</button>
-            </form>
+          <div class="tab-contents">
+
+            <div class="content show" id="home">
+              <div class="form-wrapper">
+                  <form class="forms" method="POST" action="php_functs/doLogin.php">
+
+                      <input type="hidden" name="login_state" value="voluntario">
+                      <div class="form-container">
+                          <label for="email">NOME OU EMAIL</label>
+                          <input type="text" name="email" placeholder="Insira nome ou email aqui">
+                          <br>
+                          <br>
+                          <label for="password">SENHA</label>
+                          <input type="password" name="password" placeholder="Insira sua senha aqui">
+                      </div>
+
+                      <p class="signup">Não possui uma conta? <a href="#">CADASTRE-SE</a></p>
+                      <button class="btlog" type="submit">LOGIN</button>
+                  </form>
+              </div>
+            </div>
+
+            <div class="content" id="services">
+              <div class="form-wrapper">
+                  <form class="forms" method="POST" action="php_functs/doLogin.php">
+                    
+                      <input type="hidden" name="login_state" value="ong">
+                      <div class="form-container">
+                          <label for="email">NOME OU EMAIL DA ONG</label>
+                          <input type="text" name="email" placeholder="Insira nome ou email aqui">
+                          <br>
+                          <br>
+                          <label for="password">SENHA DE REGISTRO</label>
+                          <input type="password" name="password" placeholder="Insira sua senha aqui">
+                      </div>
+
+                      <p class="signup">Não possui uma conta? <a href="#">CADASTRE-SE</a></p>
+                      <button class="btlog" type="submit">LOGIN</button>
+                  </form>
+              </div>
+            </div>
+
+          </div>
         </div>
     </div>
 
+    <script>
+        // pego todos os botões
+        const tabs = document.querySelectorAll('.tab-btn');
+
+        // atribuição da função á todos eles
+        tabs.forEach( tab => tab.addEventListener('click', () => tabClicked(tab)))
+
+        // função a caso sejam clicados
+        const tabClicked = (tab) => {
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tab.classList.add('active');
+            // pego todos os paineis
+            const contents = document.querySelectorAll('.content');
+
+            //desativação dos paineis visíveis
+            contents.forEach(content => content.classList.remove('show'));
+
+            // pegar atributo do botão clicado
+            const contentId = tab.getAttribute('content-id');
+
+            // pegar painel com o mesmo ID do atributo do botão
+            const content = document.getElementById(contentId);
+
+            content.classList.add('show');
+        }
+    </script>
 </body>
 </html>

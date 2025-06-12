@@ -37,41 +37,45 @@ function is_ong_logged(){
 function set_model_buttons_header($is_logged, $is_ong){
     if($is_logged){
 
-        $piece = "<div class='logo'>
-                <a href='index.php'>
-                <img src='img\Logo_Header.png' alt='Logo AjundeAi' />
-                </a>
-                </div>
-                <div class='menu-container'>
-                <button class='menu-button'><i class='bx bxs-user-circle' style='font-size: 30px; flex-shrink: 0;'></i> 
-                <span class='menu-text'><strong>Nome do cidadão</strong></span>
-                </button>";
+        $piece =  "<div class='menu-container'>";
         
         if($is_ong){
-            $piece = $piece . "<div class='submenu'>
-            <form method='POST' action=''>
-            <button name='button_header' value='ong_painel'>Painel de Controle</button>
-            <button name='button_header' value='ong_vaga'>Adicionar Vaga</button>
-            <button name='button_header' value='out'><strong>Sair da Conta</strong></button>
-            </form>
-            </div> 
-            </div> ";
-        } else {
+            // Botão para o usuário de ONG
+            $piece .= "<button class='menu-button'><i class='bx bxs-buildings' style='font-size: 30px; flex-shrink: 0;'></i>";
+            $piece .= "<span class='menu-text'><strong>".$_SESSION['name']."</strong></span>";
+            $piece .= "</button>";
+            $piece .= "<div class='submenu'>";
+            $piece .= "<form method='POST' action='../php_functs/action_buttons_login.php'>";
+            $piece .= "<input type='hidden' name='type' value='slot_created_ong'/>";
+            $piece .= "<button name='button_header' value='ong_painel'>Painel de Controle</button>";
+            $piece .= "<button name='button_header' value='ong_vaga'>Adicionar Vaga</button>";
+            $piece .= "<button name='button_header' value='out'><strong>Sair da Conta</strong></button>";
+            $piece .= "</form></div> </div>";
 
-            $piece = $piece . "<div class='submenu'>
-            <form method='POST' action=''>
-            <button name='button_header' value='volu_painel'>Painel de Controle</button>
-            <button name='button_header' value='volu_vaga'>Pesquisa de Vaga</button>
-            <button name='button_header' value='out'><strong>Sair da Conta</strong></button>
-            </form>
-            </div> 
-            </div> ";
+        } else {
+            // Botão para o usuário de voluntário
+            $piece .= "<button class='menu-button'><i class='bx bxs-user-circle' style='font-size: 30px; flex-shrink: 0;'></i>";
+            $piece .= "<span class='menu-text'><strong>".$_SESSION['name']."</strong></span>";
+            $piece .= "</button>";
+            $piece .= "<div class='submenu'>";
+            $piece .= "<form method='POST' action='../php_functs/action_buttons_login.php'>";
+            $piece .= "<input type='hidden' name='type' value='nothing_else'/>";
+            $piece .= "<button name='button_header' value='volu_painel'>Painel de Controle</button>";
+            $piece .= "<button name='button_header' value='volu_vaga'>Pesquisa de Vaga</button>";
+            $piece .= "<button name='button_header' value='out'><strong>Sair da Conta</strong></button>";
+            $piece .= "</form></div> </div>";
+
         }
 
         return $piece;
+
     }else{
         
-        return "<div class='header-buttons'><a href='login.php' class='btn login' >ENTRAR</a><a href='account.php' class='btn register'>CADASTRE-SE</a></div>";
+        $piece =  "<div class='header-buttons'>";
+        $piece .= "<a href='login.php' class='btn login' >ENTRAR</a>";
+        $piece .= "<a href='account.php' class='btn register'>CADASTRE-SE</a>";
+        $piece .= "</div>";
+        return $piece;
     }
 }
 ?>

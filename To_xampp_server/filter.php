@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+include 'php_functs/functions.php';
+
+// busca situação de login do usuário
+$login_state = is_logged();
+// busca quem está logado
+$is_ong = is_ong_logged();
+// busca botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
 <!-- Tela de Resultado da Pesquisa do Filtro -->
      <!-- nome do form: filter -->
 <!DOCTYPE html>
@@ -5,8 +18,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AjundeAi - Vagas</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="icon" href="img\Logo_Aba.png">
+  <title>AjundeAi • Pesquisa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/header.css">
   <style>
+    
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,46 +34,6 @@
 
     body {
       background-color: #ffffff;
-    }
-
-    header {
-      background-color: #e76f00;
-      padding: 15px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo img {
-      height: 60px;
-      width: 170px;
-    }
-
-    .header-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      font-weight: bold;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn.login {
-      background-color: #ffffff;
-      color: #00c4b4;
-      border: 2px solid #00c4b4;
-      text-decoration: none
-    }
-
-    .btn.register {
-      background-color: #00c4b4;
-      color: white;
-      text-decoration: none
     }
 
     .search-bar {
@@ -77,17 +55,6 @@
     .buttons {
       display: flex;
       gap: 10px;
-    }
-
-    .btn-entrar {
-      background-color: white;
-      color: #e76f00;
-      border: 2px solid #e76f00;
-    }
-
-    .btn-cadastro {
-      background-color: #00c4b4;
-      color: white;
     }
 
     .container {
@@ -190,12 +157,11 @@
       <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
       </a>
     </div>
-    <div class="header-buttons">
-      <a href="login.php" class="btn login" >ENTRAR</a>
-      <a href="account.php" class="btn register">CADASTRE-SE</a>
-    </div>
+    <!-- botões do header -->
+    <?php echo $buttons_header; ?>
   </header>
-     <forms>
+
+     <form>
           <header style="background-color: #004d61; justify-content: center;">
           <div class="search-bar">
                <input type="text" placeholder="Pesquise sua vaga solicitada" />
@@ -217,12 +183,14 @@
                <label><input type="checkbox" name="filtro"> Meio Ambiente</label>
                <button class="btn btn-buscar">BUSCAR</button>
           </aside>
-    </forms>
+    </form>
 
     <section class="vagas">
-      <h3>[N] VAGAS DE [FILTRO] FORAM ENCONTRADAS</h3>
+      <?php include 'php_functs/filter_act.php'; do_filter(); ?>
+
+      <!-- <h3>[N] VAGAS DE [FILTRO] FORAM ENCONTRADAS</h3>
       <div class="scroll-wrapper">
-        <!-- Aqui os blocos podem ser gerados via PHP -->
+        Aqui os blocos podem ser gerados via PHP  
         <div class="vaga-card">
           <img src="img\icons_orange\outro.png" alt="Ícone" />
           <div class="vaga-info">
@@ -231,8 +199,9 @@
             <p>Descrição pequena que está dentro do banco que o Guilherme ainda tem que fazer e passar o arquivo pra mim.</p>
           </div>
         </div>
-        <!-- Repita o .vaga-card conforme necessário -->
-      </div>
+        Repita o .vaga-card conforme necessário
+
+      </div> -->
     </section>
   </main>
 </body>

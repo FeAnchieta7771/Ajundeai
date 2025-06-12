@@ -5,9 +5,11 @@ include 'php_functs/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
+
 // busca quem está logado
 $is_ong = is_ong_logged();
-// busca botões do header
+
+// setar botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
 ?>
 
@@ -21,6 +23,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <link rel="icon" href="img\Logo_Aba.png">
   <title>AjundeAi</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/header.css">
+
   <style>
     * {
       box-sizing: border-box;
@@ -33,88 +37,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       background-color: #ffffff;
     }
 
-/* inicio css do header ===================== */
-
-    header {
-      background-color: #e76f00;
-      padding: 15px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo img {
-      height: 60px;
-      width: 170px;
-    }
-
-    .header-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn {
-      padding: 10px 20px;
-      font-weight: bold;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn.login {
-      background-color: #ffffff;
-      color: #00c4b4;
-      border: 2px solid #00c4b4;
-      text-decoration: none
-    }
-
-/* fim css do header ===================== */
-
-
-/* inicio css dos botões de acesso ao login ===================== */
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 100%; /* abaixo do botão principal */
-      right: 0;
-      background-color: #e76f00;
-      min-width: 160px;
-      box-shadow: 0px 10px 20px rgba(22, 14, 173, 0.2);
-      z-index: 1;
-    }
-
-    .submenu button {
-      background-color: white;
-      color: #e76f00;
-      padding: 10px 16px;
-      width: 100%;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .submenu button:hover {
-      background-color: #00c4b4;
-      color: white;
-    }
-
-    .menu-text {
-     position: relative;
-     top: -5px; /* eleva o texto */
-     margin-left: 5px;
-    }
-    .menu-container:hover .submenu {
-      display: block;
-    }
-
 /* fim css dos botões de acesso ao login ===================== */
-
-    .btn.register {
-      background-color: #00c4b4;
-      color: white;
-      text-decoration: none
-    }
 
     .hero {
       background: linear-gradient(135deg, #003a45 60%, #005e55 100%);
@@ -269,8 +192,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     }
 
     .footer-logo img {
-      height: 100px;
-      width: 200px
+      height: 60px;
+      width: 170px;
     }
   </style>
 </head>
@@ -289,7 +212,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <div class="hero">
     <h1>ENCONTRE SUA VAGA<br/>DE VOLUNTARIADO.</h1>
     <div class="search-bar">
-      <form method="POST" action="php_functs/filtrer_act.php">
+      <form method="POST" action="filter.php">
         <input type="hidden" name="type" value="home_search"/>
         <input class="search-input" type="text" placeholder="Vaga de meio ambiente, cuidadores, ONG ..." name="filter_user"/>
         <button class="search-button">BUSCAR <i class='bx  bx-search-alt'></i> 
@@ -305,7 +228,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   </div>
   <!-- nome do form: home_category -->
   <div class="category-grid">
-    <form method="POST" action="php_functs/filtrer_act.php">   
+    <form method="POST" action="filter.php">   
       <input type="hidden" name="type" value="home_category"/>
       
       <button type='submit' name='category_button' value = 'eventos' class="category-item eventos">EVENTOS</button>
@@ -315,7 +238,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <button type='submit' name='category_button' value = 'crianças' class="category-item criancas">CRIANÇAS</button>
       <button type='submit' name='category_button' value = 'tecnologia' class="category-item tecnologia">TECNOLOGIA</button>
       <button type='submit' name='category_button' value = 'saúde' class="category-item saude">SAÚDE</button>
-      <button type='submit' name='category_button' value = 'assistente social' class="category-item assistencia">ASSIST. SOCIAL</button>
+      <button type='submit' name='category_button' value = 'assistencia' class="category-item assistencia">ASSIST. SOCIAL</button>
       <button type='submit' name='category_button' value = 'administração' class="category-item administracao">ADMINISTRAÇÃO</button>
       
     </form>

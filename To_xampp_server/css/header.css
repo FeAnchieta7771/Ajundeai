@@ -1,0 +1,92 @@
+/* inicio css do header ===================== */
+
+    header {
+      background-color: #e76f00;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo img {
+      height: 60px;
+      width: 170px;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn.login {
+      background-color: #ffffff;
+      color: #00c4b4;
+      border: 2px solid #00c4b4;
+      text-decoration: none
+    }
+
+    .btn.register {
+      background-color: #00c4b4;
+      color: white;
+      text-decoration: none
+    }
+
+/* fim css do header ===================== */
+
+ 
+/* inicio css dos botões de acesso ao login ===================== */
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%; /* abaixo do botão principal */
+      right: 0;
+      background-color: #e76f00;
+      min-width: 160px;
+      box-shadow: 0px 10px 20px rgba(22, 14, 173, 0.2);
+      z-index: 1;
+    }
+
+    .submenu button {
+      background-color: white;
+      color: #e76f00;
+      padding: 10px 16px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .menu-container{
+      display: flow-root;
+      position: relative;
+    }
+
+    .submenu button:hover {
+      background-color: #00c4b4;
+      color: white;
+    }
+
+    .menu-text {
+     position: relative;
+     top: -5px; /* eleva o texto */
+     margin-left: 5px;
+    }
+    .menu-container:hover .submenu {
+      display: block;
+    }
+
+    .menu-button{
+      background-color:rgb(202, 105, 14);
+      border: none;
+      padding: 10px;
+      color: white;
+    }
