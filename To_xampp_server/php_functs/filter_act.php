@@ -1,6 +1,11 @@
 <?php
 // Função Principal
 function do_filter(){
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // TODO filtro tem a mesma base de pesquisas, sendo apenas condições diferentes
+    // variável constante nas buscas sql
+    $base_sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.quant_atual < vaga.quant_limite ";
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     // apenas executa o código apenas se ele for chamado
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -8,11 +13,6 @@ function do_filter(){
         include 'conexao.php';
         $type_filter = $_POST['type'];
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // TODO filtro tem a mesma base de pesquisas, sendo apenas condições diferentes
-        // variável constante nas buscas sql
-        $base_sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.quant_atual < vaga.quant_limite ";
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELA
@@ -64,19 +64,20 @@ function do_filter(){
         } else if($type_filter == 'sign_filter'){
 
 
+        }
+    
         // ! ESSE FILTRO PESQUISA TODOS OS ITEMS
         // USADO APENAS AO BOTÃO "Pesquisa de Vaga" QUE DIRECIONA AO FILTRO
-        } else if($type_filter == 'nothing_else'){
+        // como não é acessivel via POST, ele é acessível por SESSION
+    } else if(isset($_SESSION['nothing_else']) AND  $_SESSION['nothing_else']){
 
             // Não terá nenhuma condição extra além de vagas disponíveis
             // este filtro apenas funciona para introduz a tela de filtro direcionada por um botão
             
             $sql = $base_sql;
-            echo $sql;
             
             $result = return_select($sql);
             show_filter($result);
-        }
     }
 }
 
@@ -172,5 +173,15 @@ function show_filter($result){
         echo "</div>";
 }
 
+function pick_the_input_user(){
+
+    if(isset($_POST['filter_user'])){
+
+        return $_POST['filter_user'];
+
+    } else{
+        return '';
+    }
+}
 
 ?>

@@ -1,8 +1,12 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $method = $_POST['button_header'];
+    $_SESSION['nothing_else'] = true;
 
     switch($method){
         case 'volu_painel':
