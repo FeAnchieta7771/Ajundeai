@@ -139,10 +139,13 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             margin-top: 10px;
             font-size: 20px;
             width: 500px;
+            transition: .15s;
         }
 
-        button:hover {
-            background-color: #d85f1a;
+        .btlog:hover {
+            transform: scale(1.02);
+            background-color: white;
+            color: #f26b1d;
         }
 
         /*  */

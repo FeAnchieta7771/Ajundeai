@@ -42,7 +42,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     .hero {
       background: linear-gradient(135deg, #003a45 60%, #005e55 100%);
       position: relative;
-      padding: 80px 20px;
+      padding: 180px 20px;
       text-align: center;
       color: white;
       overflow: hidden;
@@ -99,6 +99,13 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       align-items: center;
       gap: 10px;
       padding: auto;
+      transition: .15s;
+    }
+
+    .search-button:hover{
+      transform: scale(1.02);
+      background-color: white;
+      color: #007f79;
     }
 
     .search-button img {
@@ -145,11 +152,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       width: 210px;
       margin: 5px;
       border: none;
-      margin-bottom: 10px
+      margin-bottom: 10px;
+      transition: 0.15s
     }
 
     .category-item:hover {
-      opacity: 0.9;
+      /* opacity: 0.9; */
+      background-color: #e76f00;
+      transform: scale(1.02);
     }
 
     /* Cores específicas */
@@ -224,7 +234,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 <div class="categories">
   <div class="categories-title">
     <i class='bx bxs-circle' style='color:#40d9cd'></i> 
-    VEJA ALGUMAS DISPONÍVEIS
+    VEJA ALGUMAS DISPONÍVEIS 
   </div>
   <!-- nome do form: home_category -->
   <div class="category-grid">

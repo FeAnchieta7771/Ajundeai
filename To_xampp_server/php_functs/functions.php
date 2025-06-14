@@ -42,7 +42,7 @@ function set_model_buttons_header($is_logged, $is_ong){
         if($is_ong){
             // Botão para o usuário de ONG
             $piece .= "<button class='menu-button'><i class='bx bxs-buildings' style='font-size: 30px; flex-shrink: 0;'></i>";
-            $piece .= "<span class='menu-text'><strong>".$_SESSION['name']."</strong></span>";
+            $piece .= "<span class='menu-text'><strong>".htmlspecialchars($_SESSION['name'])."</strong></span>";
             $piece .= "</button>";
             $piece .= "<div class='submenu'>";
             $piece .= "<form method='POST' action='../php_functs/action_buttons_login.php'>";
@@ -55,7 +55,7 @@ function set_model_buttons_header($is_logged, $is_ong){
         } else {
             // Botão para o usuário de voluntário
             $piece .= "<button class='menu-button'><i class='bx bxs-user-circle' style='font-size: 30px; flex-shrink: 0;'></i>";
-            $piece .= "<span class='menu-text'><strong>".$_SESSION['name']."</strong></span>";
+            $piece .= "<span class='menu-text'><strong>".htmlspecialchars($_SESSION['name'])."</strong></span>";
             $piece .= "</button>";
             $piece .= "<div class='submenu'>";
             $piece .= "<form method='POST' action='../php_functs/action_buttons_login.php'>";

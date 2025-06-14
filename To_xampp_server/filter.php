@@ -19,6 +19,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search_off" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=database_off" />
   <link rel="icon" href="img\Logo_Aba.png">
   <title>AjundeAi • Pesquisa</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -166,10 +168,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <?php echo $buttons_header; ?>
   </header>
 
-     <form>
+     <form method="POST" action="filter.php">
+          <input type="hidden" name="type" value="filter_base"/>
           <header style="background-color: #004d61; justify-content: center;">
           <div class="search-bar">
-               <input type="text" placeholder="Pesquise sua vaga solicitada" />
+               <input type="text" name="filter_user" placeholder="Pesquise sua vaga solicitada" />
                <button class="btn btn-buscar">BUSCAR</button>
           </div>
           </header>
@@ -177,15 +180,15 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
           <main class="container">
           <aside class="filtros">
                <h2>FILTROS</h2>
-               <label><input type="checkbox" name="filtro"> Saúde</label>
-               <label><input type="checkbox" name="filtro"> Eventos</label>
-               <label><input type="checkbox" name="filtro"> Animais</label>
-               <label><input type="checkbox" name="filtro"> Crianças</label>
-               <label><input type="checkbox" name="filtro"> Educação</label>
-               <label><input type="checkbox" name="filtro"> Tecnologia</label>
-               <label><input type="checkbox" name="filtro"> Assist. Social</label>
-               <label><input type="checkbox" name="filtro"> Administração</label>
-               <label><input type="checkbox" name="filtro"> Meio Ambiente</label>
+               <label><input type="checkbox" value="saúde" name="saúde"> Saúde</label>
+               <label><input type="checkbox" value="eventos" name="eventos"> Eventos</label>
+               <label><input type="checkbox" value="animais" name="animais"> Animais</label>
+               <label><input type="checkbox" value="crianças" name="crianças"> Crianças</label>
+               <label><input type="checkbox" value="educação" name="educação"> Educação</label>
+               <label><input type="checkbox" value="tecnologia" name="tecnologia"> Tecnologia</label>
+               <label><input type="checkbox" value="assistencia" name="assistencia"> Assist. Social</label>
+               <label><input type="checkbox" value="administração" name="administração"> Administração</label>
+               <label><input type="checkbox" value="meio ambiente" name="meio_ambiente"> Meio Ambiente</label>
                <button class="btn btn-buscar">BUSCAR</button>
           </aside>
     </form>
