@@ -172,7 +172,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
           <input type="hidden" name="type" value="filter_base"/>
           <header style="background-color: #004d61; justify-content: center;">
           <div class="search-bar">
-               <input type="text" name="filter_user" placeholder="Pesquise sua vaga solicitada" />
+               <input type="text" name="filter_user" placeholder="Pesquise sua vaga solicitada" value="<?php if(isset($_POST['filter_user'])){ echo $_POST['filter_user'];}?>"/>
                <button class="btn btn-buscar">BUSCAR</button>
           </div>
           </header>

@@ -1,5 +1,8 @@
 <?php
 // Função Principal
+/////////////////////////////////////////////////////////////////////////
+// ! Este arquivo está disposto a executar os filtros da tela "filter.php"
+/////////////////////////////////////////////////////////////////////////
 function do_filter(){
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // TODO filtro tem a mesma base de pesquisas, sendo apenas condições diferentes
@@ -13,9 +16,9 @@ function do_filter(){
         include 'conexao.php';
         $type_filter = $_POST['type'];
 
-
-
-        // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELA
+    ////////////////////////////////////////////////////////////////////
+    
+    // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELA
         // BARRA DE PESQUISA DA TELA DE HOME
         if($type_filter == 'home_search'){
             
@@ -28,14 +31,15 @@ function do_filter(){
             // Busca do texto pelo nome da Ong
             // Busca do texto pelo nome da vaga
             // Busca do texto pelo nome da categoria
-
+            
             $sql =  $base_sql; 
             $sql .= "AND ( ong.nome_ong LIKE '%$filter_user%' OR vaga.nome LIKE '%$filter_user%' OR vaga.categoria_vaga LIKE '%$filter_user%')";
             
             $result = return_select($sql);
             show_filter($result);
             
-
+    ////////////////////////////////////////////////////////////////////
+            
         // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELOS
         // BOTÕES CONFIGURADOS NO HOME
         } else if ($type_filter == 'home_category'){
@@ -48,7 +52,8 @@ function do_filter(){
             $result = return_select($sql);
             show_filter($result);
         
-
+    ////////////////////////////////////////////////////////////////////
+    
         // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS 
         // DIRETAMENTE A TELA DE FILTRO
         } else if($type_filter == 'filter_base'){
@@ -63,18 +68,9 @@ function do_filter(){
             // echo $sql;
             $result = return_select($sql);
             show_filter($result);
-
-        // ! ESSE FILTRO VAI PARA PESQUISAS DE VAGAS SALVAS 
-        // PELO VOLUNTÁRIO
-        } else if($type_filter == 'save_filter'){
-
-
-        // ! ESSE FILTRO VAI PARA PESQUISAS DE VAGAS CADASTRADAS 
-        // PELO VOLUNTÁRIO
-        } else if($type_filter == 'sign_filter'){
-
-
         }
+
+    ////////////////////////////////////////////////////////////////////
     
         // ! ESSE FILTRO PESQUISA TODOS OS ITEMS
         // USADO APENAS AO BOTÃO "Pesquisa de Vaga" QUE DIRECIONA AO FILTRO
@@ -90,6 +86,7 @@ function do_filter(){
             show_filter($result);
     }
 }
+
 
 // função de execução do SELECT
 function return_select($sql){
@@ -120,7 +117,6 @@ function return_select($sql){
 }
 
 // A FUNÇÃO fará a exibição dos resultados entregues á ela
-
 function show_filter($result){
 
         // iniciar tentiva de consulta
@@ -169,9 +165,10 @@ function show_filter($result){
         }
 
         echo "</div>";
-    }
-    
-    function image_filter($categoriaImagem){
+}
+
+// busca pelo caminho da imagem á ser mostrado na vaga
+function image_filter($categoriaImagem){
     
         $categoriaImagem = strtolower($categoriaImagem);
         
@@ -203,21 +200,9 @@ function show_filter($result){
             str_contains($categoriaImagem,"tecnologia")
         ){return "img/icons_orange/tecnologia.png";}
         else{return "img/icons_orange/outro.png";}
-    }
-
-function pick_the_input_user(){
-    
-    if(isset($_POST['filter_user'])){
-
-        return $_POST['filter_user'];
-
-    } else{
-
-        return '';
-    }
 }
 
-
+// retorna o sql completo para a pesquisa segundo os filtros e a barra de pesquisa
 function filter_base_checkbox($sql, $filter_user){
             $quant_filter = 0;
 
