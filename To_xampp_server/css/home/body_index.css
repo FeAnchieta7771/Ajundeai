@@ -1,0 +1,383 @@
+.buts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+
+
+.tryLogin{
+    align-items: center;
+    justify-items: center;
+    padding: 30px;
+    background-color: rgb(237, 237, 237);
+    border-bottom: solid 1px;
+    border-color: rgb(198, 198, 198);
+}
+
+.tryLogin h2{
+    font-size: 40px;
+    font-family: 'Horizon', sans-serif;
+    color: #00312f;
+}
+
+.tryLogin a{
+    margin: 0px 10px;
+    padding: 15px;
+    font-size: 15px;
+    transition: .15s;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.tryLogin p{
+    color:rgb(165, 165, 165);
+    font-family: 'Antique', sans-serif;
+}
+
+
+
+
+.titleCategory{
+    margin-top: 80px;
+    align-items: center;
+    justify-items: center;
+}
+
+.titleCategory h2{
+    font-size: 40px;
+    font-family: 'Horizon', sans-serif;
+    color: #00312f;
+}
+
+.titleCategory p{
+    font-family: 'Antique', sans-serif;
+}
+
+
+
+
+.buttonTryLogin1 {
+    background-color: #e76f00;
+    color: white;
+    border: 2px solid #e76f00;
+    text-decoration: none
+}
+
+.buttonTryLogin1:hover{
+    background-color: white;
+    color: #e76f00;
+    transform: scale(1.01)
+}
+
+
+
+
+.buttonTryLogin2 {
+    background-color: #007f79;
+    color: white;
+    border: 2px solid #007f79;
+    text-decoration: none
+}
+
+.buttonTryLogin2:hover{
+    background-color: white;
+    color: #007f79;
+    transform: scale(1.01)
+}
+
+
+
+
+.buttonTryLogin3 {
+    background-color: #00c4b4;
+    color: white;
+    border: 2px solid #00c4b4;
+    text-decoration: none
+}
+
+.buttonTryLogin3:hover{
+    background-color: white;
+    color: #00c4b4;
+    transform: scale(1.01)
+}
+
+
+.image_div {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+}
+
+.image_div.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ////////////////////////////////////////////// */
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+    border-bottom: solid 1px;
+    border-color: rgb(198, 198, 198);
+}
+    
+.div1 {
+    position: relative;
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    padding: 40px;
+    margin-top: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
+    align-items: center;
+    padding-bottom: 40px;
+    margin-bottom: 80px;
+}
+
+.objects{
+    padding-bottom: 40px;
+}
+
+.div1 h2{
+    font-size: 55px;
+    font-style: italic;
+    margin-bottom: 40px;
+    font-family: 'Horizon', sans-serif;
+    color: #e76f00;
+}
+
+.div1 p{
+    font-size: 20px;
+    color: rgb(165, 165, 165);
+}
+
+.div1 span{
+    margin-right: 10px;
+}
+
+.div1 a{
+    align-items: center;
+    vertical-align: middle;
+    display: inline-flex;
+    padding: 15px;
+    font-size: 15px;
+    transition: .15s;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+.div2 {
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+    padding: 40px 40px 40px 0px;
+    margin-top: 50px;
+    margin-right: 50px;
+    margin-bottom: 80px;
+}
+
+.div4 {
+    position: relative;
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+    padding: 40px;
+    margin-top: 50px;
+    margin-left: 60px;
+    margin-right: 60px;
+    align-items: center;
+    padding-bottom: 40px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.objects{
+    padding-bottom: 40px;
+}
+
+.div4 h2{
+    font-size: 55px;
+    font-style: italic;
+    margin-bottom: 40px;
+    font-family: 'Horizon', sans-serif;
+    color: #e76f00;
+}
+
+.div4 p{
+    font-size: 20px;
+    color: rgb(165, 165, 165);
+}
+
+.div4 span{
+    margin-right: 10px;
+}
+
+.div4 a{
+    align-items: center;
+    vertical-align: middle;
+    display: inline-flex;
+    padding: 15px;
+    font-size: 15px;
+    transition: .15s;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+.div3 {
+    grid-column: span 3 / span 3;
+    grid-row: span 3 / span 3;
+    padding: 40px 40px 40px 0px;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.CategoryA  {
+    padding-bottom: 40px;
+    border-bottom: solid 1px;
+    border-color: rgb(198, 198, 198);
+}
+
+.Creator  {
+    padding-bottom: 40px;
+    border-bottom: solid 1px;
+    border-color:#ffb168;
+}
+
+
+.titleCard{
+    color: #007f79;
+    margin-top: 10px;
+    border-bottom: solid 2px #007f79;
+    font-family: 'Horizon';
+    transition: .15s;
+}
+
+.bodyCard{
+    padding-top: 20px;
+    font-family: 'Antique';
+    color: #007f79;
+    text-align: justify;
+    transition: .15s;
+}
+
+
+.parentB form{
+    /* margin: 0px 500px; */
+    justify-items: center;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 12px;
+}
+
+.parentB button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+.parentB div{
+    padding: 0px 20px;
+    cursor: pointer;
+    min-width: 300px;
+    max-width: 400px;
+    display: flex;
+    border-radius: 8px;
+    background-color: rgb(237, 237, 237);
+    border: solid 2px rgb(237, 237, 237);
+    color:#e76f00;
+    height: 350px;
+    align-items: baseline;
+    text-align: center;
+    text-decoration: none;
+    transition: .15s;
+}
+
+.parentB div:hover{
+    background-color: #fcf7f3;
+    border: solid 2px #fcf7f3;
+    transform: scale(1.01);
+}
+
+.parentB div:hover .titleCard{
+    color: #e76f00;
+    transform: scale(1.03);
+    border-bottom: solid 2px #e76f00;
+}
+
+.parentB div:hover .bodyCard{
+    padding-top: 20px;
+    font-family: 'Antique';
+    color: #e76f00;
+}
+
+    
+.divB1 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+}
+
+.divB2 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 6;
+}
+
+.divB3 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 8;
+}
+
+.divB4 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+    grid-row-start: 4;
+}
+
+.divB5 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 6;
+    grid-row-start: 4;
+}
+
+.divB6 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 8;
+    grid-row-start: 4;
+}
+
+.divB7 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+    grid-row-start: 7;
+}
+
+.divB8 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 6;
+    grid-row-start: 7;
+}
+
+.divB9 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
+    grid-column-start: 8;
+    grid-row-start: 7;
+}   
