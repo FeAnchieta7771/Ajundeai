@@ -62,7 +62,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     .container {
       display: flex;
       flex-wrap: wrap;
-      padding: 40px;
+      padding: 40px 10px 0px 40px;
       gap: 40px;
     }
 
@@ -80,7 +80,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       margin-bottom: 20px;
       border-bottom: 2px solid white;
       padding-bottom: 10px;
-      font-size: 1.3rem;
+      font-size: 1.6rem;
+      font-family: "Horizon", sans-serif;
     }
 
     .filtros label {
@@ -104,14 +105,16 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     }
 
     .vagas h3 {
-      color: #003f5c;
+      color: #2289e6;
       margin-bottom: 20px;
       font-weight: bold;
+      font-family: 'Horizon', sans-serif;
+      font-size: 1.3rem;
     }
 
     .scroll-wrapper {
       overflow-y: auto;
-      max-height: 70vh;
+      max-height: 63vh;
       padding-right: 10px;
     }
 
@@ -134,15 +137,18 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     .vaga-info h4 {
       color: #e76f00;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       margin-bottom: 5px;
+      font-family: 'Horizon', sans-serif;
     }
 
     .vaga-info span {
       display: block;
       margin-bottom: 5px;
+      align-items: center; 
       color: #196e78;
       font-weight: bold;
+      font-family: 'Antique', sans-serif;
     }
 
     .vaga-info p {
@@ -173,7 +179,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
           <header style="background-color: #004d61; justify-content: center;">
           <div class="search-bar">
                <input type="text" name="filter_user" placeholder="Pesquise sua vaga solicitada" value="<?php if(isset($_POST['filter_user'])){ echo $_POST['filter_user'];}?>"/>
-               <button class="btn btn-buscar">BUSCAR</button>
+               <button class="btn btn-buscar" style="font-family: 'Horizon', sans-serif; font-size: 15px">BUSCAR</button>
           </div>
           </header>
 
@@ -189,7 +195,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                <label><input type="checkbox" value="assistencia" name="assistencia"> Assist. Social</label>
                <label><input type="checkbox" value="administração" name="administração"> Administração</label>
                <label><input type="checkbox" value="meio ambiente" name="meio_ambiente"> Meio Ambiente</label>
-               <button class="btn btn-buscar">BUSCAR</button>
+               <button class="btn btn-buscar" style="font-family: 'Horizon', sans-serif; font-size: 18px">BUSCAR</button>
           </aside>
     </form>
 

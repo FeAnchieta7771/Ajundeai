@@ -54,9 +54,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             font-size: 60px;
             font-weight: bold;
             margin-bottom: 20px;
+            font-family: "Horizon", sans-serif;
+            font-style: italic;
         }
 
         .fh1 span {
+            font-family: "Horizon", sans-serif;
+            font-style: italic;
+            font-size: 50px;
             display: block;
         }
 
@@ -121,7 +126,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         .signup a {
             color: #53d3d1;
             font-weight: bold;
+            font-size: 17px;
             text-decoration: none;
+            font-family: "Horizon", sans-serif;
         }
 
         .signup a:hover {
@@ -130,6 +137,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
         .btlog {
             background-color: #f26b1d;
+            font-family: "Horizon", sans-serif;
             border: none;
             padding: 12px;
             border-radius: 6px;
@@ -209,7 +217,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     <div class="log">
         <div class="fh1">
-            BEM VINDO DE VOLTA!<br><span>FAÇA SEU LOGIN!</span>
+            BEM VINDO DE VOLTA!<br><span>realize seu login.</span>
         </div>
         <div id="container">
           <div class="tab-buttons">

@@ -47,6 +47,7 @@
     }
 
     .btn {
+      font-family: "Horizon", sans-serif;
       padding: 10px 20px;
       font-weight: bold;
       border-radius: 8px;
@@ -54,6 +55,7 @@
       cursor: pointer;
       border: none;
       transition: .15s;
+      font-size: 16px;
     }
 
     .btn.login {
@@ -113,7 +115,7 @@
       min-width: 160px;
       box-shadow: 0px 10px 20px rgba(22, 14, 173, 0.2);
       z-index: 1;
-    }
+    } 
 
     .submenu button {
       background-color: white;

@@ -50,3 +50,7 @@ const observer = new IntersectionObserver((entries) => {
 
 const items = document.querySelectorAll('.image_div');
 items.forEach(item => observer.observe(item));
+
+
+let volun_button = document.getElementById('Cadastro_volunt');
+let ong_button = document.getElementById('Cadastro_ong');

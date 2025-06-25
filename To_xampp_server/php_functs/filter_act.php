@@ -144,7 +144,7 @@ function show_filter($result){
             $plural_s = "S";
             $plural_foi = "RAM";
         }
-        echo "<h3>".$numLinhas. " VAGA".$plural_s." FO".$plural_foi." ENCONTRADA".$plural_s."</h3>";
+        echo "<h3>".$numLinhas. " VAGA".$plural_s." FO".$plural_foi." ENCONTRADA".$plural_s."!</h3>";
         echo "<div class='scroll-wrapper'>";
 
         #exibição das vagas encontradas
@@ -157,8 +157,8 @@ function show_filter($result){
           
           echo "  <img src='$url' alt='Ícone' />";
           echo "  <div class='vaga-info'>";
-          echo "    <h4>".$user_result['nome']."</h4>";
-          echo "    <span>".$user_result['quant_atual']."/".$user_result['quant_limite']." • ".$user_result['nome_ong']."</span>";
+          echo "    <h4 style='font-family: 'Horizon', sans-serif;'><a style='text-decoration: none'>".$user_result['nome']."</a></h4>";
+          echo "    <span><i class='bx bxs-user' style='font-size: 20px;'></i> ".$user_result['quant_atual']."/".$user_result['quant_limite']." • ".$user_result['nome_ong']."</span>";
           echo "    <p>".$user_result['descr_obj']."</p>";
           echo "  </div>";
           echo "</div>";
