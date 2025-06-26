@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     // ! Filtros do Login
     // Busca da senha pelo nome
     // Busca da senha pelo email
-    $sql = "SELECT senha,".$auxiliar_name." FROM ".$table_login." WHERE ".$table_login.".".$auxiliar_name." = '".$name_email."' OR ".$table_login.".email = '".$name_email."'";
+    $sql = "SELECT id, senha,".$auxiliar_name." FROM ".$table_login." WHERE ".$table_login.".".$auxiliar_name." = '".$name_email."' OR ".$table_login.".email = '".$name_email."'";
     // Coleta o resultado
     $result = return_select($sql);
 
@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $_SESSION['whoLogged'] = $table_login;
             $_SESSION['name'] = $user[$auxiliar_name];
+            $_SESSION['id'] = $user['id'];
             $_SESSION['isLogin'] = true;
             header('Location: ../index.php');
             exit();

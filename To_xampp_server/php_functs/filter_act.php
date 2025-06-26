@@ -155,12 +155,17 @@ function show_filter($result){
             
           echo "<div class='vaga-card'>";
           
+          echo "<form method='POST' action='../show_slot_voluntary.php'>";
+          echo "<input type='hidden' name='type' value='filter_base'>";
+          echo "<input type='hidden' name='id_vaga' value=".$user_result['id'].">";
+          echo "<button type='submit'>";
           echo "  <img src='$url' alt='Ícone' />";
           echo "  <div class='vaga-info'>";
           echo "    <h4 style='font-family: 'Horizon', sans-serif;'><a style='text-decoration: none'>".$user_result['nome']."</a></h4>";
           echo "    <span><i class='bx bxs-user' style='font-size: 20px;'></i> ".$user_result['quant_atual']."/".$user_result['quant_limite']." • ".$user_result['nome_ong']."</span>";
           echo "    <p>".$user_result['descr_obj']."</p>";
           echo "  </div>";
+          echo "</button>";
           echo "</div>";
         }
 

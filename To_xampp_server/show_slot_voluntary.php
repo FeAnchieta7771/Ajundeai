@@ -218,7 +218,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
            
         </form>
-    <header class="header2">
+
+        <?php include 'php_functs/show_slot.php'; do_slot(); ?>
+    <!-- <header class="header2">
           <img src="img\office-building.png" alt="Ícone" class="vaga-name-img"/>
           <div class="vaga-name">
             <h4>NOME DA VAGA</h4>
@@ -254,7 +256,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         </div>
       </div>
 
-    </main>
+    </main> -->
 
   </main>
 </body>
