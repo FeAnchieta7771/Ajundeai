@@ -36,7 +36,7 @@ function do_filter(){
             $sql .= "AND ( ong.nome_ong LIKE '%$filter_user%' OR vaga.nome LIKE '%$filter_user%' OR vaga.categoria_vaga LIKE '%$filter_user%')";
             
             $result = return_select($sql);
-            show_filter($result);
+            show_filter($result, $filter_user);
             
     ////////////////////////////////////////////////////////////////////
             
@@ -50,7 +50,7 @@ function do_filter(){
             $sql .= "AND vaga.categoria_vaga LIKE '%$filter_user%'";
             
             $result = return_select($sql);
-            show_filter($result);
+            show_filter($result, "");
         
     ////////////////////////////////////////////////////////////////////
     
@@ -67,7 +67,7 @@ function do_filter(){
 
             // echo $sql;
             $result = return_select($sql);
-            show_filter($result);
+            show_filter($result, $filter_user);
         }
 
     ////////////////////////////////////////////////////////////////////
@@ -83,7 +83,7 @@ function do_filter(){
             $sql = $base_sql;
             
             $result = return_select($sql);
-            show_filter($result);
+            show_filter($result, "");
     }
 }
 
@@ -117,7 +117,7 @@ function return_select($sql){
 }
 
 // A FUNÇÃO fará a exibição dos resultados entregues á ela
-function show_filter($result){
+function show_filter($result, $filter_user){
 
         // iniciar tentiva de consulta
         $numLinhas = count($result);
@@ -157,6 +157,7 @@ function show_filter($result){
           
           echo "<form method='POST' action='../show_slot_voluntary.php'>";
           echo "<input type='hidden' name='type' value='filter_base'>";
+          echo "<input type='hidden' name='filter_user' value='".$filter_user."'>";
           echo "<input type='hidden' name='id_vaga' value=".$user_result['id'].">";
           echo "<button type='submit'>";
           echo "  <img src='$url' alt='Ícone' />";
@@ -166,6 +167,7 @@ function show_filter($result){
           echo "    <p>".$user_result['descr_obj']."</p>";
           echo "  </div>";
           echo "</button>";
+          echo "</form>";
           echo "</div>";
         }
 

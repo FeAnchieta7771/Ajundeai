@@ -27,6 +27,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0&icon_names=diversity_1"
     />
+
+        <link
+      href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
   <link rel="stylesheet" href="css/header.css">
   <title>AjundeAi - Vagas</title>
   <style>
@@ -84,12 +89,13 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     .vaga-name {
       align-items: center;
       justify-content: center;
+      margin-left: 5px;
     }
 
     .vaga-name h4 {
       color:rgb(255, 255, 255);
-      font-size: 1.8rem;
-      margin-bottom: 5px;
+      font-size: 2.5rem;
+      font-family: 'Horizon', sans-serif;
     }
 
     .vaga-name span {
@@ -97,6 +103,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       margin-bottom: 5px;
       color:rgb(255, 255, 255);
       font-weight: bold;
+      font-family: 'Antique', sans-serif;
     }
 
     .vaga-name-img {
@@ -209,9 +216,10 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         <?php echo $buttons_header; ?>
     </header>
         <form method="POST" action="filter.php">
+          <input type="hidden" name="type" value="filter_base"/>
             <header style="background-color: #004d61; justify-content: center;">
             <div class="search-bar">
-                <input type="text" placeholder="Pesquise sua vaga solicitada" />
+                <input type="text" placeholder="Pesquise sua vaga solicitada" name='filter_user' value="<?php if(isset($_POST['filter_user'])){ echo $_POST['filter_user'];}?>"/>
                 <button class="btn btn-buscar">BUSCAR</button>
             </div>
             </header>

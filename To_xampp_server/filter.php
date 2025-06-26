@@ -118,6 +118,13 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       padding-right: 10px;
     }
 
+    .vaga-card form{
+        all: unset;
+        cursor: pointer;
+        display: contents;
+
+    }
+
     .vaga-card {
       border: 2px solid #196e78;
       padding: 20px;
@@ -128,6 +135,25 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       background-color: #f9f9f9;
       height: 170px;
       align-items: center;     /* Alinha verticalmente no centro */
+      transition: .15s;
+    }
+
+    .vaga-card:hover{
+      background-color: rgb(117, 246, 236);
+    }
+
+    .vaga-card:hover h4{
+      color: #196e78;
+      font-size: 1.72rem;
+    }
+
+    .vaga-card button{
+        all: unset;
+        cursor: pointer;
+        display: contents;
+        width: 100%;
+        height: 100%;
+
     }
 
     .vaga-card img {
@@ -140,6 +166,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       font-size: 1.7rem;
       margin-bottom: 5px;
       font-family: 'Horizon', sans-serif;
+      transition: .2s;
     }
 
     .vaga-info span {

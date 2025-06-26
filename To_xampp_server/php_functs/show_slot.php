@@ -11,6 +11,7 @@ function do_slot(){
         include 'conexao.php';
         $type_filter = $_POST['type'];
         $id = $_POST['id_vaga'];
+        echo $id;
 
     ////////////////////////////////////////////////////////////////////
     
@@ -24,20 +25,11 @@ function do_slot(){
             if(isset($_SESSION['id'])){
 
                 do_slot_with_user_logged($id, $_SESSION['id']);
+
             } else{
-                user_not_logged(false, $id, $_SESSION['id']);
+                user_not_logged(false, $id);
                 
             }
-
-            $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong AND vaga.id = ".$id." WHERE ";
-            
-            // ! Filtros da pesquisa
-            
-            $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE";
-            $sql .= "";
-            
-            $result = return_select($sql);
-            show_filter($result);
             
         } 
 }
@@ -45,13 +37,13 @@ function do_slot(){
 
 function do_slot_with_user_logged($id_vaga, $id_user){
 
-    $sql_register = "SELECT * FROM registro WHERE id_vaga = ".$id_vaga." AND id_voluntario = ".$id_user;
+    $sql_register = "SELECT * FROM registro WHERE id = ".$id_vaga." AND id_voluntario = ".$id_user;
     $result_register = return_select($sql_register);
 
     if( isset($result_register) AND $result_register['categoria_registro'] == 'cadastrado'){
         // como o usuário está cadastrado, o número de vagas é irrelevante
 
-        $sql = $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE id_vaga = ".$id_vaga;
+        $sql = $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE id = ".$id_vaga;
         $result = return_select($sql);
 
         $html = text_html_header($result['nome'],$result['nome_ong']);
@@ -75,7 +67,7 @@ function do_slot_with_user_logged($id_vaga, $id_user){
         echo $html;
         
     } else {
-        user_not_logged(true, $id_vaga, $id_user);
+        user_not_logged(true, $id_vaga);
     }
 
 }
@@ -128,83 +120,37 @@ function text_html_buttons($buttons, $location){
 
     </main>';
 }
-// A FUNÇÃO fará a exibição dos resultados entregues á ela
-// function show_filter($result){
 
-//         // iniciar tentiva de consulta
-//         $numLinhas = count($result);
-
-//         if($numLinhas <= 0){
-//             echo "<h3>NADA ENCONTRADO</h3>";
-//             echo "<div class='scroll-wrapper'>";
-//             echo "<div class='vaga-card' style='background-color:rgb(222, 222, 222); border: none;'>";
-          
-//             echo "  <img src='img/icons_orange/not_found.png' alt='Ícone' />";
-//             echo "  <div class='vaga-info'>";
-//             echo "    <h4 style='display: flex;'>Infelizmente, sua busca não retornou nenhuma vaga.</h4>";
-//             echo "    <span>Tente alterar os filtros ou pesquisar com outros termos.</span>";
-//             echo "  </div>";
-//             echo "</div>";
-//             echo "</div>";
-//             exit();
-//         }
-
-//         $plural_foi = "I";
-//         $plural_s = "";
-
-//         if($numLinhas > 1){
-//             $plural_s = "S";
-//             $plural_foi = "RAM";
-//         }
-//         echo "<h3>".$numLinhas. " VAGA".$plural_s." FO".$plural_foi." ENCONTRADA".$plural_s."!</h3>";
-//         echo "<div class='scroll-wrapper'>";
-
-//         #exibição das vagas encontradas
-//         foreach($result as $user_result){
-//             // busca a imagem a partir da categoria da vaga
-//             $url = image_filter($user_result['categoria_vaga']);
-            
-            
-//           echo "<div class='vaga-card'>";
-          
-//           echo "  <img src='$url' alt='Ícone' />";
-//           echo "  <div class='vaga-info'>";
-//           echo "    <h4 style='font-family: 'Horizon', sans-serif;'><a style='text-decoration: none'>".$user_result['nome']."</a></h4>";
-//           echo "    <span><i class='bx bxs-user' style='font-size: 20px;'></i> ".$user_result['quant_atual']."/".$user_result['quant_limite']." • ".$user_result['nome_ong']."</span>";
-//           echo "    <p>".$user_result['descr_obj']."</p>";
-//           echo "  </div>";
-//           echo "</div>";
-//         }
-
-//         echo "</div>";
-// }
-
-function user_not_logged($is_logged, $id_vaga, $id_user){
+function user_not_logged($is_logged, $id_vaga){
     //quando usuario nao esta logado, id nao existe
     // dependente da quantidade de pessoas na vaga
     // → Lotado: Mensagem de lotado
     // → Livre: exigição da vaga
 
 
-    $sql_vaga = "SELECT * FROM vaga WHERE id_vaga = ".$id_vaga." AND id_voluntario = ".$id_user;
+    $sql_vaga = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.id = ".$id_vaga;
+    echo $sql_vaga;
     $result = return_select($sql_vaga);
+//     echo "<pre>";
+// print_r($result);
+// echo "</pre>";
     
-    $html = text_html_header($result['nome'],$result['nome_ong']);
+    $html = text_html_header($result[0]['nome'],$result[0]['nome_ong']);
 
-    $html .= text_html_main($result['quant_atual'], $result['quant_limite'],$result['descr_total']);
+    $html .= text_html_main($result[0]['quant_atual'], $result[0]['quant_limite'],$result[0]['descr_total']);
 
-    if( isset($result) AND $result ==['quant_atual'] == 'quant_limite'){
+    if( isset($result) AND $result[0]['quant_atual'] == $result[0]['quant_limite']){
         // falta o botao para quando o estiver lotado.
-        $html .= text_html_buttons('[MODELO DE BOTÃO LOTADA]', 'localizacao');
+        $html .= text_html_buttons('[MODELO DE BOTÃO LOTADA]', $result[0]['localizacao']);
     }
 
     else{
 
         if($is_logged){
-            $html .= text_html_buttons('[MODELO DE BOTÃO SALVO]', 'localizacao');
+            $html .= text_html_buttons('[MODELO DE BOTÃO SALVO]', $result[0]['localizacao']);
         }
         // está livre
-        $html .= text_html_buttons('[MODELO DE BOTÃO PADRÃO]', 'localizacao');
+        $html .= text_html_buttons('[MODELO DE BOTÃO PADRÃO]', $result[0]['localizacao']);
     }
     echo $html;
 }
