@@ -32,8 +32,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
       rel="stylesheet"
     />
+  <link rel="icon" href="img\Logo_Aba.png" />
   <link rel="stylesheet" href="css/header.css">
-  <title>AjundeAi - Vagas</title>
+  <title>AjundeAi • Vaga</title>
   <style>
     * {
       box-sizing: border-box;
@@ -215,11 +216,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         <!-- botões do header -->
         <?php echo $buttons_header; ?>
     </header>
-        <form method="POST" action="filter.php">
+        <form method="GET" action="filter.php">
           <input type="hidden" name="type" value="filter_base"/>
             <header style="background-color: #004d61; justify-content: center;">
             <div class="search-bar">
-                <input type="text" placeholder="Pesquise sua vaga solicitada" name='filter_user' value="<?php if(isset($_POST['filter_user'])){ echo $_POST['filter_user'];}?>"/>
+                <input type="text" placeholder="Pesquise sua vaga solicitada" name='filter_user' value="<?php if(isset($_GET['filter_user'])){ echo $_GET['filter_user'];}?>"/>
                 <button class="btn btn-buscar">BUSCAR</button>
             </div>
             </header>

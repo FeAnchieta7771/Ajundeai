@@ -229,8 +229,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       }
 
       .footer-logo img {
-        height: 60px;
-        width: 170px;
+      height: 50px;
+      width: 200px;
       }
     </style>
   </head>
@@ -248,7 +248,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <div class="hero">
       <h1>ENCONTRE SUA VAGA<br />DE VOLUNTARIADO.</h1>
       <div class="search-bar">
-        <form method="POST" action="filter.php">
+        <form method="GET" action="filter.php">
           <input type="hidden" name="type" value="home_search" />
           <input
             class="search-input"
@@ -337,7 +337,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <br />
 
       <div class="parentB">
-        <form method="POST" action="filter.php">
+        <form method="GET" action="filter.php">
           <input type="hidden" name="type" value="home_category"/>
 
           <div class="divB1">

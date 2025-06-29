@@ -11,10 +11,10 @@ function do_filter(){
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     // apenas executa o código apenas se ele for chamado
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         
         include 'conexao.php';
-        $type_filter = $_POST['type'];
+        $type_filter = $_GET['type'];
 
     ////////////////////////////////////////////////////////////////////
     
@@ -23,7 +23,7 @@ function do_filter(){
         if($type_filter == 'home_search'){
             
             // receber filtro escrito pelo usuário
-            $filter_user = $_POST['filter_user'];
+            $filter_user = $_GET['filter_user'];
             
             // ! Filtros da pesquisa
             // Nome da ONG a partir do ID da Ong da vaga registrada
@@ -44,7 +44,7 @@ function do_filter(){
         // BOTÕES CONFIGURADOS NO HOME
         } else if ($type_filter == 'home_category'){
         
-            $filter_user = $_POST['category_button'];
+            $filter_user = $_GET['category_button'];
 
             $sql =  $base_sql;
             $sql .= "AND vaga.categoria_vaga LIKE '%$filter_user%'";
@@ -59,7 +59,7 @@ function do_filter(){
         } else if($type_filter == 'filter_base'){
 
 
-            $filter_user = $_POST['filter_user'];
+            $filter_user = $_GET['filter_user'];
 
             $sql =  $base_sql;
             // se não tiver algo do filtro, ele conta categoria do input de texto
@@ -74,7 +74,7 @@ function do_filter(){
     
         // ! ESSE FILTRO PESQUISA TODOS OS ITEMS
         // USADO APENAS AO BOTÃO "Pesquisa de Vaga" QUE DIRECIONA AO FILTRO
-        // como não é acessivel via POST, ele é acessível por SESSION
+        // como não é acessivel via GET, ele é acessível por SESSION
     } else if(isset($_SESSION['nothing_else']) AND  $_SESSION['nothing_else']){
 
             // Não terá nenhuma condição extra além de vagas disponíveis
@@ -155,7 +155,7 @@ function show_filter($result, $filter_user){
             
           echo "<div class='vaga-card'>";
           
-          echo "<form method='POST' action='../show_slot_voluntary.php'>";
+          echo "<form method='GET' action='../show_slot_voluntary.php'>";
           echo "<input type='hidden' name='type' value='filter_base'>";
           echo "<input type='hidden' name='filter_user' value='".$filter_user."'>";
           echo "<input type='hidden' name='id_vaga' value=".$user_result['id'].">";
@@ -215,55 +215,55 @@ function filter_base_checkbox($sql, $filter_user){
 
             $sql .= "AND (ong.nome_ong LIKE '%$filter_user%' OR vaga.nome LIKE '%$filter_user%' OR vaga.categoria_vaga LIKE '%$filter_user%') AND (";
 
-            if(isset($_POST["saúde"]))
+            if(isset($_GET["saúde"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%saúde%' OR ";
             }
 
-            if(isset($_POST["eventos"]))
+            if(isset($_GET["eventos"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%eventos%' OR ";
             }
 
-            if(isset($_POST["animais"]))
+            if(isset($_GET["animais"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%animais%' OR ";
             }
 
-            if(isset($_POST["crianças"]))
+            if(isset($_GET["crianças"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%crianças%' OR ";
             }
 
-            if(isset($_POST["educação"]))
+            if(isset($_GET["educação"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%educação%' OR ";
             }
 
-            if(isset($_POST["tecnologia"]))
+            if(isset($_GET["tecnologia"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%tecnologia%' OR ";
             }
 
-            if(isset($_POST["assistencia"]))
+            if(isset($_GET["assistencia"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%assistencia%' OR ";
             }
 
-            if(isset($_POST["administração"]))
+            if(isset($_GET["administração"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%administração%' OR ";
             }
 
-            if(isset($_POST["meio_ambiente"]))
+            if(isset($_GET["meio_ambiente"]))
             {
                 $quant_filter += 1;
                 $sql .= "vaga.categoria_vaga LIKE '%meio ambiente%' OR ";
