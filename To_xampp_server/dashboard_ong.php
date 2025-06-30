@@ -12,6 +12,11 @@ include 'php_functs/functions.php';
 // busca situação de login do usuário
 $login_state = is_logged();
 
+if(!$login_state){
+  header('Location: index.php');
+  exit();
+}
+
 // busca quem está logado
 $is_ong = is_ong_logged();
 
