@@ -32,12 +32,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_SESSION['name'] = $user[$auxiliar_name];
             $_SESSION['id'] = $user['id'];
             $_SESSION['isLogin'] = true;
-            header('Location: ../index.php');
-            exit();
+
+            if ($table_login == 'ong'){
+
+                header('Location: ../dashboard_ong.php');
+                exit();
+
+            } else if($table_login == 'voluntario'){
+
+                header('Location: '.$_SESSION['tela_anterior']);
+                exit();
+            }
         }
     }
 
-    echo "<script>window.alert('Nome/Email ou Senha Incorreta');</script>";
+    echo "<script>
+        localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
+        window.alert('Nome/Email ou Senha Incorreta');
+        window.location.href = '../login.php';
+    </script>";
     exit();
 }
 
@@ -52,7 +65,11 @@ function return_select($sql){
         return $result;
 
     }catch(PDOException) {
-        echo "<script>window.alert('Não foi capaz de realizar o Filtro, tente outra hora');</script>";
+        echo "<script>
+            localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
+            window.alert('Nome/Email ou Senha Incorreta');
+            window.location.href = '../login.php';
+        </script>";
         exit();
     }
 }

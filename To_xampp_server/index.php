@@ -4,6 +4,9 @@ session_start();
 
 include 'php_functs/functions.php';
 
+// salva a url atual de telas dinâmicas
+$_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
+
 // busca situação de login do usuário
 $login_state = is_logged();
 

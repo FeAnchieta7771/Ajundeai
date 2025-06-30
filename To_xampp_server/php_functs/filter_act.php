@@ -105,8 +105,8 @@ function return_select($sql){
         echo "<div class='vaga-card' style='background-color:rgb(222, 222, 222); border: none;'>";
         echo "  <img src='img/icons_orange/problem_data.png' alt='Ícone' />";
         echo "  <div class='vaga-info'>";
-        echo "    <h4 style='display: flex;'>";
-        echo "     Ops! Ocorreu um erro ao conectar ao servidor.</h4>";
+        echo "    <h3 style='display: flex;'>";
+        echo "     Ops! Ocorreu um erro ao conectar ao servidor.</h3>";
         echo "    <span>Tente de novo mais tarde.</span>";
         echo "    <p style='font-size: 10px'>".$e."</p>";
         echo "  </div>";
@@ -129,7 +129,7 @@ function show_filter($result, $filter_user){
           
             echo "  <img src='img/icons_orange/not_found.png' alt='Ícone' />";
             echo "  <div class='vaga-info'>";
-            echo "    <h4 style='display: flex;'>Infelizmente, sua busca não retornou nenhuma vaga.</h4>";
+            echo "    <h3 style='display: flex;'>Infelizmente, sua busca não retornou nenhuma vaga.</h3>";
             echo "    <span>Tente alterar os filtros ou pesquisar com outros termos.</span>";
             echo "  </div>";
             echo "</div>";

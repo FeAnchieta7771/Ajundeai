@@ -3,6 +3,9 @@ session_start();
 
 include 'php_functs/functions.php';
 
+// salva a url atual de telas dinâmicas
+$_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
+
 // busca situação de login do usuário
 $login_state = is_logged();
 // busca quem está logado
@@ -162,6 +165,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     }
 
     .vaga-info h4 {
+      color: #e76f00;
+      font-size: 1.7rem;
+      margin-bottom: 5px;
+      font-family: 'Horizon', sans-serif;
+      transition: .2s;
+    }
+
+    .vaga-info h3 {
       color: #e76f00;
       font-size: 1.7rem;
       margin-bottom: 5px;

@@ -240,11 +240,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                       <input type="hidden" name="login_state" value="voluntario">
                       <div class="form-container">
                           <label for="email">NOME OU EMAIL</label>
-                          <input type="text" name="email" placeholder="Insira nome ou email aqui">
+                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_GET['email']) AND $_POST['login_state'] == 'voluntario'){ echo $_GET['email'];}?>">
                           <br>
                           <br>
                           <label for="password">SENHA</label>
-                          <input type="password" name="password" placeholder="Insira sua senha aqui">
+                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_GET['password']) AND $_POST['login_state'] == 'voluntario'){ echo $_GET['password'];}?>">
                       </div>
 
                       <p class="signup">Não possui uma conta? <a href="#">CADASTRE-SE</a></p>
@@ -260,11 +260,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                       <input type="hidden" name="login_state" value="ong">
                       <div class="form-container">
                           <label for="email">NOME OU EMAIL DA ONG</label>
-                          <input type="text" name="email" placeholder="Insira nome ou email aqui">
+                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_GET['email']) AND $_POST['login_state'] == 'ong'){ echo $_GET['email'];}?>">
                           <br>
                           <br>
                           <label for="password">SENHA DE REGISTRO</label>
-                          <input type="password" name="password" placeholder="Insira sua senha aqui">
+                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_GET['password']) AND $_POST['login_state'] == 'ong'){ echo $_GET['password'];}?>">
                       </div>
 
                       <p class="signup">Não possui uma conta? <a href="#">CADASTRE-SE</a></p>
@@ -303,6 +303,42 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
             content.classList.add('show');
         }
+
+        const botao_guia = localStorage.getItem('Botao_guia');
+
+    console.log(botao_guia);
+
+    if(botao_guia !== null){
+
+        if(botao_guia == 'ong'){
+            // pega os botões
+            const tabs = document.querySelectorAll('.tab-btn');
+
+            // remover a classe do todos os botões
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // pegar atributo desses elementos
+            const dataInfoValue = Array.from(tabs).map(tab => tab.getAttribute("content-id"));
+
+            // pegar o botão da ong
+            const indice = dataInfoValue.findIndex(item => item === 'services');
+            const tab = tabs[indice];
+            tab.classList.add('active');
+
+            const contents = document.querySelectorAll('.content');
+
+            //desativação dos paineis visíveis
+            contents.forEach(content => content.classList.remove('show'));
+
+            // pegar atributo do botão clicado
+            const contentId = tab.getAttribute('content-id');
+
+            // pegar painel com o mesmo ID do atributo do botão
+            const content = document.getElementById(contentId);
+
+            content.classList.add('show');
+        }
+    }
     </script>
 </body>
 </html>
