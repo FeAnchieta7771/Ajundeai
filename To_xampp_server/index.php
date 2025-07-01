@@ -341,7 +341,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <br />
 
       <div class="parentB">
-        <form method="GET" action="filter.php">
+        <form method="GET" action="php_functs\redirect_filter.php">
           <input type="hidden" name="type" value="home_category"/>
 
           <div class="divB1">
