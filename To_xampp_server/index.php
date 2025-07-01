@@ -331,7 +331,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <div class="CategoryA">
       <div class="titleCategory">
         <h2>Quais vagas posso me Voluntariar?</h2>
-        <i class="bx bxs-circle" style="color: #40d9cd"></i>
+        <!-- <i class="bx bxs-circle" style="color: #40d9cd"></i> -->
+        <br>
         <p style="color: rgb(110, 110, 110)">
           Algumas das vagas mais selecionadas pelos nossos usuários
         </p>
@@ -513,7 +514,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <div class="Creator" id="catgory_creator">
       <div class="titleCategory">
         <h2 style="color: #e76f00">COLABORADORES</h2>
-        <i class="bx bxs-circle" style="color: #40d9cd"></i>
+        <br>
+        <!-- <i class="bx bxs-circle" style="color: #40d9cd"></i> -->
         <p style="color: rgb(110, 110, 110)">
           Pessoas que ajudaram para este site existir
         </p>

@@ -12,6 +12,13 @@ $login_state = is_logged();
 $is_ong = is_ong_logged();
 // busca botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
+
+function is_checked_before($name){
+  if(isset($_GET[$name])){ 
+
+    echo 'checked';
+  }
+}
 ?>
 
 <!-- Tela de Resultado da Pesquisa do Filtro -->
@@ -93,8 +100,15 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       cursor: pointer;
     }
 
-    .filtros input[type="radio"] {
+    .filtros input[type="checkbox"] {
       margin-right: 8px;
+      accent-color: #e76f00;
+      width: 15px;
+      height: 15px;
+    }
+
+    .filtros input[type="checkbox"]:checked {
+      background-color: #e76f00;
     }
 
     .filtros .btn-buscar {
@@ -224,15 +238,15 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
           <main class="container">
           <aside class="filtros">
                <h2>FILTROS</h2>
-               <label><input type="checkbox" value="saúde" name="saúde"> Saúde</label>
-               <label><input type="checkbox" value="eventos" name="eventos"> Eventos</label>
-               <label><input type="checkbox" value="animais" name="animais"> Animais</label>
-               <label><input type="checkbox" value="crianças" name="crianças"> Crianças</label>
-               <label><input type="checkbox" value="educação" name="educação"> Educação</label>
-               <label><input type="checkbox" value="tecnologia" name="tecnologia"> Tecnologia</label>
-               <label><input type="checkbox" value="assistencia" name="assistencia"> Assist. Social</label>
-               <label><input type="checkbox" value="administração" name="administração"> Administração</label>
-               <label><input type="checkbox" value="meio ambiente" name="meio_ambiente"> Meio Ambiente</label>
+               <label><input type="checkbox" value="saúde" name="saúde" <?php is_checked_before("saúde"); ?>> Saúde</label>
+               <label><input type="checkbox" value="eventos" name="eventos" <?php is_checked_before("eventos"); ?>> Eventos</label>
+               <label><input type="checkbox" value="animais" name="animais" <?php is_checked_before("animais"); ?>> Animais</label>
+               <label><input type="checkbox" value="crianças" name="crianças" <?php is_checked_before("crianças"); ?>> Crianças</label>
+               <label><input type="checkbox" value="educação" name="educação" <?php is_checked_before("educação"); ?>> Educação</label>
+               <label><input type="checkbox" value="tecnologia" name="tecnologia" <?php is_checked_before("tecnologia"); ?>> Tecnologia</label>
+               <label><input type="checkbox" value="assistencia" name="assistencia" <?php is_checked_before("assistencia"); ?>> Assist. Social</label>
+               <label><input type="checkbox" value="administração" name="administração" <?php is_checked_before("administração"); ?>> Administração</label>
+               <label><input type="checkbox" value="meio ambiente" name="meio_ambiente" <?php is_checked_before("meio ambiente"); ?>> Meio Ambiente</label>
                <button class="btn btn-buscar" style="font-family: 'Horizon', sans-serif; font-size: 18px">BUSCAR</button>
           </aside>
     </form>

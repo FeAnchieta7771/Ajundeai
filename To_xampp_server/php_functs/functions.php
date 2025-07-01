@@ -78,4 +78,7 @@ function set_model_buttons_header($is_logged, $is_ong){
         return $piece;
     }
 }
+
+
+
 ?>
