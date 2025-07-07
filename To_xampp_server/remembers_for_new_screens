@@ -8,6 +8,9 @@ Icones do BoxIcons:
 -----------------------------------------------------------------------------------
 
 Botões dinâmicos do Login:
+
+
+>>>>>> Normal
 <!-- Acima de tudo -->
 <?php
 session_start();
@@ -20,6 +23,51 @@ include 'php_functs/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
+
+// busca quem está logado
+$is_ong = is_ong_logged();
+
+// setar botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
+
+=====================================
+
+>>>>>> Telas NÃO dinâmicas
+<!-- Acima de tudo -->
+<?php
+session_start();
+
+include 'php_functs/functions.php';
+
+// busca situação de login do usuário
+$login_state = is_logged();
+
+// busca quem está logado
+$is_ong = is_ong_logged();
+
+// setar botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
+
+=====================================
+
+>>>>>> Telas de Login Obrigatória
+<!-- Acima de tudo -->
+<?php
+session_start();
+
+// ... [Caso também for uma tela dinâmica, adicione aqui]
+
+// busca situação de login do usuário
+$login_state = is_logged();
+
+if(!$login_state){
+  header('Location: index.php');
+  exit();
+}
 
 // busca quem está logado
 $is_ong = is_ong_logged();
