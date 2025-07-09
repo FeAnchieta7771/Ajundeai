@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             break;
         
         case 'ong_painel':
-            header('Location: ../control_slot_ong.php');
+            header('Location: ../dashboard_ong.php');
             break;
 
         case 'ong_vaga':

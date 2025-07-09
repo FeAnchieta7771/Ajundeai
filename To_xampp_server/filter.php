@@ -246,7 +246,7 @@ function is_checked_before($name){
                <label><input type="checkbox" value="tecnologia" name="tecnologia" <?php is_checked_before("tecnologia"); ?>> Tecnologia</label>
                <label><input type="checkbox" value="assistencia" name="assistencia" <?php is_checked_before("assistencia"); ?>> Assist. Social</label>
                <label><input type="checkbox" value="administração" name="administração" <?php is_checked_before("administração"); ?>> Administração</label>
-               <label><input type="checkbox" value="meio ambiente" name="meio_ambiente" <?php is_checked_before("meio ambiente"); ?>> Meio Ambiente</label>
+               <label><input type="checkbox" value="meio ambiente" name="meio_ambiente" <?php is_checked_before("meio_ambiente"); ?>> Meio Ambiente</label>
                <button class="btn btn-buscar" style="font-family: 'Horizon', sans-serif; font-size: 18px">BUSCAR</button>
           </aside>
     </form>

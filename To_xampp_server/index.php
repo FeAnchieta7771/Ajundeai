@@ -399,7 +399,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
           </div>
 
           <div class="divB4">
-            <button type='submit' name='category_button' value = 'meio ambiente'>
+            <button type='submit' name='category_button' value = 'meio_ambiente'>
               <section class="titleCard">
                 <br />
                 <i class="bx bxs-florist" style="font-size: 60px"></i>

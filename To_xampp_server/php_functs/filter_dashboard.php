@@ -80,7 +80,7 @@ function show_filter($result){
             
             echo '<div class="vaga-card">';
             echo "<form method='GET' action='../control_slot_ong.php'>";
-            echo "<input type='hidden' name='type' value='filter_base'>";
+            echo "<input type='hidden' name='type' value='filter_ctrl'>";
             echo "<input type='hidden' name='id_vaga' value=".$user_result['id'].">";
             echo "<button type='submit'>";
             echo "<img src='$url' alt='Ícone da vaga' />";

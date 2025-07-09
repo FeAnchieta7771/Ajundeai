@@ -1,0 +1,32 @@
+<div class="spinner"></div>
+
+<style>
+.spinner {
+   width: 56px;
+   height: 56px;
+   display: grid;
+   animation: spinner-plncf9 4.8s infinite;
+}
+
+.spinner::before,
+.spinner::after {
+   content: "";
+   grid-area: 1/1;
+   border: 9px solid;
+   border-radius: 50%;
+   border-color: #e76f00 #e76f00 #0000 #0000;
+   mix-blend-mode: darken;
+   animation: spinner-plncf9 1.2s infinite linear;
+}
+
+.spinner::after {
+   border-color: #0000 #0000 #00a89a #00a89a;
+   animation-direction: reverse;
+}
+
+@keyframes spinner-plncf9 {
+   100% {
+      transform: rotate(1turn);
+   }
+}
+</style>
