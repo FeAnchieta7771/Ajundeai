@@ -59,7 +59,7 @@ function is_checked_before($name){
     .search-bar input {
       padding: 10px 15px;
       flex: 1;
-      border-radius: 20px;
+      border-radius: 8px;
       border: none;
       font-size: 1rem;
     }
@@ -79,7 +79,7 @@ function is_checked_before($name){
     .filtros {
       background-color: #196e78;
       color: white;
-      padding: 20px;
+      padding: 18px 20px 15px 20px;
       border-radius: 10px;
       width: 250px;
       flex-shrink: 0;
@@ -89,14 +89,14 @@ function is_checked_before($name){
     .filtros h2 {
       margin-bottom: 20px;
       border-bottom: 2px solid white;
-      padding-bottom: 10px;
-      font-size: 1.6rem;
+      padding-bottom: 1px;
+      font-size: 1.5rem;
       font-family: "Horizon", sans-serif;
     }
 
     .filtros label {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       cursor: pointer;
     }
 
@@ -113,7 +113,7 @@ function is_checked_before($name){
 
     .filtros .btn-buscar {
       width: 100%;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     .vagas {
@@ -131,7 +131,7 @@ function is_checked_before($name){
 
     .scroll-wrapper {
       overflow-y: auto;
-      max-height: 63vh;
+      max-height: 66.5vh;
       padding-right: 10px;
     }
 
@@ -156,7 +156,7 @@ function is_checked_before($name){
     }
 
     .vaga-card:hover{
-      background-color: rgb(117, 246, 236);
+      background-color: rgb(193, 250, 246);
     }
 
     .vaga-card:hover h4{
@@ -204,8 +204,15 @@ function is_checked_before($name){
     }
 
     .vaga-info p {
-      font-size: 1.2rem;
+      font-size: 1em;
       color: #444;
+    }
+
+    .quantSlot{
+      border-bottom: 5px solid #2289e6;
+      padding-bottom: -20px;
+      margin-bottom: 1rem;
+      margin-right: 10px
     }
 
     /* .scroll-wrapper h3{
@@ -253,21 +260,22 @@ function is_checked_before($name){
 
     <section class="vagas">
       <?php include 'php_functs/filter_act.php'; do_filter(); ?>
-
-      <!-- <h3>[N] VAGAS DE [FILTRO] FORAM ENCONTRADAS</h3>
-      <div class="scroll-wrapper">
-        Aqui os blocos podem ser gerados via PHP  
-        <div class="vaga-card">
+      <!-- <div class="quantSlot">
+          <h3>[N] VAGAS DE [FILTRO] FORAM ENCONTRADAS</h3>
+      </div>
+      <div class="scroll-wrapper"> -->
+        <!-- Aqui os blocos podem ser gerados via PHP   -->
+        <!-- <div class="vaga-card">
           <img src="img\icons_orange\outro.png" alt="Ícone" />
           <div class="vaga-info">
             <h4>NOME DA VAGA</h4>
             <span>5/10 • Nome da ONG</span>
             <p>Descrição pequena que está dentro do banco que o Guilherme ainda tem que fazer e passar o arquivo pra mim.</p>
           </div>
-        </div>
-        Repita o .vaga-card conforme necessário
+        </div> -->
+        <!-- Repita o .vaga-card conforme necessário -->
 
-      </div> -->
+      </div> 
     </section>
   </main>
 </body>

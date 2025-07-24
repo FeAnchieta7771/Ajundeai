@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+if(isset($_SESSION['login'])){
+
+    $_SESSION['login'] = '';
+}
 include 'php_functs/functions.php';
 
 // busca situação de login do usuário
@@ -9,6 +13,8 @@ $login_state = is_logged();
 $is_ong = is_ong_logged();
 // busca botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
+
+print_r($_SESSION);
 ?>
 
 <!-- Tela de Login -->
@@ -240,14 +246,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                       <input type="hidden" name="login_state" value="voluntario">
                       <div class="form-container">
                           <label for="email">NOME OU EMAIL</label>
-                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_GET['email']) AND $_POST['login_state'] == 'voluntario'){ echo $_GET['email'];}?>">
+                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_SESSION['LOGIN_email']) and $_SESSION['login'] == 'voluntario'){ echo $_SESSION['LOGIN_email'];}?>">
                           <br>
                           <br>
                           <label for="password">SENHA</label>
-                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_GET['password']) AND $_POST['login_state'] == 'voluntario'){ echo $_GET['password'];}?>">
+                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_SESSION['LOGIN_password']) and $_SESSION['login'] == 'voluntario'){ echo $_SESSION['LOGIN_password'];}?>">
                       </div>
 
-                      <p class="signup">Não possui uma conta? <a href="#">CADASTRE-SE</a></p>
+                      <p class="signup">Não possui uma conta? <a href="account.php">CADASTRE-SE</a></p>
                       <button class="btlog" type="submit">LOGIN</button>
                   </form>
               </div>
@@ -260,14 +266,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                       <input type="hidden" name="login_state" value="ong">
                       <div class="form-container">
                           <label for="email">NOME OU EMAIL DA ONG</label>
-                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_GET['email']) AND $_POST['login_state'] == 'ong'){ echo $_GET['email'];}?>">
+                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_SESSION['LOGIN_email']) and $_SESSION['login'] == 'ong'){ echo $_SESSION['LOGIN_email'];}?>">
                           <br>
                           <br>
                           <label for="password">SENHA DE REGISTRO</label>
-                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_GET['password']) AND $_POST['login_state'] == 'ong'){ echo $_GET['password'];}?>">
+                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_SESSION['LOGIN_password']) and $_SESSION['login'] == 'ong'){ echo $_SESSION['LOGIN_password'];}?>">
                       </div>
 
-                      <p class="signup">Não possui uma conta? <a href="#">CADASTRE-SE</a></p>
+                      <p class="signup">Não possui uma conta? <a href="account.php">CADASTRE-SE</a></p>
                       <button class="btlog" type="submit">LOGIN</button>
                   </form>
               </div>
@@ -304,7 +310,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             content.classList.add('show');
         }
 
-        const botao_guia = localStorage.getItem('Botao_guia');
+    const botao_guia = localStorage.getItem('Botao_guia');
 
     console.log(botao_guia);
 

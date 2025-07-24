@@ -56,6 +56,8 @@
     font-weight: bold;
     left: 50px;
     transition: .15s;
+    margin: 0px 20%;
+    z-index: 100000;
 }
 
 #next{

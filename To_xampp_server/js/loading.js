@@ -6,6 +6,7 @@ function AddSpinner(){
     buttons.forEach(button => button.addEventListener('click', () => showLoading()));
 
     const showLoading = () => {
+        document.getElementById("spinner-overlay").style.display = "block";
         document.getElementById("spinner").style.display = "block";
     }
 }

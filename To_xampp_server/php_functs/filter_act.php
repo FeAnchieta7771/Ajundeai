@@ -100,7 +100,7 @@ function return_select($sql){
         return $result;
         
     }catch(PDOException $e) {
-        echo "<h3>NADA ENCONTRADO</h3>";
+        echo "<div class='quantSlot'><h3>NADA ENCONTRADO</h3></div>";
         echo "<div class='scroll-wrapper' style='height: 300px'>";
         echo "<div class='vaga-card' style='background-color:rgb(222, 222, 222); border: none;'>";
         echo "  <img src='img/icons_orange/problem_data.png' alt='Ícone' />";
@@ -123,7 +123,8 @@ function show_filter($result, $filter_user){
         $numLinhas = count($result);
 
         if($numLinhas <= 0){
-            echo "<h3>NADA ENCONTRADO</h3>";
+            echo "<div class='quantSlot'>
+            <h3>NADA ENCONTRADO</h3></div>";
             echo "<div class='scroll-wrapper'>";
             echo "<div class='vaga-card' style='background-color:rgb(222, 222, 222); border: none;'>";
           
@@ -144,8 +145,8 @@ function show_filter($result, $filter_user){
             $plural_s = "S";
             $plural_foi = "RAM";
         }
-        echo "<h3>".$numLinhas. " VAGA".$plural_s." FO".$plural_foi." ENCONTRADA".$plural_s."!</h3>";
-        echo "<div class='scroll-wrapper'>";
+        echo "<div class='quantSlot'><h3>".$numLinhas. " VAGA".$plural_s." FO".$plural_foi." ENCONTRADA".$plural_s."!</h3>";
+        echo "</div><div class='scroll-wrapper'>";
 
         #exibição das vagas encontradas
         foreach($result as $user_result){

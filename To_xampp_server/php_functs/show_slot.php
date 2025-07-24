@@ -99,7 +99,12 @@ function do_slot_to_ong($id_vaga){
 
     // Pesquisa de voluntários que se cadastraram a vaga
     // Requisitos: Nome do voluntário e seu estado de aprovação
-    $sql = "SELECT voluntario.nome_voluntario, registro.situacao FROM registro JOIN voluntario ON registro.id_voluntario = voluntario.id WHERE registro.id_vaga = $id_vaga AND registro.categoria_registro = 'cadastrado'";
+
+    // priorização dos voluntários em aguarde de resposta, depois os aprovados, em último os negados
+    $sql = "SELECT voluntario.nome_voluntario, registro.situacao FROM registro JOIN voluntario ON registro.id_voluntario = voluntario.id 
+    WHERE registro.id_vaga = $id_vaga AND registro.categoria_registro = 'cadastrado'  
+    ORDER BY CASE WHEN registro.situacao = 'aguarde' THEN 1 WHEN registro.situacao = 'aprovado' THEN 2 ELSE 3 END";
+
     $result_register = return_select($sql);
 
     // Exibição final dos resultados
@@ -200,17 +205,11 @@ function text_html_voluntarys($result_register){
     $numLinhas = count($result_register);
 
     echo '<div class="vaga-lateral"><div class="voluntarios">';
-    echo '<h4>'.$numLinhas.' ';
-    if($numLinhas == 1){
-        echo ' VOLUNTARIO</h4>';
-    } else{
-        echo ' VOLUNTARIOS</h4>';
-    }
+    echo "<h4><i class='bx  bx-contact-book' style='font-size: 35px;'></i> VOLUNTARIOS</h4>";
     echo '<div class="fixa-scroll">';
 
-
     if($numLinhas == 0){
-        echo '</div></div></div></main>';
+        echo '<div class="fixa"><p>Nenhum voluntário se inscreveu na Vaga ainda...</p><br><br></div></div></div></div></main>';
         exit();
     }
 

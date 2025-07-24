@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     include 'conexao.php';
-
+    $_SESSION['login'] = $_POST['login_state'];
     $table_login = $_POST['login_state'];
 
     // auxílio de pesquisa ao sql e salvar nome ao sistema
@@ -33,6 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_SESSION['id'] = $user['id'];
             $_SESSION['isLogin'] = true;
 
+            unset($_SESSION['LOGIN_email']);
+            unset($_SESSION['LOGIN_password']);
+            unset($_SESSION['login']);
+
             if ($table_login == 'ong'){
 
                 header('Location: ../dashboard_ong.php');
@@ -45,6 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
         }
     }
+
+    $_SESSION['LOGIN_email'] = $_POST['email'];
+    $_SESSION['LOGIN_password'] = $_POST['password'];
 
     echo "<script>
         localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
@@ -65,9 +72,12 @@ function return_select($sql){
         return $result;
 
     }catch(PDOException) {
+
+        $_SESSION['LOGIN_email'] = $_POST['email'];
+        $_SESSION['LOGIN_password'] = $_POST['password'];
         echo "<script>
             localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
-            window.alert('Nome/Email ou Senha Incorreta');
+            window.alert('Ocorreu algo no Servidor, tente novamente mais tarde');
             window.location.href = '../login.php';
         </script>";
         exit();

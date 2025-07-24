@@ -184,12 +184,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     }
    
     .voluntarios {
-      border: 2px solid #004d61;
+      border: 2px solid #2289e6;
       padding: 15px;
       max-height: 300px;
     }
    
     .voluntarios h4 {
+      font-family: 'Horizon';
+      vertical-align: middle;
       color: #e76f00;
       font-weight: bold;
       font-size: 2rem;
@@ -207,6 +209,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       display: flex;
       align-items: center;
       margin-bottom: 10px;
+    }
+
+    .fixa p{
+      color: #afafafff;
+      font-family: 'Antique';
     }
    
     .fixa i {
@@ -271,16 +278,16 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <?php echo $buttons_header; ?>
 </header>
 
-        <?php include 'php_functs/show_slot.php'; do_slot(); ?>
+        <!-- <?php //include 'php_functs/show_slot.php'; do_slot(); ?>
          <header class="header2">
           <img src="img\office-building.png" alt="Ícone" class="vaga-name-img"/>
           <div class="vaga-name">
             <h4>NOME DA VAGA</h4>
             <span>Nome da ONG</span>
           </div>
-    </header>
+    </header> -->
    
-    <?php echo do_slot();?>
+    <?php include 'php_functs/show_slot.php'; echo do_slot();?>
     <!-- <main class="vaga-container">
       <div class="vaga-descricao">
         <h3 class="vaga-descricao-titulo">DESCRIÇÃO DA VAGA <div><i class='bx bxs-user' ></i> 25/50</div> </h3>

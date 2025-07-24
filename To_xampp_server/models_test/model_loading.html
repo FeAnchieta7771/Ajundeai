@@ -1,11 +1,21 @@
-<div class="spinner"></div>
+<div id="spinner-overlay" class="overlay" style="display: none;">
+    <div class="spinner"></div>
+</div>
 
 <style>
+
+.overlay{
+   background-color: rgba(0, 0, 0, 0.4);
+   background-size: cover;
+   background-repeat: repeat;
+   z-index: 9998;
+}
 .spinner {
    width: 56px;
    height: 56px;
    display: grid;
    animation: spinner-plncf9 4.8s infinite;
+   z-index: 9999;
 }
 
 .spinner::before,
