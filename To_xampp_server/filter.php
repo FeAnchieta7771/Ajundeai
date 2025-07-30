@@ -28,7 +28,10 @@ function is_checked_before($name){
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+      <link
+      href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search_off" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=database_off" />
   <link rel="icon" href="img\Logo_Aba.png">
@@ -47,6 +50,10 @@ function is_checked_before($name){
     body {
       background-color: #ffffff;
     }
+
+        body::-webkit-scrollbar {
+            display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
+        }
 
     .search-bar {
       display: flex;
@@ -97,7 +104,7 @@ function is_checked_before($name){
     .filtros label {
       display: block;
       margin-bottom: 8px;
-      cursor: pointer;
+      cursor: pointer; 
     }
 
     .filtros input[type="checkbox"] {

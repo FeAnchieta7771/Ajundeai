@@ -39,202 +39,13 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/home/body_index.css" />
     <link rel="stylesheet" href="css/home/style.css" />
+    <link rel="stylesheet" href="css/css_screens/index.css">
 
     <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: "Poppins", sans-serif;
-      }
 
-      body {
-        background-color: #ffffff;
-      }
-
-      /* fim css dos botões de acesso ao login ===================== */
-
-      .hero {
-        background: linear-gradient(135deg, #003a45 60%, #005e55 100%);
-        position: relative;
-        padding: 180px 20px;
-        text-align: center;
-        color: white;
-        overflow: hidden;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: -100px;
-        left: -100px;
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 50%;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-        font-family: "Horizon", sans-serif;
-        font-weight: bold;
-        margin-bottom: 40px;
-        position: relative;
-        z-index: 1;
-      }
-
-      .search-bar {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        position: relative;
-        z-index: 1;
-        align-items: center;
-      }
-
-      .search-input {
-        padding: 15px;
-        width: 400px;
-        border-radius: 8px;
-        border: none;
-        font-size: 1rem;
-      }
-
-      .search-button {
-        flex-wrap: wrap;
-        background-color: #007f79;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        padding: 15px 30px;
-        font-weight: bold;
-        font-size: 1rem;
-        cursor: pointer;
-        font-family: "Poppins", sans-serif;
-        align-items: center;
-        gap: 10px;
-        padding: auto;
-        transition: 0.15s;
-      }
-
-      .search-button:hover {
-        transform: scale(1.02);
-        background-color: white;
-        color: #007f79;
-      }
-
-      .search-button img {
-        height: 20px;
-      }
-
-      .categories {
-        padding: 60px 20px;
-        background-color: white;
-        text-align: center;
-      }
-
-      .categories-title {
-        color: #e76f00;
-        font-weight: bold;
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-
-      .categories-title img {
-        height: 30px;
-      }
-
-      .category-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 35px;
-        width: 40%;
-        margin: 0 auto;
-      }
-
-      .category-item {
-        color: white;
-        border-radius: 8px;
-        padding: 30px 10px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-        font-size: 1.35rem;
-        width: 210px;
-        margin: 5px;
-        border: none;
-        margin-bottom: 10px;
-        transition: 0.15s;
-      }
-
-      .category-item:hover {
-        /* opacity: 0.9; */
-        background-color: #e76f00;
-        transform: scale(1.02);
-      }
-
-      /* Cores específicas */
-      .eventos {
-        background-color: #40d9cd;
-      }
-      .animais,
-      .criancas,
-      .assistencia {
-        background-color: #00a89a; /* Mesma cor azul para os 3 */
-      }
-      .educacao {
-        background-color: #007f79;
-      }
-      .meioambiente {
-        background-color: #40d9cd;
-      }
-      .tecnologia {
-        background-color: #007f79;
-      }
-      .saude {
-        background-color: #40d9cd;
-      }
-      .administracao {
-        background-color: #007f79;
-      }
-
-      footer {
-        background-color: #e76f00;
-        padding: 20px 30px;
-        color: white;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        font-size: 0.9rem;
-      }
-
-      .social-footer {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .social-footer img {
-        width: 30px;
-        height: 30px;
-      }
-
-      .contact-info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .footer-logo img {
-      height: 50px;
-      width: 200px;
-      }
+        body::-webkit-scrollbar {
+            display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
+        }
     </style>
   </head>
 
@@ -290,7 +101,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             própria. O voluntariado fortalece a comunidade, promove a empatia e
             cria redes de apoio que geram impacto real no mundo.
           </p>
-          <a class="buttonTryLogin3"
+          <a class="buttonTryLogin3" href="account.php"
             ><span class="material-symbols-outlined">diversity_1</span>
             <strong> Fazer parte da Diferença!</strong></a
           >
@@ -320,7 +131,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             mundo. Cada pequena ação tem o poder de gerar grandes mudanças. Seja
             a diferença que você quer ver no mundo.<strong>Participe!</strong>
           </p>
-          <a class="buttonTryLogin3"
+          <a class="buttonTryLogin3" href="account.php"
             ><span class="material-symbols-outlined">diversity_1</span>
             <strong> Fazer parte da Diferença!</strong></a
           >
@@ -569,7 +380,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <br />
     <p
       style="
-        justify-self: center;
+        display: flex;
+        justify-content: center;
         margin-bottom: 5px;
         color: rgb(110, 110, 110);
         font-family: 'Antique', sans-serif;
@@ -590,6 +402,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
           alt="Instagram Icon"
         />
         <span>@ajundeai_anchieta</span>
+        <span><strong>• Ícones feitos por <a href="https://www.flaticon.com/br/autores/freepik" title="Freepik"> Freepik </a> from <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com'</a></strong></span>
       </div>
       <div class="footer-logo">
         <!--s Substitua -->

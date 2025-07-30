@@ -1,9 +1,32 @@
+<?php
+session_start();
+
+include 'php_functs/functions.php';
+
+// busca situação de login do usuário
+$login_state = is_logged();
+
+// busca quem está logado
+$is_ong = is_ong_logged();
+
+// setar botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Dentro do header -->
+        <div class="logo">
+            <a href="index.php">
+            <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+            </a>
+        </div>
+        <?php echo $buttons_header; ?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Vaga ONG</title>
+    <title>AjundeAi • Criar vaga</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,6 +36,11 @@
             color: #333;
             position: relative;
             background-color: #f9f9f9;
+            
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
         }
         
         .background {
@@ -168,21 +196,22 @@
     </div>
     
     <div class="form-container">
+        <form class="forms" method="POST" action="php_functs/create_slotONG.php">
         <h1>INSIRA OS DADOS<br>PARA CRIAR A VAGA</h1>
         
         <div class="form-row">
             <div class="form-group">
                 <label for="job-name">NOME DA VAGA:</label>
-                <input type="text" id="job-name" placeholder="Digite o nome da vaga" required>
+                <input type="text" id="job-name" name="nome_vaga" placeholder="Digite o nome da vaga" required>
             </div>
         </div>
         
         <div class="form-row">
             <div class="form-group">
                 <label for="category">CATEGORIA:</label>
-                <input list="frutas" name="fruta" id="fruta" placeholder="Insira uma ou escolha">
+                <input list="category" name="categoria_vaga" id="category" placeholder="Insira uma ou escolha">
 
-                <datalist id="frutas">
+                <datalist id="category">
                 <option value="Maçã">
                 <option value="Banana">
                 <option value="Laranja">
@@ -193,28 +222,34 @@
             </div>
             <div class="form-group">
                 <label for="location">LOCALIZAÇÃO:</label>
-                <input type="text" id="location" placeholder="Localização da vaga" required>
+                <input type="text" name="localizacao" id="location" placeholder="Localização da vaga" required>
             </div>
             <div class="form-group">
                 <label for="volunteers-needed">COTA DE VOLUNTÁRIOS:</label>
-                <input type="number" id="volunteers-needed" placeholder="Numero de voluntários" required>
+                <input type="number" name="quant_limite" min="1" id="volunteers-needed" placeholder="Numero de voluntários" required>
             </div>
         </div>
         
         <div class="description-group">
             <label for="welcome-message">APRESENTE SUA VAGA BREVEMENTE AOS VOLUNTÁRIOS:</label>
-            <textarea id="welcome-message" placeholder="Diga uma palavra aos seus voluntariados" required></textarea>
+            <textarea name="descr_obj" id="welcome-message"  placeholder="Diga uma palavra aos seus voluntariados" required></textarea>
         </div>
         
         <div class="description-group">
             <label for="job-description">INTRODUZA TODA A DESCRIÇÃO DA VAGA:</label>
-            <textarea id="job-description" placeholder="Descreva detalhadamente tua vaga" required></textarea>
+            <textarea name="descr_total" id="job-description" placeholder="Descreva detalhadamente tua vaga" required></textarea>
         </div>
         
         <div class="button-group">
             <button class="btn btn-primary">CRIAR VAGA</button>
+        
+        </form>
+        <form class="forms" method="GET" action="php_functs/cancelar.php">
             <button class="btn btn-secondary">CANCELAR</button>
+        </form>
+
         </div>
+    
     </div>
 </body>
 </html>

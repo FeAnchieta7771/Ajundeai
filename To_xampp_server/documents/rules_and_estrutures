@@ -1,0 +1,65 @@
+----------------------------------------------------------------------
+
+# USUÁRIO LOGADO
+
+quando o usuário está logado ao site, a diferença principal
+dentre eles para o usuário sem conta é a variável global:
+
+$_SESSION['isLogin']
+
+{
+Se TRUE, o usuário está logado
+Se FALSE, o usuário está sem conta
+}
+
+Usuários logados possuem duas classes, ONG e Voluntário,
+a qual possuem propriedades distintas que são armazenadas
+em mesmas 3 variáveis:
+
+== ONG
+    // registra qual tipo de usuário está logado
+    $_SESSION['whoLogged'] = 'ong';
+
+    // registra o nome do usuário
+    $_SESSION['name']
+
+    // registra o id a qual o usuário está salvo no banco
+    $_SESSION['id'] = $user['id'];
+
+== Voluntário
+    // registra qual tipo de usuário está logado
+    $_SESSION['whoLogged'] = 'voluntario';
+
+    // registra o nome do usuário
+    $_SESSION['name']
+
+    // registra o id a qual o usuário está salvo no banco
+    $_SESSION['id'] = $user['id'];
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+
+# CONEXÃO AO BANCO
+
+As conexões ao banco de dados estão concentradas dentro do diretório:
+'php_functs/php_db'
+
+a qual são divididas em dois arquivos utilitários:
+
+-- conexao.php
+                Responsável por criar uma variável de conexão ao banco
+                $conn
+
+-- methods.php 
+                Responsável por ter todos os métodos de interação com
+                o banco, como:
+                SELECT
+                INSERT
+
+                todos possuem o padrão de retornar o valor do erro caso
+                ocorra erro, então sua utilidade de chamada de função deve
+                ser colocada dentro da estrutura try/catch 
+
+                todo fim de execução, tendo ou não funcionado a interação,
+                encerram a conexão do $conn a qual o próprio método chama para
+                uso próprio

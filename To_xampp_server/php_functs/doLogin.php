@@ -3,10 +3,22 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+function Show_error(){
+        $_SESSION['LOGIN_email'] = $_POST['email'];
+        $_SESSION['LOGIN_password'] = $_POST['password'];
+
+        echo "<script>
+                localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
+                window.alert('Ocorreu algo no Servidor, tente novamente mais tarde');
+                window.location.href = '../login.php';
+            </script>";
+        exit();
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
-    include 'conexao.php';
+    // include 'php_db/conexao.php';
     $_SESSION['login'] = $_POST['login_state'];
     $table_login = $_POST['login_state'];
 
@@ -19,9 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     // ! Filtros do Login
     // Busca da senha pelo nome
     // Busca da senha pelo email
-    $sql = "SELECT id, senha,".$auxiliar_name." FROM ".$table_login." WHERE ".$table_login.".".$auxiliar_name." = '".$name_email."' OR ".$table_login.".email = '".$name_email."'";
-    // Coleta o resultado
-    $result = return_select($sql);
+
+    try{
+        $sql = "SELECT id, senha,".$auxiliar_name." FROM ".$table_login." WHERE
+         ".$table_login.".".$auxiliar_name." = ? OR ".$table_login.".email = ?";
+
+        include 'php_db/methods.php';
+        $result = select($sql,[$name_email,$name_email]);
+
+    } catch(PDOException $e) {
+        Show_error();
+    }
 
     // Procura se algum dos registros possui a senha informada
     foreach($result as $user){
@@ -50,38 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         }
     }
 
-    $_SESSION['LOGIN_email'] = $_POST['email'];
-    $_SESSION['LOGIN_password'] = $_POST['password'];
-
-    echo "<script>
-        localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
-        window.alert('Nome/Email ou Senha Incorreta');
-        window.location.href = '../login.php';
-    </script>";
+    // Exibição de Erro
+    // caso nenhum valor a cima tenha funciona,
+    // significa que não foi encontrado
+    Show_error();
     exit();
-}
-
-function return_select($sql){
-    include 'conexao.php';
-    try{
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-
-    }catch(PDOException) {
-
-        $_SESSION['LOGIN_email'] = $_POST['email'];
-        $_SESSION['LOGIN_password'] = $_POST['password'];
-        echo "<script>
-            localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
-            window.alert('Ocorreu algo no Servidor, tente novamente mais tarde');
-            window.location.href = '../login.php';
-        </script>";
-        exit();
-    }
 }
 
 ?>

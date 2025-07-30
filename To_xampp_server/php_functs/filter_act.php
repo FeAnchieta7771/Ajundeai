@@ -13,7 +13,18 @@ function do_filter(){
     // apenas executa o código apenas se ele for chamado
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         
-        include 'conexao.php';
+        include 'php_db/conexao.php';
+
+        if(!isset($_GET['type'])){
+            // Não terá nenhuma condição extra além de vagas disponíveis
+            // este filtro apenas funciona para introduz a tela de filtro direcionada por um botão
+            $sql = $base_sql;
+            
+            $result = return_select($sql);
+            show_filter($result, "");
+            exit();
+        }
+
         $type_filter = $_GET['type'];
 
     ////////////////////////////////////////////////////////////////////
@@ -71,26 +82,13 @@ function do_filter(){
         }
 
     ////////////////////////////////////////////////////////////////////
-    
-        // ! ESSE FILTRO PESQUISA TODOS OS ITEMS
-        // USADO APENAS AO BOTÃO "Pesquisa de Vaga" QUE DIRECIONA AO FILTRO
-        // como não é acessivel via GET, ele é acessível por SESSION
-    } else if(isset($_SESSION['nothing_else']) AND  $_SESSION['nothing_else']){
-
-            // Não terá nenhuma condição extra além de vagas disponíveis
-            // este filtro apenas funciona para introduz a tela de filtro direcionada por um botão
-            
-            $sql = $base_sql;
-            
-            $result = return_select($sql);
-            show_filter($result, "");
     }
 }
 
 
 // função de execução do SELECT
 function return_select($sql){
-    include 'conexao.php';
+    include 'php_db/conexao.php';
     try{
         $stmt = $conn->prepare($sql);
         $stmt->execute();

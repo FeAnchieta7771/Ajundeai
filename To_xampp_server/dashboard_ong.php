@@ -50,6 +50,10 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       background-color: #ffffff;
     }
 
+    body::-webkit-scrollbar {
+            display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
+    }
+
     .painel-bar {
       display: flex;
       align-items: center;

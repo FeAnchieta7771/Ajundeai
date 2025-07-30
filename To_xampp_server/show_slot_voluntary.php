@@ -50,6 +50,10 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       background-color: #ffffff;
     }
 
+    body::-webkit-scrollbar {
+            display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
+    }
+
     .search-bar {
       display: flex;
       align-items: center;
@@ -156,6 +160,82 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       margin-right: 10%;
       display: flex;
       flex-direction: column;
+    }
+
+        .card-curriculo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px;
+      border-radius: 4px;
+    }
+   
+    .btn-curriculo {
+      background-color: #e76f00;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 22px;
+      cursor: pointer;
+      width: 250px;
+    }
+   
+    .btn-curriculo-negado {
+      background-color: #ff3131;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 22px;
+      cursor: pointer;
+      width: 270px;
+    }
+   
+    .btn-curriculo-aceito {
+      background-color: #29b226;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 22px;
+      cursor: pointer;
+      width: 270px;
+    }
+   
+    .btn-curriculo-lotado {
+      background-color: black;
+      border: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 22px;
+      cursor: pointer;
+      width: 270px;
+    }
+   
+    .curriculo-icon {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      font-size: 1rem;
+      border: 1px #007bff;
+    }
+   
+    .curriculo-icon-desalvar {
+      background-color: white;
+      color: #007bff;
+      padding: 20px;
+      font-size: 1rem;
+      border: 1px #007bff;
+    }
+   
+    .curriculo-icon-aguarde {
+      background-color: black;
+      color: white;
+      padding: 20px;
+      font-size: 1rem;
+      border: 1px black;
     }
    
     .card-curriculo {
@@ -269,6 +349,41 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       </div>
 
     </main> -->
+
+      <!-- NOVOS BOTÕES -->
+      <div class="vaga-lateral">
+        <!--<div class="card-curriculo-nor">
+          <button class="btn-curriculo">ENVIAR CURRÍCULO</button>
+          <span class="curriculo-icon">&#128278;</span>
+        </div>
+       
+        <div class="card-curriculo-desalvar">
+          <button class="btn-curriculo">ENVIAR CURRÍCULO</button>
+          <span class="curriculo-icon-desalvar">&#128278;</span>
+        </div>
+       
+        <div class="card-curriculo-aguarde">
+          <button class="btn-curriculo style="background-color: #003e53;">CANCELAR ENVIO</button>
+          <span class="curriculo-icon-aguarde">&#128278;</span>
+        </div>
+       
+        <div class="card-curriculo-negado">
+          <button class="btn-curriculo-negado">NEGADO PARA VAGA...</button>
+        </div>
+       
+        <div class="card-curriculo-aceito">
+          <button class="btn-curriculo-aceito">APROVADO PARA VAGA!</button>
+        </div>
+        -->
+        <div class="card-curriculo-lotado">
+          <button class="btn-curriculo-lotado">VAGA LOTADA</button>
+        </div>
+       
+        <div class="vaga-localizacao">
+          <h4>LOCALIZAÇÃO</h4>
+          <p><em>GSEIUOGHSSOKJNGFÇLKGMJLÇDKWEÇ<br>MHNGFJHKJHLK</em></p>
+        </div>
+      </div>
 
   </main>
 </body>

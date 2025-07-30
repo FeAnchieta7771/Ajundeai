@@ -47,9 +47,9 @@ function set_model_buttons_header($is_logged, $is_ong){
             $piece .= "<div class='submenu'>";
             $piece .= "<form method='POST' action='../php_functs/action_buttons_login.php'>";
             $piece .= "<input type='hidden' name='type' value='slot_created_ong'/>";
-            $piece .= "<button name='button_header' value='ong_painel'>Painel de Controle</button>";
-            $piece .= "<button name='button_header' value='ong_vaga'>Adicionar Vaga</button>";
-            $piece .= "<button name='button_header' value='out'><strong>Sair da Conta</strong></button>";
+            $piece .= "<button name='button_header' value='ong_painel'><i class='bx  bx-dock-top-right-alt' style='font-size: 20px; margin-right: 5px; margin-top: 5px;' ></i><span> Painel de Controle</span></button>";
+            $piece .= "<button name='button_header' value='ong_vaga'><i class='bx  bx-plus-circle' style='font-size: 20px; margin-right: 5px; margin-top: 5px;' ></i><span> Adicionar Vaga</span></button>";
+            $piece .= "<button name='button_header' value='out'><i class='bx  bx-arrow-out-left-square-half' style='font-size: 20px; margin-right: 5px; margin-top: 5px;' ></i><span><strong>Sair da Conta </strong></span></button>";
             $piece .= "</form></div> </div>";
 
         } else {
@@ -60,9 +60,9 @@ function set_model_buttons_header($is_logged, $is_ong){
             $piece .= "<div class='submenu'>";
             $piece .= "<form method='POST' action='../php_functs/action_buttons_login.php'>";
             $piece .= "<input type='hidden' name='type' value='nothing_else'/>";
-            $piece .= "<button name='button_header' value='volu_painel'>Painel de Controle</button>";
-            $piece .= "<button name='button_header' value='volu_vaga'>Pesquisa de Vaga</button>";
-            $piece .= "<button name='button_header' value='out'><strong>Sair da Conta</strong></button>";
+            $piece .= "<button name='button_header' value='volu_painel'><i class='bx  bx-dock-top-right-alt' style='font-size: 20px; margin-right: 5px; margin-top: 5px;' ></i>Painel de Controle</button>";
+            $piece .= "<button name='button_header' value='volu_vaga'><i class='bx  bx-search' style='font-size: 20px; margin-right: 5px; margin-top: 5px;' ></i> Pesquisa de Vaga</button>";
+            $piece .= "<button name='button_header' value='out'><i class='bx  bx-arrow-out-left-square-half' style='font-size: 20px; margin-right: 5px; margin-top: 5px;' ></i><strong>Sair da Conta</strong></button>";
             $piece .= "</form></div> </div>";
 
         }
@@ -72,8 +72,8 @@ function set_model_buttons_header($is_logged, $is_ong){
     }else{
         
         $piece =  "<div class='header-buttons'>";
-        $piece .= "<a href='login.php' class='btn login' >ENTRAR</a>";
-        $piece .= "<a href='account.php' class='btn register'>CADASTRE-SE</a>";
+        $piece .= "<a href='../login.php' class='btn login' >ENTRAR</a>";
+        $piece .= "<a href='../account.php' class='btn register'>CADASTRE-SE</a>";
         $piece .= "</div>";
         return $piece;
     }

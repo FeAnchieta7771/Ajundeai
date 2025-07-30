@@ -14,7 +14,7 @@ $is_ong = is_ong_logged();
 // busca botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
-print_r($_SESSION);
+// print_r($_SESSION);
 ?>
 
 <!-- Tela de Login -->
@@ -28,184 +28,12 @@ print_r($_SESSION);
     <title>AjundeAi • Login</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/css_screens/login.css">
+
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
+        body::-webkit-scrollbar {
+            display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
         }
-
-        body {
-            background-color: #ffffff;
-        }
-
-        .log {
-            background-image: url("https://assets.onecompiler.app/43h62qpv7/3y5x8jr6s/login.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            text-align: center;
-            color: white;
-        }
-
-        .fh1 {
-            font-size: 60px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-family: "Horizon", sans-serif;
-            font-style: italic;
-        }
-
-        .fh1 span {
-            font-family: "Horizon", sans-serif;
-            font-style: italic;
-            font-size: 50px;
-            display: block;
-        }
-
-        .form-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        .role-selector {
-            background-color: #53d3d1;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            color: #004652;
-            width: 500px;
-        }
-
-        .role-selector input {
-            margin-right: 5px;
-        }
-
-        .role-selector .divider {
-            color: #004652;
-        }
-
-        .form-container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            border-radius: 8px;
-            width: 500px;
-            color: #004652;
-            text-align: left;
-            border-radius: 0px 0px 8px 8px;
-        }
-
-        .forms label {
-            margin-top: 10px;
-            font-weight: bold;
-            display: block;
-        }
-
-        .forms input {
-            padding: 10px;
-            border: 1px solid #004652;
-            border-radius: 4px;
-            margin-top: 5px;
-            width: 100%;
-        }
-
-        .signup {
-            margin: 10px 0;
-            color: #53d3d1;
-            font-size: 14px;
-        }
-
-        .signup a {
-            color: #53d3d1;
-            font-weight: bold;
-            font-size: 17px;
-            text-decoration: none;
-            font-family: "Horizon", sans-serif;
-        }
-
-        .signup a:hover {
-            text-decoration: underline;
-        }
-
-        .btlog {
-            background-color: #f26b1d;
-            font-family: "Horizon", sans-serif;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            font-size: 20px;
-            width: 500px;
-            transition: .15s;
-        }
-
-        .btlog:hover {
-            transform: scale(1.02);
-            background-color: white;
-            color: #f26b1d;
-        }
-
-        /*  */
-
-        .content {
-    display: none
-}
-
-.content.show{
-    display: flex;
-    gap: 14px;
-}
-
-#container{
-    padding: 20px;
-    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.tab-buttons{
-    display: flex;
-    gap: 6px;
-    width: 500px;
-    justify-items: center;
-    justify-content: center;
-}
-
-.tab-btn {
-    width: 100%;
-    border: none;
-    color: black;
-    font-weight: bold;
-    padding: 8px;
-    cursor: pointer;
-    transition: background-color .2s ease;
-    background-color: rgba(137, 151, 172, 0.8);
-    color: rgba(31, 39, 49, 0.8);
-}
-.tab-btn.active{
-    background-color:rgba(255, 255, 255, 0.8);
-    color: #004652;
-    font-size: 20px;
-}
-
-.tab-btn:hover{
-    background-color:rgba(255, 255, 255, 0.59)
-} 
 
     </style>
 </head>
@@ -246,11 +74,11 @@ print_r($_SESSION);
                       <input type="hidden" name="login_state" value="voluntario">
                       <div class="form-container">
                           <label for="email">NOME OU EMAIL</label>
-                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_SESSION['LOGIN_email']) and $_SESSION['login'] == 'voluntario'){ echo $_SESSION['LOGIN_email'];}?>">
+                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_SESSION['LOGIN_email']) && $_SESSION['login'] == 'voluntario'){ echo $_SESSION['LOGIN_email'];}?>">
                           <br>
                           <br>
                           <label for="password">SENHA</label>
-                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_SESSION['LOGIN_password']) and $_SESSION['login'] == 'voluntario'){ echo $_SESSION['LOGIN_password'];}?>">
+                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_SESSION['LOGIN_password']) && $_SESSION['login'] == 'voluntario'){ echo $_SESSION['LOGIN_password'];}?>">
                       </div>
 
                       <p class="signup">Não possui uma conta? <a href="account.php">CADASTRE-SE</a></p>
@@ -266,11 +94,11 @@ print_r($_SESSION);
                       <input type="hidden" name="login_state" value="ong">
                       <div class="form-container">
                           <label for="email">NOME OU EMAIL DA ONG</label>
-                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_SESSION['LOGIN_email']) and $_SESSION['login'] == 'ong'){ echo $_SESSION['LOGIN_email'];}?>">
+                          <input type="text" name="email" placeholder="Insira nome ou email aqui" value="<?php if(isset($_SESSION['LOGIN_email']) && $_SESSION['login'] == 'ong'){ echo $_SESSION['LOGIN_email'];}?>">
                           <br>
                           <br>
                           <label for="password">SENHA DE REGISTRO</label>
-                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_SESSION['LOGIN_password']) and $_SESSION['login'] == 'ong'){ echo $_SESSION['LOGIN_password'];}?>">
+                          <input type="password" name="password" placeholder="Insira sua senha aqui" value="<?php if(isset($_SESSION['LOGIN_password']) && $_SESSION['login'] == 'ong'){ echo $_SESSION['LOGIN_password'];}?>">
                       </div>
 
                       <p class="signup">Não possui uma conta? <a href="account.php">CADASTRE-SE</a></p>
@@ -348,3 +176,91 @@ print_r($_SESSION);
     </script>
 </body>
 </html>
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    
+    include 'conexao.php';
+    $_SESSION['login'] = $_POST['login_state'];
+    $table_login = $_POST['login_state'];
+
+    // auxílio de pesquisa ao sql e salvar nome ao sistema
+    $auxiliar_name = "nome_".$table_login;
+
+    $name_email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // ! Filtros do Login
+    // Busca da senha pelo nome
+    // Busca da senha pelo email
+    $sql = "SELECT id, senha,".$auxiliar_name." FROM ".$table_login." WHERE ".$table_login.".".$auxiliar_name." = '".$name_email."' OR ".$table_login.".email = '".$name_email."'";
+    // Coleta o resultado
+    $result = return_select($sql);
+
+    // Procura se algum dos registros possui a senha informada
+    foreach($result as $user){
+
+        if ($user['senha'] == $password){
+
+            $_SESSION['whoLogged'] = $table_login;
+            $_SESSION['name'] = $user[$auxiliar_name];
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['isLogin'] = true;
+
+            unset($_SESSION['LOGIN_email']);
+            unset($_SESSION['LOGIN_password']);
+            unset($_SESSION['login']);
+
+            if ($table_login == 'ong'){
+
+                header('Location: ../dashboard_ong.php');
+                exit();
+
+            } else if($table_login == 'voluntario'){
+
+                header('Location: '.$_SESSION['tela_anterior']);
+                exit();
+            }
+        }
+    }
+
+    $_SESSION['LOGIN_email'] = $_POST['email'];
+    $_SESSION['LOGIN_password'] = $_POST['password'];
+
+    echo "<script>
+        localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
+        window.alert('Nome/Email ou Senha Incorreta');
+        window.location.href = '../login.php';
+    </script>";
+    exit();
+}
+
+function return_select($sql){
+    include 'conexao.php';
+    try{
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+
+    }catch(PDOException) {
+
+        $_SESSION['LOGIN_email'] = $_POST['email'];
+        $_SESSION['LOGIN_password'] = $_POST['password'];
+        echo "<script>
+            localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
+            window.alert('Ocorreu algo no Servidor, tente novamente mais tarde');
+            window.location.href = '../login.php';
+        </script>";
+        exit();
+    }
+}
+
+?>

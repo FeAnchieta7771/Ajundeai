@@ -1,14 +1,35 @@
 <?php
+
+include 'php_db/methods.php';
 // Função Principal
 /////////////////////////////////////////////////////////////////////////
 // ! Este arquivo está disposto a executar os filtros da tela "filter.php"
 /////////////////////////////////////////////////////////////////////////
+function Show_error($e){
+    $html = text_html_header_error();
+        $html .= text_html_main_error($e);
+        $html .= text_html_buttons_error();
+        echo $html;
+        exit();
+}
+
+function do_select($sql, $param = []){
+
+    try{
+        $result = select($sql, $param);
+        return $result;
+
+    } catch (PDOException $e) {
+        Show_error($e);
+    }
+}
+
 function do_slot(){
 
     // apenas executa o código apenas se ele for chamado
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
         
-        include 'conexao.php';
+        // include '../php_functs/php_db/conexao.php';
 
         $type_filter = $_GET['type'];
         $id = $_GET['id_vaga'];
@@ -42,14 +63,16 @@ function do_slot(){
 
 function do_slot_with_user_logged($id_vaga, $id_user){
 
-    $sql_register = "SELECT * FROM registro WHERE id = ".$id_vaga." AND id_voluntario = ".$id_user;
-    $result_register = return_select($sql_register);
+    // $sql_register = "SELECT * FROM registro WHERE id = ".$id_vaga." AND id_voluntario = ".$id_user;
+    $result_register = do_select("SELECT * FROM registro WHERE id = ? AND id_voluntario = ?",[$id_vaga,$id_user]);
+    // $result_register = return_select($sql_register);
 
     if( !empty($result_register) AND $result_register[0]['categoria_registro'] == 'cadastrado'){
         // como o usuário está cadastrado, o número de vagas é irrelevante
 
-        $sql = $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE id = ".$id_vaga;
-        $result = return_select($sql);
+        // $sql = $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE id = ".$id_vaga;
+        // $result = return_select($sql);
+        $result = do_select("SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE id = ?",[$id_vaga]);
 
         $html = text_html_header($result[0]['nome'],$result[0]['nome_ong']);
 
@@ -92,20 +115,26 @@ function do_slot_with_user_logged($id_vaga, $id_user){
 //        = negados
 function do_slot_to_ong($id_vaga){
 
-     $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.id = ".$id_vaga;
+    //  $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.id = ".$id_vaga;
+     $sql = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.id = ?";
     // echo $sql_vaga;
 
-    $result_slot = return_select($sql);
+    // $result_slot = return_select($sql);
+    $result_slot = do_select($sql, [$id_vaga]);
 
     // Pesquisa de voluntários que se cadastraram a vaga
     // Requisitos: Nome do voluntário e seu estado de aprovação
 
     // priorização dos voluntários em aguarde de resposta, depois os aprovados, em último os negados
+    // $sql = "SELECT voluntario.nome_voluntario, registro.situacao FROM registro JOIN voluntario ON registro.id_voluntario = voluntario.id 
+    // WHERE registro.id_vaga = $id_vaga AND registro.categoria_registro = 'cadastrado'  
+    // ORDER BY CASE WHEN registro.situacao = 'aguarde' THEN 1 WHEN registro.situacao = 'aprovado' THEN 2 ELSE 3 END";
     $sql = "SELECT voluntario.nome_voluntario, registro.situacao FROM registro JOIN voluntario ON registro.id_voluntario = voluntario.id 
-    WHERE registro.id_vaga = $id_vaga AND registro.categoria_registro = 'cadastrado'  
+    WHERE registro.id_vaga = ? AND registro.categoria_registro = 'cadastrado'  
     ORDER BY CASE WHEN registro.situacao = 'aguarde' THEN 1 WHEN registro.situacao = 'aprovado' THEN 2 ELSE 3 END";
 
-    $result_register = return_select($sql);
+    // $result_register = return_select($sql);
+    $result_register = do_select($sql,[$id_vaga]);
 
     // Exibição final dos resultados
     // Exibição dos valores da vaga pelo @result_slot
@@ -118,24 +147,24 @@ function do_slot_to_ong($id_vaga){
 }
 
 // função de execução do SELECT
-function return_select($sql){
-    include 'conexao.php';
-    try{
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
+// function return_select($sql){
+//     include 'php_db/conexao.php';
+//     try{
+//         $stmt = $conn->prepare($sql);
+//         $stmt->execute();
         
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
-        return $result;
+//         return $result;
         
-    }catch(PDOException $e) {
-        $html = text_html_header_error();
-        $html .= text_html_main_error($e);
-        $html .= text_html_buttons_error();
-        echo $html;
-        exit();
-    }
-}
+//     }catch(PDOException $e) {
+//         $html = text_html_header_error();
+//         $html .= text_html_main_error($e);
+//         $html .= text_html_buttons_error();
+//         echo $html;
+//         exit();
+//     }
+// }
 
 function text_html_header($name_vaga, $name_ong){
     return '<header class="header2">
@@ -242,9 +271,11 @@ function user_not_logged($is_logged, $id_vaga){
     // → Livre: exigição da vaga
 
 
-    $sql_vaga = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.id = ".$id_vaga;
+    // $sql_vaga = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.id = ".$id_vaga;
+    $sql_vaga = "SELECT vaga.*, ong.nome_ong FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.id = ?";
+    $result = do_select($sql_vaga,[$id_vaga]);
     // echo $sql_vaga;
-    $result = return_select($sql_vaga);
+    // $result = return_select($sql_vaga);
 //     echo "<pre>";
 // print_r($result);
 // echo "</pre>";

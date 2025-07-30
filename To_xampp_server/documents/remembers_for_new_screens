@@ -1,0 +1,103 @@
+Icones do BoxIcons:
+<!-- Colocar dentro do <head> -->
+    <link
+      href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+-----------------------------------------------------------------------------------
+
+Botões dinâmicos do Login:
+
+
+>>>>>> Normal
+<!-- Acima de tudo -->
+<?php
+session_start();
+
+// salva a url atual de telas dinâmicas (telas que o usuário fica indo e voltando normalmente durante o mesmo uso)
+// ! Tabelas como login, criação de conta, vagas, voluntários não precisam disso
+$_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
+
+include 'php_functs/functions.php';
+
+// busca situação de login do usuário
+$login_state = is_logged();
+
+// busca quem está logado
+$is_ong = is_ong_logged();
+
+// setar botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
+
+=====================================
+
+>>>>>> Telas NÃO dinâmicas
+<!-- Acima de tudo -->
+<?php
+session_start();
+
+include 'php_functs/functions.php';
+
+// busca situação de login do usuário
+$login_state = is_logged();
+
+// busca quem está logado
+$is_ong = is_ong_logged();
+
+// setar botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
+
+=====================================
+
+>>>>>> Telas de Login Obrigatória
+<!-- Acima de tudo -->
+<?php
+session_start();
+
+// ... [Caso também for uma tela dinâmica, adicione aqui]
+
+// busca situação de login do usuário
+$login_state = is_logged();
+
+if(!$login_state){
+  header('Location: index.php');
+  exit();
+}
+
+// busca quem está logado
+$is_ong = is_ong_logged();
+
+// setar botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
+-----------------------------------------------------------------------------------
+
+<!-- Dentro do header -->
+<header>
+    <div class="logo">
+        <a href="index.php">
+            <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+        </a>
+    </div>
+    <?php echo $buttons_header; ?>
+</header>
+
+-----------------------------------------------------------------------------------
+
+Nome da tela na Aba:
+<!-- Dentro do head -->
+<title>AjundeAi • [NOME DA TELA]</title>
+
+-----------------------------------------------------------------------------------
+
+Remover barra de rolagem lateral:
+<!-- Dentro do style -->
+body::-webkit-scrollbar {
+    display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
+}
