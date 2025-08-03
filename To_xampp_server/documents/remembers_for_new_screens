@@ -19,7 +19,7 @@ session_start();
 // ! Tabelas como login, criação de conta, vagas, voluntários não precisam disso
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
@@ -39,7 +39,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 <?php
 session_start();
 
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();

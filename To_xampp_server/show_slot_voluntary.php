@@ -2,10 +2,10 @@
 <?php
 session_start();
 
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // salva a url atual de telas dinâmicas
-$_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
+$_SESSION['tela_de_vaga'] = $_SERVER['REQUEST_URI'];
 
 // busca situação de login do usuário
 $login_state = is_logged();
@@ -162,23 +162,23 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       flex-direction: column;
     }
 
-        .card-curriculo {
+    .card-curriculo {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 12px;
       border-radius: 4px;
     }
-   
+
     .btn-curriculo {
       background-color: #e76f00;
       border: none;
       color: white;
       font-weight: bold;
       font-size: 1rem;
-      padding: 22px;
+      padding: 25px;
       cursor: pointer;
-      width: 250px;
+      width: 270px;
     }
    
     .btn-curriculo-negado {
@@ -189,7 +189,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       font-size: 1rem;
       padding: 22px;
       cursor: pointer;
-      width: 270px;
+      width: 400px;
     }
    
     .btn-curriculo-aceito {
@@ -200,7 +200,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       font-size: 1rem;
       padding: 22px;
       cursor: pointer;
-      width: 270px;
+      width: 400px;
     }
    
     .btn-curriculo-lotado {
@@ -211,57 +211,43 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       font-size: 1rem;
       padding: 22px;
       cursor: pointer;
-      width: 270px;
+      width: 400px;
     }
-   
-    .curriculo-icon {
-      background-color: #007bff;
-      color: white;
+
+    .btn-icon-salvar {
       padding: 20px;
-      font-size: 1rem;
-      border: 1px #007bff;
-    }
-   
-    .curriculo-icon-desalvar {
-      background-color: white;
-      color: #007bff;
-      padding: 20px;
-      font-size: 1rem;
-      border: 1px #007bff;
-    }
-   
-    .curriculo-icon-aguarde {
-      background-color: black;
-      color: white;
-      padding: 20px;
-      font-size: 1rem;
-      border: 1px black;
-    }
-   
-    .card-curriculo {
+      font-size: 30px;
+      margin-left: 50px;
+      height: 74px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 12px;
-      border-radius: 4px;
+      background-color: #2289e6;
+      color: white;
+      border: 1px solid #2289e6;
     }
    
-    .btn-curriculo {
-      background-color: #e76f00;
-      border: none;
-      color: white;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 22px;
-      cursor: pointer;
-      width: 250px;
-    }
-   
-    .curriculo-icon {
-      background-color: #007bff;
-      color: white;
+    .btn-icon-desalvar {
       padding: 20px;
-      font-size: 1rem;
+      font-size: 30px;
+      margin-left: 50px;
+      height: 74px;
+      display: flex; 
+      align-items: center;
+      background-color: #ffffffff;
+      color: #2289e6;
+      border: 1px solid #2289e6;
+    }
+   
+    .btn-icon-aguarde {
+      padding: 20px;
+      font-size: 30px;
+      margin-left: 50px;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      background-color: black;
+      color: #ffffffff;
+      border: 1px solid black;
     }
    
     .vaga-localizacao {
@@ -311,7 +297,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
            
         </form>
 
-        <?php include 'php_functs/show_slot.php'; do_slot(); ?>
+        <?php include 'php_functs/php_screens/show_slot.php'; do_slot(); ?>
     <!-- <header class="header2">
           <img src="img\office-building.png" alt="Ícone" class="vaga-name-img"/>
           <div class="vaga-name">
@@ -335,56 +321,44 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
           vttrdgfuyfgbktunnjnl.lh.lolkj..
           asiufuhdfvkfjvkvfivfvvfvfvfvfvfkfjrkehnhh. Sim.
         </p>
-      </div>
-   
-      <div class="vaga-lateral">
-        <div class="card-curriculo">
-          <button class="btn-curriculo">ENVIAR CURRÍCULO</button>
-          <span class="curriculo-icon">&#128278;</span>
-        </div>
-        <div class="vaga-localizacao">
-          <h4>LOCALIZAÇÃO</h4>
-          <p><em>GSEIUOGHSSOKJNGFÇLKGMJLÇDKWEÇ<br>MHNGFJHKJHLK</em></p>
-        </div>
-      </div>
+      </div> -->
 
-    </main> -->
 
       <!-- NOVOS BOTÕES -->
-      <div class="vaga-lateral">
-        <!--<div class="card-curriculo-nor">
+      <!-- <div class="vaga-lateral"> -->
+        <!--<div class="card-curriculo">
           <button class="btn-curriculo">ENVIAR CURRÍCULO</button>
-          <span class="curriculo-icon">&#128278;</span>
+          <button class="btn-icon-salvar"><i class='bx bxs-bookmark'></i></button>
         </div>
-       
-        <div class="card-curriculo-desalvar">
+        
+        <div class="card-curriculo">
           <button class="btn-curriculo">ENVIAR CURRÍCULO</button>
-          <span class="curriculo-icon-desalvar">&#128278;</span>
+          <button class="btn-icon-desalvar"><i class='bx bxs-bookmark'></i></button>
         </div>
-       
-        <div class="card-curriculo-aguarde">
-          <button class="btn-curriculo style="background-color: #003e53;">CANCELAR ENVIO</button>
-          <span class="curriculo-icon-aguarde">&#128278;</span>
-        </div>
-       
-        <div class="card-curriculo-negado">
+        -->
+        <!-- <div class="card-curriculo">
+          <button class="btn-curriculo" style="background-color: #003e53;">CANCELAR ENVIO</button>
+          <button class="btn-icon-aguarde"><i class='bx bxs-hourglass'></i></button>
+        </div> -->
+        <!--
+        <div class="card-curriculo">
           <button class="btn-curriculo-negado">NEGADO PARA VAGA...</button>
         </div>
        
-        <div class="card-curriculo-aceito">
+        <div class="card-curriculo">
           <button class="btn-curriculo-aceito">APROVADO PARA VAGA!</button>
         </div>
-        -->
-        <div class="card-curriculo-lotado">
+        
+        <div class="card-curriculo">
           <button class="btn-curriculo-lotado">VAGA LOTADA</button>
         </div>
-       
-        <div class="vaga-localizacao">
+       -->
+        <!-- <div class="vaga-localizacao">
           <h4>LOCALIZAÇÃO</h4>
           <p><em>GSEIUOGHSSOKJNGFÇLKGMJLÇDKWEÇ<br>MHNGFJHKJHLK</em></p>
         </div>
       </div>
-
+    </main> -->
   </main>
 </body>
 </html>

@@ -50,7 +50,7 @@ CREATE TABLE `registro` (
   `id_vaga` int(11) DEFAULT NULL,
   `id_voluntario` int(11) DEFAULT NULL,
   `categoria_registro` enum('salvo','cadastrado') DEFAULT NULL,
-  `situacao` enum('aguarde','aprovado','negado') DEFAULT NULL
+  `situacao` enum('aguarde','aprovado','negado','nada') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

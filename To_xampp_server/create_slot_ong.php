@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
@@ -196,7 +196,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     </div>
     
     <div class="form-container">
-        <form class="forms" method="POST" action="php_functs/create_slotONG.php">
+        <form class="forms" method="POST" action="php_functs/php_screens/create_slotONG.php">
         <h1>INSIRA OS DADOS<br>PARA CRIAR A VAGA</h1>
         
         <div class="form-row">
@@ -244,7 +244,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             <button class="btn btn-primary">CRIAR VAGA</button>
         
         </form>
-        <form class="forms" method="GET" action="php_functs/cancelar.php">
+        <form class="forms" method="GET" action="php_functs/php_methods/cancelar.php">
             <button class="btn btn-secondary">CANCELAR</button>
         </form>
 

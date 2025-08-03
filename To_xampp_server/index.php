@@ -2,7 +2,7 @@
 <?php
 session_start();
 
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // salva a url atual de telas dinâmicas
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
@@ -152,7 +152,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <br />
 
       <div class="parentB">
-        <form method="GET" action="php_functs\redirect_filter.php">
+        <form method="GET" action="php_functs/php_methods/redirect_filter.php">
           <input type="hidden" name="type" value="home_category"/>
 
           <div class="divB1">

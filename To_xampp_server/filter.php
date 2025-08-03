@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // salva a url atual de telas dinâmicas
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
@@ -266,7 +266,7 @@ function is_checked_before($name){
     </form>
 
     <section class="vagas">
-      <?php include 'php_functs/filter_act.php'; do_filter(); ?>
+      <?php include 'php_functs/php_screens/filter_act.php'; do_filter(); ?>
       <!-- <div class="quantSlot">
           <h3>[N] VAGAS DE [FILTRO] FORAM ENCONTRADAS</h3>
       </div>

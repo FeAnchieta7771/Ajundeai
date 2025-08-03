@@ -7,7 +7,7 @@ session_start();
 // ! Tabelas como login, criação de conta, vagas, voluntários não precisam disso
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
@@ -241,7 +241,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   </div>
   <main>
     <div class="section-title">Suas Vagas</div>
-    <?php include 'php_functs\filter_dashboard.php'; do_dashboard(); ?>
+    <?php include 'php_functs/php_screens/filter_dashboard.php'; do_dashboard(); ?>
     <!-- <div class="engloba">
       <div class="vaga-card">
         <img src="img/icons_orange/outro.png" alt="Ícone da vaga" />

@@ -7,13 +7,13 @@ session_start();
 // ! Tabelas como login, criação de conta, vagas, voluntários não precisam disso
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
 
 if(!$login_state){
-  header('Location: index.php');
+  header('Location: ../../index.php');
   exit();
 }
 
@@ -189,7 +189,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
    
     .voluntarios {
       border: 2px solid #2289e6;
-      padding: 15px;
+      padding: 10px;
       max-height: 300px;
     }
    
@@ -200,7 +200,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       font-weight: bold;
       font-size: 2rem;
       display: inline-block;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
    
     .fixa-scroll {
@@ -210,13 +210,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     }
    
     .fixa {
-      display: flex;
-      align-items: center;
       margin-bottom: 10px;
+      background-color: #e9e9e9ff;
+      padding: 10px 5px;
+      transition: .15s;
     }
 
     .fixa p{
-      color: #afafafff;
+      color: #2289e6;
       font-family: 'Antique';
     }
    
@@ -224,10 +225,12 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       color: #2289e6;
       font-size: 24px;
       margin-right: 8px;
+      transition: .15s;
     }
    
     .fixa-buton {
       flex: 1;
+      display: flex;
     }
    
     .voluntario-btn {
@@ -237,10 +240,34 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       font-weight: bold;
       cursor: pointer;
       font-size: 1rem;
+      transition: .15s;
+      width: 100%;
+      height: 100%;
+      text-align: left;
+      display: flex;
+    }
+
+    .fixa form{
+      transition: .15s;
+      width: 100%;
+      height: 100%;
     }
    
-    .voluntario-btn:hover {
-      text-decoration: underline;
+    .fixa:hover {
+      color: white;
+      background-color: #e76f00;
+    }
+
+    .fixa:hover .voluntario-btn{
+      color: white;
+    }
+
+    .fixa:hover span{
+      color: white;
+    }
+
+    .fixa:hover i{
+      color: white;
     }
    
     .voluntario-nome {
@@ -250,23 +277,29 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
    
     .status-aguarde {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.7rem;
       color: #000;
       font-weight: bold;
+      margin-top: -20px;
+      transition: .15s;
     }
    
     .status-aprovado {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.6rem;
       color: green;
       font-weight: bold;
+      margin-top: -20px;
+      transition: .15s;
     }
    
     .status-negado {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.6rem;
       color: red;
       font-weight: bold;
+      margin-top: -20px;
+      transition: .15s;
     }
 
   </style>
@@ -291,7 +324,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
           </div>
     </header> -->
    
-    <?php include 'php_functs/show_slot.php'; echo do_slot();?>
+    <?php include 'php_functs/php_screens/show_slot.php'; echo do_slot();?>
     <!-- <main class="vaga-container">
       <div class="vaga-descricao">
         <h3 class="vaga-descricao-titulo">DESCRIÇÃO DA VAGA <div><i class='bx bxs-user' ></i> 25/50</div> </h3>

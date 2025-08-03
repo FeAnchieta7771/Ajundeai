@@ -5,7 +5,7 @@ if(isset($_SESSION['login'])){
 
     $_SESSION['login'] = '';
 }
-include 'php_functs/functions.php';
+include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
@@ -69,7 +69,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
             <div class="content show" id="home">
               <div class="form-wrapper">
-                  <form class="forms" method="POST" action="php_functs/doLogin.php">
+                  <form class="forms" method="POST" action="php_functs/php_screens/doLogin.php">
 
                       <input type="hidden" name="login_state" value="voluntario">
                       <div class="form-container">
@@ -89,7 +89,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
             <div class="content" id="services">
               <div class="form-wrapper">
-                  <form class="forms" method="POST" action="php_functs/doLogin.php">
+                  <form class="forms" method="POST" action="php_functs/php_screens/doLogin.php">
                     
                       <input type="hidden" name="login_state" value="ong">
                       <div class="form-container">
@@ -111,156 +111,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         </div>
     </div>
 
-    <script>
-        // pego todos os botões
-        const tabs = document.querySelectorAll('.tab-btn');
+<script src="js/direct_forms.js"></script>
 
-        // atribuição da função á todos eles
-        tabs.forEach( tab => tab.addEventListener('click', () => tabClicked(tab)))
-
-        // função a caso sejam clicados
-        const tabClicked = (tab) => {
-
-            tabs.forEach(tab => tab.classList.remove('active'));
-            tab.classList.add('active');
-            // pego todos os paineis
-            const contents = document.querySelectorAll('.content');
-
-            //desativação dos paineis visíveis
-            contents.forEach(content => content.classList.remove('show'));
-
-            // pegar atributo do botão clicado
-            const contentId = tab.getAttribute('content-id');
-
-            // pegar painel com o mesmo ID do atributo do botão
-            const content = document.getElementById(contentId);
-
-            content.classList.add('show');
-        }
-
-    const botao_guia = localStorage.getItem('Botao_guia');
-
-    console.log(botao_guia);
-
-    if(botao_guia !== null){
-
-        if(botao_guia == 'ong'){
-            // pega os botões
-            const tabs = document.querySelectorAll('.tab-btn');
-
-            // remover a classe do todos os botões
-            tabs.forEach(tab => tab.classList.remove('active'));
-
-            // pegar atributo desses elementos
-            const dataInfoValue = Array.from(tabs).map(tab => tab.getAttribute("content-id"));
-
-            // pegar o botão da ong
-            const indice = dataInfoValue.findIndex(item => item === 'services');
-            const tab = tabs[indice];
-            tab.classList.add('active');
-
-            const contents = document.querySelectorAll('.content');
-
-            //desativação dos paineis visíveis
-            contents.forEach(content => content.classList.remove('show'));
-
-            // pegar atributo do botão clicado
-            const contentId = tab.getAttribute('content-id');
-
-            // pegar painel com o mesmo ID do atributo do botão
-            const content = document.getElementById(contentId);
-
-            content.classList.add('show');
-        }
-    }
-    </script>
 </body>
 </html>
-
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    
-    include 'conexao.php';
-    $_SESSION['login'] = $_POST['login_state'];
-    $table_login = $_POST['login_state'];
-
-    // auxílio de pesquisa ao sql e salvar nome ao sistema
-    $auxiliar_name = "nome_".$table_login;
-
-    $name_email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // ! Filtros do Login
-    // Busca da senha pelo nome
-    // Busca da senha pelo email
-    $sql = "SELECT id, senha,".$auxiliar_name." FROM ".$table_login." WHERE ".$table_login.".".$auxiliar_name." = '".$name_email."' OR ".$table_login.".email = '".$name_email."'";
-    // Coleta o resultado
-    $result = return_select($sql);
-
-    // Procura se algum dos registros possui a senha informada
-    foreach($result as $user){
-
-        if ($user['senha'] == $password){
-
-            $_SESSION['whoLogged'] = $table_login;
-            $_SESSION['name'] = $user[$auxiliar_name];
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['isLogin'] = true;
-
-            unset($_SESSION['LOGIN_email']);
-            unset($_SESSION['LOGIN_password']);
-            unset($_SESSION['login']);
-
-            if ($table_login == 'ong'){
-
-                header('Location: ../dashboard_ong.php');
-                exit();
-
-            } else if($table_login == 'voluntario'){
-
-                header('Location: '.$_SESSION['tela_anterior']);
-                exit();
-            }
-        }
-    }
-
-    $_SESSION['LOGIN_email'] = $_POST['email'];
-    $_SESSION['LOGIN_password'] = $_POST['password'];
-
-    echo "<script>
-        localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
-        window.alert('Nome/Email ou Senha Incorreta');
-        window.location.href = '../login.php';
-    </script>";
-    exit();
-}
-
-function return_select($sql){
-    include 'conexao.php';
-    try{
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-
-    }catch(PDOException) {
-
-        $_SESSION['LOGIN_email'] = $_POST['email'];
-        $_SESSION['LOGIN_password'] = $_POST['password'];
-        echo "<script>
-            localStorage.setItem('Botao_guia', '".$_POST['login_state']."');
-            window.alert('Ocorreu algo no Servidor, tente novamente mais tarde');
-            window.location.href = '../login.php';
-        </script>";
-        exit();
-    }
-}
-
-?>
