@@ -42,72 +42,73 @@ function do_filter(){
             
             $result = do_select($sql,[]);
             show_filter($result, "");
-            exit();
-        }
+        } else{
 
-        $type_filter = $_GET['type'];
+            $type_filter = $_GET['type'];
 
-    ////////////////////////////////////////////////////////////////////
-    
-    // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELA
-        // BARRA DE PESQUISA DA TELA DE HOME
-        if($type_filter == 'home_search'){
-            
-            // receber filtro escrito pelo usuário
-            $filter_user = $_GET['filter_user'];
-            $param = '%'.$filter_user.'%';
-            
-            // ! Filtros da pesquisa
-            // Nome da ONG a partir do ID da Ong da vaga registrada
-            // Apenas exibir vagas disponíveis
-            // Busca do texto pelo nome da Ong
-            // Busca do texto pelo nome da vaga
-            // Busca do texto pelo nome da categoria
-            
-            $sql =  $base_sql; 
-            $sql .= "AND ( ong.nome_ong LIKE ? OR vaga.nome LIKE ? OR vaga.categoria_vaga LIKE ?)";
-            // $sql .= "AND ( ong.nome_ong LIKE '%?%' OR vaga.nome LIKE '%?%' OR vaga.categoria_vaga LIKE '%?%')";
-            
-            $result = do_select($sql,[$param,$param,$param]);
-            show_filter($result, $filter_user);
-            
-    ////////////////////////////////////////////////////////////////////
-            
-        // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELOS
-        // BOTÕES CONFIGURADOS NO HOME
-        } else if ($type_filter == 'home_category'){
+        ////////////////////////////////////////////////////////////////////
         
-            $filter_user = $_GET['category_button'];
-            $param = '%'.$filter_user.'%';
-
-            $sql =  $base_sql;
-            $sql .= "AND vaga.categoria_vaga LIKE ?";
+        // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELA
+            // BARRA DE PESQUISA DA TELA DE HOME
+            if($type_filter == 'home_search'){
+                
+                // receber filtro escrito pelo usuário
+                $filter_user = $_GET['filter_user'];
+                $param = '%'.$filter_user.'%';
+                
+                // ! Filtros da pesquisa
+                // Nome da ONG a partir do ID da Ong da vaga registrada
+                // Apenas exibir vagas disponíveis
+                // Busca do texto pelo nome da Ong
+                // Busca do texto pelo nome da vaga
+                // Busca do texto pelo nome da categoria
+                
+                $sql =  $base_sql; 
+                $sql .= "AND ( ong.nome_ong LIKE ? OR vaga.nome LIKE ? OR vaga.categoria_vaga LIKE ?)";
+                // $sql .= "AND ( ong.nome_ong LIKE '%?%' OR vaga.nome LIKE '%?%' OR vaga.categoria_vaga LIKE '%?%')";
+                
+                $result = do_select($sql,[$param,$param,$param]);
+                show_filter($result, $filter_user);
+                
+        ////////////////////////////////////////////////////////////////////
+                
+            // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELOS
+            // BOTÕES CONFIGURADOS NO HOME
+            } else if ($type_filter == 'home_category'){
             
-            $result = do_select($sql,[$param]);
-            show_filter($result, "");
+                $filter_user = $_GET['category_button'];
+                $param = '%'.$filter_user.'%';
+
+                $sql =  $base_sql;
+                $sql .= "AND vaga.categoria_vaga LIKE ?";
+                
+                $result = do_select($sql,[$param]);
+                show_filter($result, "");
+            
+        ////////////////////////////////////////////////////////////////////
         
-    ////////////////////////////////////////////////////////////////////
-    
-        // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS 
-        // DIRETAMENTE A TELA DE FILTRO
-        } else if($type_filter == 'filter_base'){
+            // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS 
+            // DIRETAMENTE A TELA DE FILTRO
+            } else if($type_filter == 'filter_base'){
 
-            global $allparams;
-            $allparams = [];
+                global $allparams;
+                $allparams = [];
 
-            $filter_user = $_GET['filter_user'];
+                $filter_user = $_GET['filter_user'];
 
-            $sql =  $base_sql;
+                $sql =  $base_sql;
 
-            // se não tiver algo do filtro, ele conta categoria do input de texto
-            $sql = filter_base_checkbox($sql,$filter_user);
-            // print($sql);
-            // print_r($allparams);
-            // echo $sql;
-            // $result = return_select($sql);
-            $result = select($sql,$allparams);
-            show_filter($result, $filter_user);
-        }
+                // se não tiver algo do filtro, ele conta categoria do input de texto
+                $sql = filter_base_checkbox($sql,$filter_user);
+                // print($sql);
+                // print_r($allparams);
+                // echo $sql;
+                // $result = return_select($sql);
+                $result = select($sql,$allparams);
+                show_filter($result, $filter_user);
+            }
+
+    }
 
     ////////////////////////////////////////////////////////////////////
     }
@@ -161,44 +162,44 @@ function show_filter($result, $filter_user){
             echo "  </div>";
             echo "</div>";
             echo "</div>";
-            exit();
-        }
+        } else {
 
-        $plural_foi = "I";
-        $plural_s = "";
+            $plural_foi = "I";
+            $plural_s = "";
 
-        if($numLinhas > 1){
-            $plural_s = "S";
-            $plural_foi = "RAM";
-        }
-        echo "<div class='quantSlot'><h3>".$numLinhas. " VAGA".$plural_s." FO".$plural_foi." ENCONTRADA".$plural_s."!</h3>";
-        echo "</div><div class='scroll-wrapper'>";
+            if($numLinhas > 1){
+                $plural_s = "S";
+                $plural_foi = "RAM";
+            }
+            echo "<div class='quantSlot'><h3>".$numLinhas. " VAGA".$plural_s." FO".$plural_foi." ENCONTRADA".$plural_s."!</h3>";
+            echo "</div><div class='scroll-wrapper'>";
 
-        #exibição das vagas encontradas
-        foreach($result as $user_result){
-            // busca a imagem a partir da categoria da vaga
-            $url = image_filter($user_result['categoria_vaga']);
+            #exibição das vagas encontradas
+            foreach($result as $user_result){
+                // busca a imagem a partir da categoria da vaga
+                $url = image_filter($user_result['categoria_vaga']);
+                
+                
+            echo "<div class='vaga-card'>";
             
-            
-          echo "<div class='vaga-card'>";
-          
-          echo "<form method='GET' action='../show_slot_voluntary.php'>";
-          echo "<input type='hidden' name='type' value='filter_base'>";
-          echo "<input type='hidden' name='filter_user' value='".$filter_user."'>";
-          echo "<input type='hidden' name='id_vaga' value=".$user_result['id'].">";
-          echo "<button type='submit'>";
-          echo "  <img src='$url' alt='Ícone' />";
-          echo "  <div class='vaga-info'>";
-          echo "    <h4 style='font-family: 'Horizon', sans-serif;'><a style='text-decoration: none'>".$user_result['nome']."</a></h4>";
-          echo "    <span><i class='bx bxs-user' style='font-size: 20px;'></i> ".$user_result['quant_atual']."/".$user_result['quant_limite']." • ".$user_result['nome_ong']."</span>";
-          echo "    <p>".$user_result['descr_obj']."</p>";
-          echo "  </div>";
-          echo "</button>";
-          echo "</form>";
-          echo "</div>";
-        }
+            echo "<form method='GET' action='../show_slot_voluntary.php'>";
+            echo "<input type='hidden' name='type' value='filter_base'>";
+            echo "<input type='hidden' name='filter_user' value='".$filter_user."'>";
+            echo "<input type='hidden' name='id_vaga' value=".$user_result['id'].">";
+            echo "<button type='submit'>";
+            echo "  <img src='$url' alt='Ícone' />";
+            echo "  <div class='vaga-info'>";
+            echo "    <h4 style='font-family: 'Horizon', sans-serif;'><a style='text-decoration: none'>".$user_result['nome']."</a></h4>";
+            echo "    <span><i class='bx bxs-user' style='font-size: 20px;'></i> ".$user_result['quant_atual']."/".$user_result['quant_limite']." • ".$user_result['nome_ong']."</span>";
+            echo "    <p>".$user_result['descr_obj']."</p>";
+            echo "  </div>";
+            echo "</button>";
+            echo "</form>";
+            echo "</div>";
+            }
 
-        echo "</div>";
+            echo "</div>";
+        }
 }
 
 // busca pelo caminho da imagem á ser mostrado na vaga

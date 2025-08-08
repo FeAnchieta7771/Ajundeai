@@ -1,10 +1,44 @@
+<?php
+session_start();
+
+include 'php_functs/php_methods/functions.php';
+// busca situação de login do usuário
+$login_state = is_logged();
+
+if(!$login_state){
+  header('Location: index.php');
+  exit();
+}
+
+// print_r($_SESSION);
+// busca quem está logado
+$is_ong = is_ong_logged();
+
+// setar botões do header
+$buttons_header = set_model_buttons_header($login_state, $is_ong);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajundiai - Criação de Conta</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link
+      href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/notification.css">
+
+    <title>AjundeAi • Ánalise de Voluntário</title>
     <style>
+
+        body::-webkit-scrollbar {
+    display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
+}
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -118,16 +152,27 @@
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <div class="header">
-            <img src="logo_ajundiai.png" alt="Ajundiai Logo" class="logo">
-            <button class="logout-btn">Sair da Conta</button>
-        </div>
+<div class="notifications"></div>
+<header>
+    <div class="logo">
+        <a href="index.php">
+            <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+        </a>
+    </div>
+    <?php echo $buttons_header; ?>
+</header>
+<?php show_message(); ?>
         
-        <h2>VOLUNTÁRIO [NOME]</h2>
+        <!-- <h2>VOLUNTÁRIO [NOME]</h2> -->
+        <!-- procura no banco informações do voluntario 
+         e exibir mostrar situação, aprovado ou desaprovado . -->
+         
+         <?php
+         include 'php_functs/php_methods/get_voluntary_values.php';
+         disfuncaoeretil();
+         ?>
         
-        <form action="process_account.php" method="post">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" name="nome" readonly>
             </div>
@@ -150,12 +195,22 @@
             <div class="form-group">
                 <label for="curriculo">Currículo:</label>
                 <textarea id="curriculo" name="curriculo" readonly></textarea>
-            </div>
-            
-            <div class="button-group">
-                <button type="submit" name="action" value="approve" class="btn approve-btn">Aprovar</button>
-                <button type="submit" name="action" value="disapprove" class="btn disapprove-btn">Desaprovar</button>
-            </div>
+            </div> -->
+
+
+
+
+
+            <?php include 'php_functs/php_methods/buttons_analysis.php'; get_buttons(); ?>
+            <!-- <div class="button-group">
+                <form action="" method="POST">
+                    <button type="submit" name="action" class="btn approve-btn">Aprovar</button>
+                </form>
+
+                <form action="" method="POST"></form>
+                    <button type="submit" name="action" class="btn disapprove-btn">Desaprovar</button>
+                </form>
+            </div> -->
 <!-- 
             <div class="status-container">
                 <img src="status_logo.png" alt="Status Logo" class="status-logo">
@@ -166,9 +221,10 @@
                 <img src="status_logo.png" alt="Status Logo" class="status-logo">
                 <span class="status-text">Desaprovado</span>
             </div> -->
-        </form>
         
-        <button class="btn back-btn">Voltar à Vaga</button>
+        <a href="<?php echo $_SESSION['tela_anterior']; ?>" class="btn back-btn">Voltar à Vaga</a>
     </div>
+
+    <script src='js/notification.js' defer></script>
 </body>
 </html>

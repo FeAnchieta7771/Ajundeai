@@ -28,19 +28,15 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0&icon_names=database_off" />
     <title>AjundeAi • Ops!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css\header.css">
 
     <style>
         body{
-            display: grid;
-            place-items: center; /* Centraliza horizontal e verticalmente */
             height: 100%; /* Altura da viewport */
             font-family: 'Poppins', sans-serif;
         }
 
         .error{
-            align-items: center;
-            justify-content: center;
-            width: 500px; 
             display: grid;
             place-items: center;
             background-color: rgb(242, 242, 242);

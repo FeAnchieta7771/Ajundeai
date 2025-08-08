@@ -26,6 +26,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/notification.css">
     <title>AjundeAi • Criar vaga</title>
     <style>
         body {
@@ -184,16 +186,16 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     </style>
 </head>
 <body>
-    <!--Colocar a imagem do background -->
-    <img src="background.png" alt="Background" class="background">
-    
-    <div class="header">
-        <div class="logo-title">
-            <!-- Colocar a imagem da logo principal aqui -->
-            <img src="ajundeai-logo.png" alt="AJUNDEAI Logo" class="logo-img">
-        </div>
-        <a href="#" class="logout-btn">SAIR DA CONTA</a>
+<div class="notifications"></div>
+<header>
+    <div class="logo">
+        <a href="index.php">
+            <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+        </a>
     </div>
+    <?php echo $buttons_header; ?>
+</header>
+<?php show_message(); ?>
     
     <div class="form-container">
         <form class="forms" method="POST" action="php_functs/php_screens/create_slotONG.php">
@@ -251,5 +253,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         </div>
     
     </div>
+
+    <script src='js/notification.js' defer></script>
 </body>
 </html>

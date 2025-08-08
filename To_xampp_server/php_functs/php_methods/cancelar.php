@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-    header('Location: ../../'.$_SESSION['tela_anterior']);
+    header('Location: ../../source.php');
     exit();
 }
 

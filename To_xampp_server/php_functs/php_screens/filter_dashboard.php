@@ -22,8 +22,6 @@ function do_dashboard(){
     
     // apenas executa o código apenas se ele for chamado
     if ($_SERVER['REQUEST_METHOD'] == 'GET'){
-        
-        include '../php_db/conexao.php';
 
         $id_ong = $_SESSION['id'];
 
@@ -58,35 +56,36 @@ function show_filter($result){
             echo '<div class="vaga-extra" aria-label="Quantidade de candidatos">';
             echo '</div>';
             echo '</div>';
-            exit();
-        }
 
-        echo '<div class="engloba">';
+        } else{
 
-        #exibição das vagas encontradas
-        foreach($result as $user_result){
-            // busca a imagem a partir da categoria da vaga
-            $url = image_filter($user_result['categoria_vaga']);
-            
-            
-            echo '<div class="vaga-card">';
-            echo "<form method='GET' action='../control_slot_ong.php'>";
-            echo "<input type='hidden' name='type' value='filter_ctrl'>";
-            echo "<input type='hidden' name='id_vaga' value=".$user_result['id'].">";
-            echo "<button type='submit'>";
-            echo "<img src='$url' alt='Ícone da vaga' />";
-            echo '<div class="vaga-info">';
-            echo '<h4>'.$user_result['nome'].'</h4>';
-            echo '<p>'.$user_result['descr_obj'].'</p>';
-            echo '</div>';
-            echo '<div class="vaga-extra" aria-label="Quantidade de candidatos">';
-            echo '<i class="bx bxs-user" ></i>';
-            echo '  '.$user_result['quant_atual']."/".$user_result['quant_limite'].'';
-            echo '</div>';
-            echo "</button>";
-            echo "</form>";
-            echo '</div>';
+            echo '<div class="engloba">';
 
+            #exibição das vagas encontradas
+            foreach($result as $user_result){
+                // busca a imagem a partir da categoria da vaga
+                $url = image_filter($user_result['categoria_vaga']);
+                
+                
+                echo '<div class="vaga-card">';
+                echo "<form method='GET' action='../control_slot_ong.php'>";
+                echo "<input type='hidden' name='type' value='filter_ctrl'>";
+                echo "<input type='hidden' name='id_vaga' value=".$user_result['id'].">";
+                echo "<button type='submit'>";
+                echo "<img src='$url' alt='Ícone da vaga' />";
+                echo '<div class="vaga-info">';
+                echo '<h4>'.$user_result['nome'].'</h4>';
+                echo '<p>'.$user_result['descr_obj'].'</p>';
+                echo '</div>';
+                echo '<div class="vaga-extra" aria-label="Quantidade de candidatos">';
+                echo '<i class="bx bxs-user" ></i>';
+                echo '  '.$user_result['quant_atual']."/".$user_result['quant_limite'].'';
+                echo '</div>';
+                echo "</button>";
+                echo "</form>";
+                echo '</div>';
+
+            }
         }
 
         echo "</div>";

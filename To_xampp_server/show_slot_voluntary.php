@@ -6,6 +6,7 @@ include 'php_functs/php_methods/functions.php';
 
 // salva a url atual de telas dinâmicas
 $_SESSION['tela_de_vaga'] = $_SERVER['REQUEST_URI'];
+$_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
 // busca situação de login do usuário
 $login_state = is_logged();
@@ -15,6 +16,8 @@ $is_ong = is_ong_logged();
 
 // setar botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
+
+// print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +40,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     />
   <link rel="icon" href="img\Logo_Aba.png" />
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/notification.css">
   <title>AjundeAi • Vaga</title>
   <style>
     * {
@@ -276,6 +280,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 </head>
 
 <body>
+  <div class="notifications"></div>
     <header>
         <div class="logo">
         <a href="index.php">
@@ -285,6 +290,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         <!-- botões do header -->
         <?php echo $buttons_header; ?>
     </header>
+  <?php show_message(); ?>
+  
         <form method="GET" action="filter.php">
           <input type="hidden" name="type" value="filter_base"/>
             <header style="background-color: #004d61; justify-content: center;">
@@ -360,5 +367,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       </div>
     </main> -->
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+  <script src='js/notification.js' defer></script>
 </body>
 </html>

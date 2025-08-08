@@ -44,6 +44,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     />
   <link rel="icon" href="img\Logo_Aba.png" />
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/notification.css">
   <title>AjundeAi • Controle de Vaga</title>
   <style>
     * {
@@ -306,6 +307,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 </head>
 
 <body>
+<div class="notifications"></div>
     <header>
     <div class="logo">
         <a href="index.php">
@@ -314,6 +316,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     </div>
     <?php echo $buttons_header; ?>
 </header>
+<?php show_message(); ?>
 
         <!-- <?php //include 'php_functs/show_slot.php'; do_slot(); ?>
          <header class="header2">
@@ -426,5 +429,6 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     </main>
 
   </main> --> 
+  <script src='js/notification.js' defer></script>
 </body>
 </html>

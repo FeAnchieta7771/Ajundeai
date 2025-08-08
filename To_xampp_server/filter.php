@@ -14,7 +14,7 @@ $is_ong = is_ong_logged();
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
 function is_checked_before($name){
-  if(isset($_GET[$name])){ 
+  if(isset($_GET[$name])){
 
     echo 'checked';
   }
@@ -39,7 +39,7 @@ function is_checked_before($name){
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/header.css">
   <style>
-    
+   
     * {
       box-sizing: border-box;
       margin: 0;
@@ -49,11 +49,21 @@ function is_checked_before($name){
 
     body {
       background-color: #ffffff;
+      background-image: url("../../img/backgraud-filter.png");
+      background-size: cover;
+      background-repeat: no-repeat;
     }
 
         body::-webkit-scrollbar {
             display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
         }
+       
+    .search-bar-imag{
+      background-image: url("../../img/detalhe-painel.png");
+      background-repeat: no-repeat;
+      background-color: #004d61;
+      justify-content: center;
+    }
 
     .search-bar {
       display: flex;
@@ -104,7 +114,7 @@ function is_checked_before($name){
     .filtros label {
       display: block;
       margin-bottom: 8px;
-      cursor: pointer; 
+      cursor: pointer;
     }
 
     .filtros input[type="checkbox"] {
@@ -204,7 +214,7 @@ function is_checked_before($name){
     .vaga-info span {
       display: block;
       margin-bottom: 5px;
-      align-items: center; 
+      align-items: center;
       color: #196e78;
       font-weight: bold;
       font-family: 'Antique', sans-serif;
@@ -242,7 +252,7 @@ function is_checked_before($name){
 
      <form method="GET" action="filter.php">
           <input type="hidden" name="type" value="filter_base"/>
-          <header style="background-color: #004d61; justify-content: center;">
+          <header class="search-bar-imag">
           <div class="search-bar">
                <input type="text" name="filter_user" placeholder="Pesquise sua vaga solicitada" value="<?php if(isset($_GET['filter_user'])){ echo $_GET['filter_user'];}?>"/>
                <button class="btn btn-buscar" style="font-family: 'Horizon', sans-serif; font-size: 15px">BUSCAR</button>
@@ -282,7 +292,7 @@ function is_checked_before($name){
         </div> -->
         <!-- Repita o .vaga-card conforme necessário -->
 
-      </div> 
+      </div>
     </section>
   </main>
 </body>

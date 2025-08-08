@@ -6,7 +6,8 @@
 }
 
 body {
-    background-image: url("https://assets.onecompiler.app/43h62qpv7/3y5x8jr6s/login.png");
+    background-image: url("img/desingLogin.png");
+    background-color: #004652;
     background-size: cover;
     background-repeat: no-repeat;
 }

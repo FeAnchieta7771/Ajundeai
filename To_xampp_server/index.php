@@ -5,7 +5,7 @@ session_start();
 include 'php_functs/php_methods/functions.php';
 
 // salva a url atual de telas dinâmicas
-$_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
+$_SESSION['tela_anterior'] = '/index.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
@@ -15,6 +15,8 @@ $is_ong = is_ong_logged();
 
 // setar botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
+
+// print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +28,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="icon" href="img\Logo_Aba.png" />
+    <link rel="icon" href="img/Logo_Aba.png" />
     <title>AjundeAi</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
@@ -40,6 +42,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <link rel="stylesheet" href="css/home/body_index.css" />
     <link rel="stylesheet" href="css/home/style.css" />
     <link rel="stylesheet" href="css/css_screens/index.css">
+    <link rel="stylesheet" href="css/notification.css">
 
     <style>
 
@@ -50,6 +53,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   </head>
 
   <body>
+  <div class="notifications"></div>
     <header>
       <div class="logo">
         <a href="index.php">
@@ -58,6 +62,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       </div>
       <?php echo $buttons_header; ?>
     </header>
+    <?php show_message(); ?>
 
     <div class="hero">
       <h1>ENCONTRE SUA VAGA<br />DE VOLUNTARIADO.</h1>
@@ -389,17 +394,16 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     >
       Copyright 2025
     </p>
-    <script src="js/home.js"></script>
     <footer>
       <div class="contact-info">
         <img
-          src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png"
-          alt="Email Icon"
+        src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png"
+        alt="Email Icon"
         />
         <span>ajundeai_anchieta@gmail.com</span>
         <img
-          src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"
-          alt="Instagram Icon"
+        src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"
+        alt="Instagram Icon"
         />
         <span>@ajundeai_anchieta</span>
         <span><strong>• Ícones feitos por <a href="https://www.flaticon.com/br/autores/freepik" title="Freepik"> Freepik </a> from <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com'</a></strong></span>
@@ -409,5 +413,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
       </div>
     </footer>
+    <script src='js/notification.js' defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+    <script src="js/home.js"></script>
   </body>
 </html>

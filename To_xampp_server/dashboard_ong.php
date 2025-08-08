@@ -22,6 +22,10 @@ $is_ong = is_ong_logged();
 
 // setar botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
+
+// echo "<pre>"; // Para melhor formatação
+// print_r($_SESSION);
+// echo "</pre>";
 ?>
 
  <!DOCTYPE html>
@@ -37,6 +41,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <title>AjundeAi • Vagas da ONG</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/notification.css">
 
   <style>
     * {
@@ -218,6 +223,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 </head>
 
 <body>
+<div class="notifications"></div>
 <header>
     <div class="logo">
         <a href="index.php">
@@ -226,6 +232,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     </div>
     <?php echo $buttons_header; ?>
 </header>
+<?php show_message(); ?>
 
   <div class="painel-bar">
     <h1>PAINEL DE CONTROLE</h1>
@@ -258,5 +265,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <!-- Adicione outros cards abaixo -->
     </div>
   </main>
+
+  <script src='js/notification.js' defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 </body>
 </html>

@@ -1,9 +1,11 @@
-Icones do BoxIcons:
+Icones do BoxIcons & Css de Notificação:
 <!-- Colocar dentro do <head> -->
     <link
       href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="css/notification.css">
 
 -----------------------------------------------------------------------------------
 
@@ -79,6 +81,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 -----------------------------------------------------------------------------------
 
 <!-- Dentro do header -->
+<div class="notifications"></div>
 <header>
     <div class="logo">
         <a href="index.php">
@@ -87,6 +90,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     </div>
     <?php echo $buttons_header; ?>
 </header>
+<?php show_message(); ?>
 
 -----------------------------------------------------------------------------------
 
@@ -101,3 +105,8 @@ Remover barra de rolagem lateral:
 body::-webkit-scrollbar {
     display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
 }
+
+-----------------------------------------------------------------------------------
+Script:
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+<script src='js/notification.js' defer></script>

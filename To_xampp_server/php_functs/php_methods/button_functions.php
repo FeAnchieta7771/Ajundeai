@@ -7,65 +7,66 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $id_vaga = $_POST['id_vaga'];
 
-    if($_POST['button_slot'] == 'save_button'){
+    if ($_POST['button_slot'] == 'save_button') {
 
         save_button($id_vaga);
-    } 
-    else if($_POST['button_slot'] == 'unsave_button'){
+        $_SESSION['notification'] = 'save_button';
+
+    } else if ($_POST['button_slot'] == 'unsave_button') {
 
         unsave_button($id_vaga);
-    }
-    else if($_POST['button_slot'] == 'send_button'){
+        $_SESSION['notification'] = 'unsave_button';
+
+    } else if ($_POST['button_slot'] == 'send_button') {
 
         send_button($id_vaga);
-    }
-    else if($_POST['button_slot'] == 'unsend_button'){
+        $_SESSION['notification'] = 'send_button';
+
+    } else if ($_POST['button_slot'] == 'unsend_button') {
 
         unsend_button($id_vaga);
+        $_SESSION['notification'] = 'unsend_button';
     }
 
     unset($_SESSION['tela_de_vaga']);
 
-    header('Location: ../../'.$_SESSION['tela_anterior']);
+    header('Location: ../../source.php');
     exit();
 
 }
 
-function Show_error($e){
-    $_SESSION['message']       = 'Eita! Ocorreu algo no Servidor, tente novamente mais tarde';
-    $_SESSION['erro']          = $e;
-    $_SESSION['account_state'] = $_POST['account_state'];
-    // echo "<script>
-    // window.alert('Eita! Ocorreu algo no Servidor, tente novamente mais tarde');
-    // <script>console.log('Erro Server: " . $e . "' );</script>
-    // localStorage.setItem('Botao_guia', '".$_POST['account_state']."');
-    // </script>";
+function Show_error($e)
+{
+    $_SESSION['erro'] = $e;
+    $_SESSION['notification'] = 'server_error';
+
     header('Location: ../../show_slot_voluntary.php');
     exit();
 }
 
-function save_button($id_vaga) {
+function save_button($id_vaga)
+{
 
-    if (is_logged()){
+    if (is_logged()) {
         // quando salvar ele cria regsitro / um insert.
-        try{
+        try {
             $sql = "INSERT INTO registro (id_vaga, id_voluntario, categoria_registro, situacao) 
              VALUES (?, ?, ?, ?)";
-             
-            $result = insert($sql,[$id_vaga,$_SESSION['id'],'salvo','nada']);
+
+            $result = insert($sql, [$id_vaga, $_SESSION['id'], 'salvo', 'nada']);
 
             if ($result) {
-                
+
             } else {
                 echo "Erro na inserção.";
-            } 
-            
+            }
+
         } catch (PDOException $e) {
-            
+            Show_error($e);
         }
 
     } else {
@@ -74,88 +75,86 @@ function save_button($id_vaga) {
     }
 }
 
-function unsave_button ($id_vaga) {
+function unsave_button($id_vaga)
+{
     //usar delete para retirar da tabela utilizando where para procurar pelo id_vaga e id_voluntario
-    try{
+    try {
         $sql = "DELETE FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
-        
-        $result = delete($sql,[$id_vaga,$_SESSION['id']]);
-        
-        if ($result) {
-            
-        } else {
+
+        $result = delete($sql, [$id_vaga, $_SESSION['id']]);
+
+        if ($result == 0) {
             echo "Erro na inserção.";
-        } 
-    } catch (PDOException $e){
-        
+        }
+
+    } catch (PDOException $e) {
+        Show_error($e);
     }
 
 }
 
-function send_button($id_vaga) {
-    
-    if (is_logged()){
+function send_button($id_vaga)
+{
 
-        if(is_registry_before($id_vaga,$_SESSION['id'])){
+    if (is_logged()) {
+
+        if (is_registry_before($id_vaga, $_SESSION['id'])) {
 
             // quando salvar ele cria regsitro / um insert.
-            try{
+            try {
                 $sql = "INSERT INTO registro (id_vaga, id_voluntario, categoria_registro, situacao) 
                 VALUES (?, ?, ?, ?)";
-                
-                $result = insert($sql,[$id_vaga,$_SESSION['id'],'cadastrado','aguarde']);
 
-                if ($result) {
-                    
-                } else {
-                    echo "Erro na inserção.";
-                } 
+                $result = insert($sql, [$id_vaga, $_SESSION['id'], 'cadastrado', 'aguarde']);
 
-                $sql = "UPDATE vaga
-                SET quant_atual = quant_atual + 1
-                WHERE id = ?";
-                    
-                $result = update($sql,[$id_vaga]);
-
-                if ($result) {
-                    
-                } else {
-                    echo "Erro na inserção.";
-                } 
-                
-            } catch (PDOException $e) {
-
-                echo "ERRRO!";
-                
-            }
-
-        } else {
-            // da um update no registro ja salvo e verifica se esta logado
-            try{
-                $sql = "UPDATE registro
-                SET categoria_registro = ?, situacao = ?
-                WHERE id_vaga = ? AND id_voluntario = ?";
-                
-                $result = update($sql,['cadastrado','aguarde',$id_vaga,$_SESSION['id']]);
-
-                if ($result) {
-                    
+                if ($result == 0) {
+                    Show_error('');
+                    exit();
                 }
 
                 $sql = "UPDATE vaga
                 SET quant_atual = quant_atual + 1
                 WHERE id = ?";
-                    
-                $result = update($sql,[$id_vaga]);
 
-                if ($result) {
-                    
-                } else {
-                    echo "Erro na inserção.";
-                } 
-                
+                $result = update($sql, [$id_vaga]);
+
+                if ($result == 0) {
+                    Show_error('');
+                    exit();
+                }
+
             } catch (PDOException $e) {
-                
+
+                Show_error($e);
+
+            }
+
+        } else {
+            // da um update no registro ja salvo e verifica se esta logado
+            try {
+                $sql = "UPDATE registro
+                SET categoria_registro = ?, situacao = ?
+                WHERE id_vaga = ? AND id_voluntario = ?";
+
+                $result = update($sql, ['cadastrado', 'aguarde', $id_vaga, $_SESSION['id']]);
+
+                if ($result == 0) {
+                    Show_error('');
+                    exit();
+                }
+
+                $sql = "UPDATE vaga
+                SET quant_atual = quant_atual + 1
+                WHERE id = ?";
+
+                $result = update($sql, [$id_vaga]);
+
+                if ($result == 0) {
+                    Show_error('');
+                }
+
+            } catch (PDOException $e) {
+                Show_error($e);
             }
         }
 
@@ -166,47 +165,48 @@ function send_button($id_vaga) {
 
 }
 
-function unsend_button ($id_vaga) {
+function unsend_button($id_vaga)
+{
     //usar delete para retirar da tabela utilizando where para procurar pelo id_vaga e id_voluntario
-    try{
+    try {
         $sql = "DELETE FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
-        
-        $result = delete($sql,[$id_vaga,$_SESSION['id']]);
-        
-        if ($result) {
-            
+
+        $result = delete($sql, [$id_vaga, $_SESSION['id']]);
+
+        if ($result == 0) {
+            Show_error('');
         }
 
         $sql = "UPDATE vaga
         SET quant_atual = quant_atual - 1
         WHERE id = ?";
-            
-        $result = update($sql,[$id_vaga]);
 
-        if ($result) {
-            
-        } else {
-            echo "Erro na inserção.";
+        $result = update($sql, [$id_vaga]);
+
+        if ($result == 0) {
+            Show_error('');
         } 
-    } catch (PDOException $e){
-        
+
+    } catch (PDOException $e) {
+        Show_error($e);
     }
 
 }
 
-function is_registry_before($id_vaga,$id){
-    try{
+function is_registry_before($id_vaga, $id)
+{
+    try {
         $sql = "SELECT COUNT(*) as 'lines' FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
-        $result_search = select($sql,[$id_vaga,$id]);
+        $result_search = select($sql, [$id_vaga, $id]);
 
-        if($result_search == 0){
+        if ($result_search[0]['lines'] == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
-    } catch (PDOException $e){
-        
+    } catch (PDOException $e) {
+        Show_error($e);
     }
 }
 ?>

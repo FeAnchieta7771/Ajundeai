@@ -111,7 +111,6 @@ ALTER TABLE `registro`
 --
 ALTER TABLE `vaga`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nome` (`nome`),
   ADD KEY `id_ong` (`id_ong`);
 
 --

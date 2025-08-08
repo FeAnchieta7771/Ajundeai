@@ -2,25 +2,6 @@
 session_start();
 include 'php_functs/php_methods/functions.php';
 
-function error_message(){
-    if(isset($_SESSION['message'], $_SESSION['account_state'])){
-
-        $_SESSION['erro'] = $_SESSION['erro'] ?? '';
-
-        $msg = json_encode($_SESSION['message']);
-        $erro = json_encode($_SESSION['erro']);
-        $guia = json_encode($_SESSION['account_state']);
-
-        echo "<script>
-            window.alert($msg);
-            console.log('Erro Server: ' + $erro);
-            localStorage.setItem('Botao_guia', $guia);
-        </script>";
-
-        unset($_SESSION['message'], $_SESSION['erro']);
-    }
-}
-
 function save_value($name, $for){
     if(isset($_SESSION[$name], $_SESSION['account_state']) && $_SESSION['account_state'] == $for){
         return htmlspecialchars($_SESSION[$name]);
@@ -56,7 +37,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/css_screens/account.css">
-    <title>AjundeAi • Criação de contas</title>
+    <link rel="stylesheet" href="css/notification.css">
+    <title>AjundeAi • Criar Conta</title>
     <link rel="icon" href="img\Logo_Aba.png">
     <style>
 
@@ -67,6 +49,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     </style>
 </head>
 <body>
+<div class="notifications"></div>
 
     <header>
         <div class="logo">
@@ -77,7 +60,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         <?php echo $buttons_header; ?>
     </header>
 
-<?php error_message(); ?>
+<?php show_message(); ?>
+
 <div class="log">
 
         <div class="fh1">
@@ -209,6 +193,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             </div>
         </div>
 </div>
+<script src='js/notification.js' defer></script>
 <script src="js/whatsapp.js"></script>
 <script src="js/phone.js"></script>
 <script src="js/terms_accept.js"></script>

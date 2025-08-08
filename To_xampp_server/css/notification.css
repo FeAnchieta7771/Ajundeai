@@ -1,0 +1,141 @@
+button{
+    padding: 10px;
+}
+
+.notifications{
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+.toast{
+    position: relative;
+    padding: 20px;
+    color: #fff;
+    margin-bottom: 10px;
+    /* width: 400px;
+    height: 100px; */
+    display: grid;
+    grid-template-columns: 70px 1fr 70px;
+    /* border-radius:  5px; */
+    --color: #0abf30;
+    background-image: 
+        linear-gradient(
+            to right, #00ffea, #ff8c00 30%
+        );
+    animation: show 0.3s ease forwards;
+    z-index: 100;
+}
+
+.info{
+    width: 100%;
+}
+
+.toast i{
+    color: var(--color);
+    display:  flex;
+    justify-content:  center;
+    align-items: center;
+    font-size: xx-large;
+}
+
+.toast .title{
+    font-size: large;
+    font-weight: bold;
+    color: #fff;
+}
+
+.toast span, .toast i:nth-child(3){
+    color: #fff;
+    opacity: 0.6;
+}
+
+.toast.error span, .toast.error i:nth-child(3){
+    color: #fff;
+    opacity: 0.6;
+}
+
+@keyframes show{
+    0%{
+        transform: translateY(100%);
+    }
+    40%{
+        transform: translateY(-5px);
+    }
+    80%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(-10px);
+    }
+}
+
+.toast::before{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color);
+    width: 100%;
+    height: 3px;
+    content: '';
+    animation: timeOut 5s linear 1 forwards;
+}
+
+@keyframes timeOut{
+    to{
+        width: 0;
+    }
+}
+
+.toast.error{
+    --color: #ffffff;
+    background-image: 
+        linear-gradient(
+            to right, #ff5100, #9a1717 30%
+        );
+}
+
+.toast.sucess{
+    --color: #ffffff;
+    background-image: 
+        linear-gradient(
+            to right, #03b400, #148312 30%
+        );
+}
+.toast.victory{
+    --color: #ffffff;
+    background-image: 
+        linear-gradient(
+            to right, #03b400, #148312 30%
+        );
+}
+.toast.save{
+    --color: #ffffff;
+    background-image: 
+        linear-gradient(
+            to right, #006cb4, #122183 30%
+        );
+}
+.toast.unsave{
+    --color: #a2c9ff;
+    background-image: 
+        linear-gradient(
+            to right, #88a3e3, #5368c5 30%
+        );
+}
+.toast.send{
+    --color: #ffffff;
+    background-image: 
+        linear-gradient(
+            to right, #03b400, #148312 30%
+        );
+}
+.toast.unsend{
+    --color: #ffffff;
+    background-image: 
+        linear-gradient(
+            to right, #4a4a4a, #000000 30%
+        );
+}
