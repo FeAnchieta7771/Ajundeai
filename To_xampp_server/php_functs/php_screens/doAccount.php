@@ -11,7 +11,7 @@ function check_unique_name($table, $name)
 {
     try {
         $sql = "SELECT COUNT(*) as 'lines' FROM $table WHERE nome_$table = ?";
-        $result = select($sql, [$name]);
+        $result = select(null,$sql, [$name]);
 
         if ($result[0]['lines'] > 0) {
             return false;
@@ -72,20 +72,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $whats_to_db = Convert_whats_to_db($whats);
     $id = last_id($accout);
 
-    if ($accout == 'voluntario') {
-
-        $sql_command = "INSERT INTO $accout(nome_voluntario,email,telefone,senha,sobre,whatsapp)
-        VALUES ('$name','$email','$telephone_to_db','$password','$about','$whats_to_db')";
-
-    } else if ($accout == 'ong') {
-
-        $sql_command = "INSERT INTO $accout(nome_ong,email,senha,sobre,telefone,whatsapp)
-        VALUES ('$name','$email','$password','$about','$telephone_to_db','$whats_to_db')";
-    }
-
     try {
-        $stmt = $conn->prepare($sql_command);
-        $stmt->execute();
+
+        if ($accout == 'voluntario') {
+
+            $sql_command = "INSERT INTO $accout(nome_voluntario,email,telefone,senha,sobre,whatsapp,quant_cadastro)
+            VALUES (?,?,?,?,?,?,0)";
+
+            insert(null,$sql_command,[$name,$email,$telephone_to_db,$password,$about,$whats_to_db]);
+
+        } else if ($accout == 'ong') {
+
+            $sql_command = "INSERT INTO $accout(nome_ong,email,senha,sobre,telefone,whatsapp)
+            VALUES ('$name','$email','$password','$about','$telephone_to_db','$whats_to_db')";
+
+            insert(null,$sql_command,[$name,$email,$password,,$about,$telephone_to_db,$whats_to_db]);
+        }
 
         $_SESSION['whoLogged'] = $accout;
         $_SESSION['name'] = $name;
@@ -124,7 +126,7 @@ function last_id($table)
     try {
         $sql = "SELECT id FROM $table ORDER BY id DESC LIMIT 1;";
 
-        $result = select($sql, []);
+        $result = select(null,$sql, []);
 
         return $result[0]['id'] + 1;
 

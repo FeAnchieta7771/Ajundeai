@@ -17,7 +17,7 @@ function Show_error($e){
 function do_select($sql, $param = []){
 
     try{
-        $result = select($sql, $param);
+        $result = select(null,$sql, $param);
         return $result;
 
     } catch (PDOException $e) {
@@ -104,42 +104,13 @@ function do_filter(){
                 // print_r($allparams);
                 // echo $sql;
                 // $result = return_select($sql);
-                $result = select($sql,$allparams);
+                $result = do_select($sql,$allparams);
                 show_filter($result, $filter_user);
             }
 
     }
 
     ////////////////////////////////////////////////////////////////////
-    }
-}
-
-
-// função de execução do SELECT
-function return_select($sql){
-    include '../php_db/conexao.php';
-    try{
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $result;
-        
-    }catch(PDOException $e) {
-        echo "<div class='quantSlot'><h3>NADA ENCONTRADO</h3></div>";
-        echo "<div class='scroll-wrapper' style='height: 300px'>";
-        echo "<div class='vaga-card' style='background-color:rgb(222, 222, 222); border: none;'>";
-        echo "  <img src='img/icons_orange/problem_data.png' alt='Ícone' />";
-        echo "  <div class='vaga-info'>";
-        echo "    <h3 style='display: flex;'>";
-        echo "     Ops! Ocorreu um erro ao conectar ao servidor.</h3>";
-        echo "    <span>Tente de novo mais tarde.</span>";
-        echo "    <p style='font-size: 10px'>".$e."</p>";
-        echo "  </div>";
-        echo "</div>";
-        echo "</div>";
-        exit();
     }
 }
 

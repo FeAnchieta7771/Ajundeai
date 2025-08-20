@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         try {
         $sql = "SELECT nome_voluntario, email, telefone, whatsapp, sobre, whatsapp FROM voluntario WHERE id = ?";
 
-        $result = select($sql, [$id_voluntario]);
+        $result = select(null,$sql, [$id_voluntario]);
 
         } catch (PDOException $e) {
             Show_error($e);

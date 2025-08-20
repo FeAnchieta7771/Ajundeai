@@ -90,7 +90,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="name">NOME:</label>
-                                    <input type="text" id="name" name="nome" placeholder="Seu nome:" required value='<?php echo save_value('nome','voluntario');?>'>
+                                    <input type="text" id="name" name="nome" placeholder="Seu nome:" maxlength="100" required value='<?php echo save_value('nome','voluntario');?>'>
                                 </div>
                             </div>
             
@@ -98,11 +98,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="email">E-MAIL:</label>
-                                    <input type="email" id="email" name="email" placeholder="Seu e-mail:" required value='<?php echo save_value('email','voluntario'); ?>'>
+                                    <input type="email" id="email" name="email" placeholder="Seu e-mail:" maxlength="150" required value='<?php echo save_value('email','voluntario'); ?>'>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">SENHA:</label>
-                                    <input type="text" id="password" name="password" placeholder="Sua senha:" required value='<?php echo save_value('password','voluntario'); ?>'>
+                                    <input type="text" id="password" name="password" placeholder="Sua senha:" maxlength="20" required value='<?php echo save_value('password','voluntario'); ?>'>
                                 </div>
                             </div>
 
@@ -144,18 +144,18 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="name">NOME DA ONG:</label>
-                                    <input type="text" id="name" name="nome" placeholder="nome da ONG:" required value='<?php echo save_value('nome','ong');?>'>
+                                    <input type="text" id="name" name="nome" placeholder="nome da ONG:" maxlength="100" required value='<?php echo save_value('nome','ong');?>'>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="email">E-MAIL ASSOCIADO:</label>
-                                    <input type="email" id="email" name="email" placeholder="Seu e-mail:" required value='<?php echo save_value('email','ong');?>'>
+                                    <input type="email" id="email" name="email" placeholder="Seu e-mail:" maxlength="150" required value='<?php echo save_value('email','ong');?>'>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">SENHA DE ACESSO:</label>
-                                    <input type="password" id="password" name="password" placeholder="Sua senha:" required value='<?php echo save_value('password','ong');?>'>
+                                    <input type="password" id="password" name="password" placeholder="Sua senha:" maxlength="20" required value='<?php echo save_value('password','ong');?>'>
                                 </div>
                             </div>
 

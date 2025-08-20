@@ -41,6 +41,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <link rel="icon" href="img\Logo_Aba.png" />
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/notification.css">
+  <link rel="stylesheet" href="css\css_screens\show_slot.css">
   <title>AjundeAi • Vaga</title>
   <style>
     * {
@@ -55,7 +56,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     }
 
     body::-webkit-scrollbar {
-            display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
+            display: none; 
+    }
+
+    .search-bar-imag{
+      background-image: url("../../img/detalhe-painel.png");
+      background-repeat: no-repeat;
+      background-color: #004d61;
+      justify-content: center;
     }
 
     .search-bar {
@@ -69,27 +77,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     .search-bar input {
       padding: 10px 15px;
       flex: 1;
-      border-radius: 20px;
+      border-radius: 8px;
       border: none;
       font-size: 1rem;
     }
-
-    .buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn-entrar {
-      background-color: white;
-      color: #e76f00;
-      border: 2px solid #e76f00;
-    }
-
-    .btn-cadastro {
-      background-color: #00c4b4;
-      color: white;
-    }
-
+    
     .header2 {
       background-color: #e68c22;
       padding: 15px 30px;
@@ -169,20 +161,31 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     .card-curriculo {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 12px;
-      border-radius: 4px;
+      /* justify-content: space-between; */
+      gap: 8px;
+      /* padding: 12px; */
+      /* border-radius: 4px; */
+      padding-bottom: 1rem;
+      border-bottom: solid 3px #e76f00;
+      width: 100%; 
     }
 
     .btn-curriculo {
       background-color: #e76f00;
-      border: none;
+      border: solid 1px #e76f00;
       color: white;
       font-weight: bold;
       font-size: 1rem;
-      padding: 25px;
+      padding: 15px;
       cursor: pointer;
-      width: 270px;
+      transition: .15s;
+      /* width: 100%; */
+      flex: 1;
+    }
+
+    .btn-curriculo:hover{
+      background-color: white;
+      color: #e76f00;
     }
    
     .btn-curriculo-negado {
@@ -191,9 +194,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       color: white;
       font-weight: bold;
       font-size: 1rem;
-      padding: 22px;
-      cursor: pointer;
-      width: 400px;
+      padding: 15px;
+      /* cursor: pointer; */
+      width: 100%;
     }
    
     .btn-curriculo-aceito {
@@ -202,9 +205,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       color: white;
       font-weight: bold;
       font-size: 1rem;
-      padding: 22px;
-      cursor: pointer;
-      width: 400px;
+      padding: 15px;
+      /* cursor: pointer; */
+      width: 100%;
     }
    
     .btn-curriculo-lotado {
@@ -213,41 +216,59 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       color: white;
       font-weight: bold;
       font-size: 1rem;
-      padding: 22px;
+      padding: 15px;
       cursor: pointer;
-      width: 400px;
+      width: 100%;
     }
 
     .btn-icon-salvar {
-      padding: 20px;
-      font-size: 30px;
-      margin-left: 50px;
-      height: 74px;
+      padding: 10px;
+      font-size: 1.5rem;
+      padding: 15px 15px;
+      /* margin-left: 50px; */
+      /* height: 74px; */
       display: flex;
       align-items: center;
       background-color: #2289e6;
       color: white;
       border: 1px solid #2289e6;
+      cursor: pointer;
+      transition: .15s;
+      flex: 0;
+    }
+
+    .btn-icon-salvar:hover{
+      background-color: white;
+      color: #2289e6
     }
    
     .btn-icon-desalvar {
-      padding: 20px;
-      font-size: 30px;
-      margin-left: 50px;
-      height: 74px;
-      display: flex; 
+      /* padding: 20px; */
+      padding: 10px;
+      font-size: 1.5rem;
+      /* margin-left: 50px; */
+      /* height: 74px; */
+      /* display: flex;  */
       align-items: center;
       background-color: #ffffffff;
       color: #2289e6;
       border: 1px solid #2289e6;
+      cursor: pointer;
+      transition: .15s;
+    }
+
+    .btn-icon-desalvar:hover {
+      background-color: #031c31ff;
+      color: white;
     }
    
     .btn-icon-aguarde {
-      padding: 20px;
-      font-size: 30px;
-      margin-left: 50px;
-      height: 74px;
-      display: flex;
+      /* padding: 20px; */
+      padding: 10px;
+      font-size: 1.5rem;
+      /* margin-left: 50px; */
+      /* height: 74px; */
+      /* display: flex; */
       align-items: center;
       background-color: black;
       color: #ffffffff;
@@ -276,6 +297,32 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       word-break: break-word;
     }
 
+    .alert_limit{
+      font-style: italic;
+      font-family: 'Antique', sans-serif;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      color: #919191ff;
+    }
+
+    .alert_limit_busy{
+      color: #451313ff;
+      font-style: italic;
+      font-family: 'Antique', sans-serif;
+      font-size: 0.8rem;
+    }
+
+    .alert_limit_busy a{
+      color: #ff0000ff;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .alert_limit_busy a:hover{
+      text-decoration: underline 2px;
+    }
+
   </style>
 </head>
 
@@ -294,12 +341,12 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   
         <form method="GET" action="filter.php">
           <input type="hidden" name="type" value="filter_base"/>
-            <header style="background-color: #004d61; justify-content: center;">
-            <div class="search-bar">
-                <input type="text" placeholder="Pesquise sua vaga solicitada" name='filter_user' value="<?php if(isset($_GET['filter_user'])){ echo $_GET['filter_user'];}?>"/>
-                <button class="btn btn-buscar">BUSCAR</button>
-            </div>
-            </header>
+          <header class="search-bar-imag">
+          <div class="search-bar">
+               <input type="text" name="filter_user" placeholder="Pesquise sua vaga solicitada" value="<?php if(isset($_GET['filter_user'])){ echo $_GET['filter_user'];}?>"/>
+               <button class="btn btn-buscar" style="font-family: 'Horizon', sans-serif; font-size: 15px">BUSCAR</button>
+          </div>
+          </header>
 
            
         </form>

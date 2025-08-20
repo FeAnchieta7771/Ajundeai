@@ -87,12 +87,12 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
               <input type="hidden" name="login_state" value="voluntario">
               <div class="form-container">
                 <label for="email">NOME OU EMAIL</label>
-                <input type="text" name="email" placeholder="Insira nome ou email aqui" required
+                <input type="text" name="email" placeholder="Insira nome ou email aqui" maxlength="150" required
                   value='<?php echo save_value('nome_email','voluntario');?>'>
                 <br>
                 <br>
                 <label for="password">SENHA</label>
-                <input type="password" name="password" placeholder="Insira sua senha aqui" required
+                <input type="password" name="password" placeholder="Insira sua senha aqui" maxlength="20" required
                   value='<?php echo save_value('password','voluntario');?>'>
               </div>
 
@@ -109,12 +109,12 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
               <input type="hidden" name="login_state" value="ong">
               <div class="form-container">
                 <label for="email">NOME OU EMAIL DA ONG</label>
-                <input type="text" name="email" placeholder="Insira nome ou email aqui"
+                <input type="text" name="email" placeholder="Insira nome ou email aqui" maxlength="150"
                   value='<?php echo save_value('nome_email','ong');?>'>
                 <br>
                 <br>
                 <label for="password">SENHA DE REGISTRO</label>
-                <input type="password" name="password" placeholder="Insira sua senha aqui"
+                <input type="password" name="password" placeholder="Insira sua senha aqui" maxlength="20"
                   value='<?php echo save_value('password','ong');?>'>
               </div>
 

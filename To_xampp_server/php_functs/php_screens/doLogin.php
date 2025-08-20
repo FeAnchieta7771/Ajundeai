@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          " . $table_login . "." . $auxiliar_name . " = ? OR " . $table_login . ".email = ?";
 
         include '../php_db/methods.php';
-        $result = select($sql, [$name_email, $name_email]);
+        $result = select(null,$sql, [$name_email, $name_email]);
 
     } catch (PDOException $e) {
         Show_error($e);

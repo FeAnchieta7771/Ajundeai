@@ -4,19 +4,19 @@ button{
 
 .notifications{
     position: fixed;
-    top: 30px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 100;
+    z-index: 100000;
 }
 
 .toast{
     position: relative;
-    padding: 20px;
+    padding: 30px;
     color: #fff;
     margin-bottom: 10px;
-    /* width: 400px;
-    height: 100px; */
+    /* width: 400px;  */
+    height: 100px;
     display: grid;
     grid-template-columns: 70px 1fr 70px;
     /* border-radius:  5px; */

@@ -1,21 +1,27 @@
 <?php 
-
-function select($sql, $param = []){
+// ! FUNÇÕES DE INTERAÇÕES AO BANCO
+// ================================
+function select($pdo, $sql, $param = []){
     /*
     Executa o comando SQL SELECT ao banco
 
-    Parametros: $sql-> comando sql, 
+    Parametros: $pdo-> conexão ao banco caso seja necessário uma execução ao banco
+                com múltiplas interações a ele
+                $sql-> comando sql, 
                 $param-> dados a serem usados como parametros ao $sql
 
     Retorno: em sucesso, retorna os valores buscados do comando
                 em erro, retorna o erro encontrado
 
     */
-    include "conexao.php";
+    if($pdo === null){
+        include "conexao.php";
+        $pdo = $conn;
+    }
 
     try{
 
-        $stmt = $conn->prepare($sql);
+        $stmt = $pdo->prepare($sql);
         $stmt->execute($param);
         
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -27,11 +33,13 @@ function select($sql, $param = []){
 }
 
 
-function insert($sql, $param = []){
+function insert($pdo, $sql, $param = []){
     /*
     Executa o comando SQL INSERT ao banco
 
-    Parametros: $sql-> comando sql, 
+    Parametros: $pdo-> conexão ao banco caso seja necessário uma execução ao banco
+                com múltiplas interações a ele
+                $sql-> comando sql, 
                 $param-> dados a serem usados como parametros ao $sql
 
     Retorno: em sucesso, retorna true se a inserção funcionou
@@ -40,10 +48,13 @@ function insert($sql, $param = []){
                 em erro, retorna o erro encontrado
 
     */
-    include "conexao.php";
+    if($pdo === null){
+        include "conexao.php";
+        $pdo = $conn;
+    }
 
     try{
-        $stmt = $conn->prepare($sql);
+        $stmt = $pdo->prepare($sql);
         $result = $stmt->execute($param);
         
         return $result;
@@ -54,11 +65,13 @@ function insert($sql, $param = []){
     }
 }
 
-function delete($sql, $condictions = []){
+function delete($pdo, $sql, $condictions = []){
     /*
     Executa o comando SQL DELETE ao banco
 
-    Parametros: $sql-> comando sql, 
+    Parametros: $pdo-> conexão ao banco caso seja necessário uma execução ao banco
+                com múltiplas interações a ele
+                $sql-> comando sql, 
                 $condictions -> condições para encontrar o valor a ser deletado
 
     Retorno: em sucesso, retorna true se a exclusão funcionou
@@ -67,10 +80,13 @@ function delete($sql, $condictions = []){
                 em erro, retorna o erro encontrado
 
     */
-    include "conexao.php";
+    if($pdo === null){
+        include "conexao.php";
+        $pdo = $conn;
+    }
 
     try{
-        $stmt = $conn->prepare($sql);
+        $stmt = $pdo->prepare($sql);
         $result = $stmt->execute($condictions);
         
         return $result;
@@ -81,12 +97,14 @@ function delete($sql, $condictions = []){
     }
 }
 
-function update($sql, $param = []){
+function update($pdo, $sql, $param = []){
     /*
     Executa o comando SQL UPDATE ao banco
 
-    Parametros: $sql-> comando sql, s
-                $condictions -> condições para encontrar o valor a ser deletado
+    Parametros: $pdo-> conexão ao banco caso seja necessário uma execução ao banco
+                com múltiplas interações a ele
+                $sql-> comando sql, 
+                $param-> dados a serem usados como parametros ao $sql
 
     Retorno: em sucesso, retorna true se a exclusão funcionou
                          retorna false se não funciou apesar de não ter dado erro no sql
@@ -94,10 +112,13 @@ function update($sql, $param = []){
                 em erro, retorna o erro encontrado
 
     */
-    include "conexao.php";
+    if($pdo === null){
+        include "conexao.php";
+        $pdo = $conn;
+    }
 
     try{
-        $stmt = $conn->prepare($sql);
+        $stmt = $pdo->prepare($sql);
         $result = $stmt->execute($param);
         
         return $result;

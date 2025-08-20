@@ -29,7 +29,7 @@ function do_dashboard(){
 
         // pegue todas as vaga s que contenham o mesmo id da ong
         try{
-            $result = select($sql,[$id_ong]);
+            $result = select(null,$sql,[$id_ong]);
 
         } catch (PDOException $e) {
             Show_error($e);

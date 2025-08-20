@@ -19,7 +19,7 @@ function get_buttons(){
 
         try {
             $sql = "SELECT situacao FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
-            $result = select($sql, [$id_vaga, $id_voluntario]);
+            $result = select(null,$sql, [$id_vaga, $id_voluntario]);
 
         } catch (PDOException $e) {
             Show_incorrect_text("Algo deu Errado no Servidor, tente novamente mais tarde",$e);

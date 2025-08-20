@@ -27,6 +27,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 // print_r($_SESSION);
 // echo "</pre>";
 ?>
+<!-- Tela de exibição da situação das vagas da Ong registrada -->
+<!-- Acima de tudo -->
 
  <!DOCTYPE html>
 <html lang="pt-br">
@@ -53,6 +55,10 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     body {
       background-color: #ffffff;
+      background-image: url("../../img/backgraud-deashboard.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
     }
 
     body::-webkit-scrollbar {
@@ -64,12 +70,15 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       align-items: center;
       justify-content: center;
       background-color: #004d61;
-      padding: 20px 0;
+      padding: 10px 0;
+
+      background-image: url("../../img/detalhe-painel.png");
+      background-repeat: no-repeat;
     }
 
     .painel-bar h1 {
       color: white;
-      font-size: 2rem;
+      font-size: 3rem;
     }
 
     main {
@@ -80,11 +89,12 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     .section-title {
       font-weight: bold;
-      color: #004d61;
-      font-size: 1.2rem;
+      color: #009bce;
+      font-size: 1.5rem;
       margin-bottom: 20px;
       text-transform: uppercase;
       letter-spacing: 1px;
+      border-bottom: solid 4px #009bce;
     }
 
     .engloba {
@@ -148,6 +158,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       font-weight: bold;
       font-family: 'Horizon', sans-serif;
       transition: .2s;
+      white-space: nowrap;         /* Impede quebra de linha */
+      overflow: hidden;            /* Esconde o texto que passa do limite */
+      text-overflow: ellipsis; 
     }
 
     .vaga-info h3 {
@@ -159,9 +172,18 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     }
 
     .vaga-info p {
-      font-size: 1rem;
-      color: #444;
-      max-width: 600px;
+        font-size: 1rem;
+        color: #444;
+        width: 100%; /* ou defina uma largura fixa, se preferir */
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
+        /* Importante para funcionar corretamente */
+        text-overflow: ellipsis;
+        word-break: break-word; /* quebra palavras longas */
     }
 
     .vaga-extra {
@@ -188,10 +210,10 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       height: 100px;
       border-width: 0px;
       border-radius: 100px;
-      display: flex;               
+      display: flex;              
       justify-content: center;
-      align-items: center;         
-      gap: 10px;                   
+      align-items: center;        
+      gap: 10px;                  
       cursor: pointer;
       transition: .1s;
     }
@@ -212,8 +234,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     .add_vaga{
       display: flex;
-        align-items: center;
-  justify-content: center; 
+      align-items: center;
+      justify-content: center;
       vertical-align: middle;
       position: fixed;
       bottom: 32px;
@@ -253,8 +275,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <div class="vaga-card">
         <img src="img/icons_orange/outro.png" alt="Ícone da vaga" />
         <div class="vaga-info">
-          <h4>NOME DA VAGA</h4>
-          <p>Descrição pequena que está dentro do banco que o Guilherme ainda tem que fazer e passar o arquivo para mim. E sim, isso é um texto exemplo.</p>
+          <h4>NOME DA VAGA hfhedschshdhcswjbjfjfgbfdcgdhvhgdhvhdhvhgdgcvgfdhcgdghvhdbhvhd</h4>
+          <p>Descrição pequena que está dentro do banco que o Guilherme ainda tem que fazer e passar o arquivo para mim. E sim, isso é um texto exemplo.kkkkkkkkkkssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssdssdsdsdsdsdsdsdsdsdsdsdskkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</p>
         </div>
         <div class="vaga-extra" aria-label="Quantidade de candidatos">
           <i class='bx bxs-user' ></i>
@@ -265,8 +287,3 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <!-- Adicione outros cards abaixo -->
     </div>
   </main>
-
-  <script src='js/notification.js' defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
-</body>
-</html>

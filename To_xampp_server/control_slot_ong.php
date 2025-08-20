@@ -45,6 +45,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <link rel="icon" href="img\Logo_Aba.png" />
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/notification.css">
+  <link rel="stylesheet" href="css\css_screens\control_slot.css">
   <title>AjundeAi • Controle de Vaga</title>
   <style>
     * {
@@ -254,7 +255,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       height: 100%;
     }
    
-    .fixa:hover {
+    /* .fixa:hover {
       color: white;
       background-color: #e76f00;
     }
@@ -269,7 +270,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     .fixa:hover i{
       color: white;
-    }
+    } */
    
     .voluntario-nome {
       color: #2289e6;

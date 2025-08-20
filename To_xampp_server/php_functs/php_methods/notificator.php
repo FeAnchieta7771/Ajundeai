@@ -43,6 +43,9 @@ function notificator($type_notfication)
         case 'unsend_button':
             unsend_button();
             break;
+        case 'not_permited':
+            not_permited();
+            break;
     }
 }
 
@@ -169,6 +172,17 @@ function unsend_button()
     $text = json_encode("Continue procurando por outras melhores...");
     $type = json_encode("unsend");
     $icon = json_encode("bx  bxs-send-alt-2");
+
+    js_notification($type, $icon, $title, $text);
+}
+
+function not_permited()
+{
+
+    $title = json_encode("Você chegou no Limite de Cadastro Permitido");
+    $text = json_encode("O limite de 3 cadastros foram atingidos...");
+    $type = json_encode("error");
+    $icon = json_encode("bx  bxs-alert-triangle");
 
     js_notification($type, $icon, $title, $text);
 }

@@ -49,30 +49,54 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 function disapprove($id_vaga,$id_voluntario){
     
-    // registro ao banco em que o usuário em questão foi negado para a vaga
     try {
+        // registro ao banco em que o usuário em questão foi negado para a vaga
+        include '../php_db/conexao.php';
+
+        $conn->beginTransaction();
+
         $sql = "UPDATE registro SET situacao = ? WHERE id_vaga = ? AND id_voluntario = ?";
-        $result = update($sql, ['negado',$id_vaga, $id_voluntario]);
+        $result = update($conn,$sql, ['negado',$id_vaga, $id_voluntario]);
 
-    } catch (PDOException $e) {
-        Show_incorrect_text($e);
-    }
+        // =========================================================================================
 
-    // adicionar uma nova oportunidade ao um novo voluntário para preencher a vaga negada
-    try {
+        // adicionar uma nova oportunidade ao um novo voluntário para preencher a vaga negada
         $sql = "UPDATE vaga SET quant_atual = quant_atual - 1 WHERE id = ?";
-        $result = update($sql, [$id_vaga]);
+        $result = update($conn,$sql, [$id_vaga]);
+
+        // =========================================================================================
+        $conn->commit();
 
     } catch (PDOException $e) {
+        
+        $conn->rollBack();
         Show_incorrect_text($e);
     }
+    // // registro ao banco em que o usuário em questão foi negado para a vaga
+    
+    // try {
+    //     $sql = "UPDATE registro SET situacao = ? WHERE id_vaga = ? AND id_voluntario = ?";
+    //     $result = update(null,$sql, ['negado',$id_vaga, $id_voluntario]);
+
+    // } catch (PDOException $e) {
+    //     Show_incorrect_text($e);
+    // }
+
+    // // adicionar uma nova oportunidade ao um novo voluntário para preencher a vaga negada
+    // try {
+    //     $sql = "UPDATE vaga SET quant_atual = quant_atual - 1 WHERE id = ?";
+    //     $result = update($sql, [$id_vaga]);
+
+    // } catch (PDOException $e) {
+    //     Show_incorrect_text($e);
+    // }
 }
 
 function aproved($id_vaga, $id_voluntario){
 
      try {
         $sql = "UPDATE registro SET situacao = ? WHERE id_vaga = ? AND id_voluntario = ?";
-        $result = update($sql, ['aprovado',$id_vaga, $id_voluntario]);
+        $result = update(null,$sql, ['aprovado',$id_vaga, $id_voluntario]);
 
     } catch (PDOException $e) {
         Show_incorrect_text("Norberto é uma gostosa e o william tbm",$e);

@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO vaga (id_ong, nome, categoria_vaga, localizacao, descr_obj, descr_total, quant_limite, quant_atual) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        $result = insert($sql, [$_SESSION['id'], 
+        $result = insert(null, $sql, [$_SESSION['id'], 
                                             $nome, 
                                             $categoria_vaga,
                                             $localizacao,
