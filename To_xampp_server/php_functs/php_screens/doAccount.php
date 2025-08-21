@@ -1,7 +1,7 @@
 <?php
 
 include '../php_db/methods.php';
-include '../php_methods/phones.php';
+include '../php_methods/formatting.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -56,8 +56,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $whats      = $_SESSION['whats']        = $_POST['whats'] ?? '';
     $about      = $_SESSION['about']        = $_POST['about'];
 
+    $cpf        = $_SESSION['cpf']          = $_POST['cpf'] ?? '';
+    $cat_vol    = $_SESSION['cat_vol']      = $_POST['cat_vol'] ?? '';
+    $periodo    = $_SESSION['periodo']      = $_POST['periodo'] ?? '';
+    $estado     = $_SESSION['estado']       = $_POST['estado'] ?? '';
+    $pcd        = $_SESSION['pcd']          = $_POST['pcd'] ?? '';
+
     if (!check_unique_name($accout, $name)) {
         Show_incorrect_text("Já existe um Registro com esse Nome, Insira outro", 'name_repated_error');
+    }
+
+    if (!Is_cpf_correct($cpf)) {
+        Show_incorrect_text("O Número de CPF é invalido, Por favor verifique", 'cpf_error');
     }
 
     if (!Is_phone_correct($telephone)) {
@@ -70,23 +80,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $telephone_to_db = Convert_phone_to_db($telephone);
     $whats_to_db = Convert_whats_to_db($whats);
+    $cpf_to_db = Convert_cpf_to_db($cpf);
     $id = last_id($accout);
 
     try {
 
         if ($accout == 'voluntario') {
 
-            $sql_command = "INSERT INTO $accout(nome_voluntario,email,telefone,senha,sobre,whatsapp,quant_cadastro)
-            VALUES (?,?,?,?,?,?,0)";
+            $sql_command = "INSERT INTO $accout(nome_voluntario,email,senha,telefone,whatsapp,categoria_trabalho,periodo,cpf,estado_social,pcd,sobre,quant_cadastro)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,0)";
 
-            insert(null,$sql_command,[$name,$email,$telephone_to_db,$password,$about,$whats_to_db]);
+            insert(null,$sql_command,[$name,$email,$password,$telephone_to_db,$whats_to_db,$cat_vol,$periodo,$cpf_to_db,$estado,$pcd,$about]);
 
         } else if ($accout == 'ong') {
 
             $sql_command = "INSERT INTO $accout(nome_ong,email,senha,sobre,telefone,whatsapp)
-            VALUES ('$name','$email','$password','$about','$telephone_to_db','$whats_to_db')";
+            VALUES (?,?,?,?,?,?)";
 
-            insert(null,$sql_command,[$name,$email,$password,,$about,$telephone_to_db,$whats_to_db]);
+            insert(null,$sql_command,[$name,$email,$password,$about,$telephone_to_db,$whats_to_db]);
         }
 
         $_SESSION['whoLogged'] = $accout;

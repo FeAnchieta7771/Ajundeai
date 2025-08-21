@@ -12,6 +12,10 @@ function notificator($type_notfication)
             phone_error();
             break;
 
+        case 'cpf_error':
+            cpf_error();
+            break;
+
         case 'whatsapp_error':
             whatsapp_error();
             break;
@@ -75,6 +79,16 @@ function phone_error()
     $text = json_encode("Verifique o campo de Telefone...");
     $type = json_encode("error");
     $icon = json_encode("bx  bx-phone-x");
+
+    js_notification($type, $icon, $title, $text);
+}
+function cpf_error()
+{
+
+    $title = json_encode("Número de CPF Inválido");
+    $text = json_encode("Verifique o campo de cpf...");
+    $type = json_encode("error");
+    $icon = json_encode("bx  bx-user-id-card");
 
     js_notification($type, $icon, $title, $text);
 }

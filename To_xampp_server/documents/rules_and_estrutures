@@ -56,6 +56,33 @@ a qual são divididas em dois arquivos utilitários:
                 SELECT
                 INSERT
 
+                [APENAS UMA INTERAÇÃO SIMPLES AO BANCO]
+                para interação ao Banco independente, ou seja, ela não precisa 
+                que as interções ao banco anteriores ou posteriores tenham 
+                funcionado para executar esse, use como parametros:
+
+                ( null, $sql, $param = [])
+
+
+                [INTERAÇÕES COMPOSTA AO BANCO]
+                caso ele precisa que interações anteriores tenham funcionado, 
+                o esquema é assim:
+
+                include '../php_db/conexao.php';
+                $conn->beginTransaction();
+
+                comando1_sql( $conn, $sql, $param = [])
+                comando1_sql( $conn, $sql, $param = [])
+                comando3_sql( $conn, $sql, $param = [])
+                ...
+                comando99_sql( $conn, $sql, $param = [])
+
+                $conn->commit();   # comando que executa salva as interações 
+
+                Se um deles derem errado, para cancelar todos no catch:
+                $conn->rollBack(); # comando que cancela todas as interações anteriores
+
+
                 todos possuem o padrão de retornar o valor do erro caso
                 ocorra erro, então sua utilidade de chamada de função deve
                 ser colocada dentro da estrutura try/catch 

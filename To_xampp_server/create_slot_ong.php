@@ -24,6 +24,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <link rel="stylesheet" href="css/header.css">
     <title>AjundeAi • Criação de contas</title>
     <link rel="icon" href="img\Logo_Aba.png">
+        <link rel="stylesheet" href="css/notification.css">
     <style>
         * {
             box-sizing: border-box;
@@ -534,7 +535,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     </div>
     </div>
 
-    <script src='js/notification.js' defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+  <script src='js/notification.js' defer></script>
 </body>
 
 </html>

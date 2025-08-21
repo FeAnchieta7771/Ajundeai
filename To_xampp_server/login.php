@@ -127,6 +127,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
   <script src='js/notification.js' defer></script>
   <script src="js/direct_forms.js"></script>
 

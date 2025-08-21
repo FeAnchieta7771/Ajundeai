@@ -82,11 +82,12 @@ function set_model_buttons_header($is_logged, $is_ong)
     }
 }
 
-function show_message(){
+function show_message()
+{
 
     include 'php_functs/php_methods/notificator.php';
 
-    if(isset($_SESSION['notification'])){
+    if (isset($_SESSION['notification'])) {
 
         echo "
         <script>

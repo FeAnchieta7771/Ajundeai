@@ -225,6 +225,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         <a href="<?php echo $_SESSION['tela_anterior']; ?>" class="btn back-btn">Voltar à Vaga</a>
     </div>
 
-    <script src='js/notification.js' defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+  <script src='js/notification.js' defer></script>
 </body>
 </html>

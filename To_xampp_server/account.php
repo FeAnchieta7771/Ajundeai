@@ -10,6 +10,12 @@ function save_value($name, $for){
     return '';
 }
 
+function save_value_select($name, $option){
+    if(isset($_SESSION[$name], $_SESSION['account_state']) && $_SESSION[$name] == $option){
+        echo 'selected';
+    }
+}
+
 // busca situação de login do usuário
 $login_state = is_logged();
 
@@ -92,6 +98,10 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                                     <label for="name">NOME:</label>
                                     <input type="text" id="name" name="nome" placeholder="Seu nome:" maxlength="100" required value='<?php echo save_value('nome','voluntario');?>'>
                                 </div>
+                                <div class="form-group">
+                                    <label for="password">SENHA:</label>
+                                    <input type="password" id="password" name="password" placeholder="Sua senha:" maxlength="20" required value='<?php echo save_value('password','voluntario'); ?>'>
+                                </div>
                             </div>
             
                             <!-- Linha do Telefone (voluntário) e Senha (ambos) -->
@@ -101,8 +111,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                                     <input type="email" id="email" name="email" placeholder="Seu e-mail:" maxlength="150" required value='<?php echo save_value('email','voluntario'); ?>'>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">SENHA:</label>
-                                    <input type="text" id="password" name="password" placeholder="Sua senha:" maxlength="20" required value='<?php echo save_value('password','voluntario'); ?>'>
+                                    <label for="cpf">CPF:</label>
+                                    <input type="text" id="cpf" name="cpf" placeholder="#########-##" maxlength="12" required value='<?php echo save_value('cpf','voluntario'); ?>'>
                                 </div>
                             </div>
 
@@ -116,10 +126,64 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                                     <input type="tel" id="whats" name="whats" placeholder="+55 (##) #####-####" maxlength="20" value='<?php echo save_value('whats','voluntario'); ?>'>
                                 </div>
                             </div>
+
+                            <div class="form-row">
+                                <div class="form-group phone-field">
+                                    <label for="cat_vol">Qual Opção de Vaga prefere?</label>
+                                    <select class="select" id="cat_vol" name="cat_vol" required>
+                                        <option value="" selected disabled> selecione sua preferencia </option>
+                                        <option value="saúde"         <?php save_value_select('cat_vol','saúde');         ?> >Saúde</option>
+                                        <option value="eventos"       <?php save_value_select('cat_vol','eventos');       ?> >Eventos</option>
+                                        <option value="animais"       <?php save_value_select('cat_vol','animais');       ?> >Animais</option>
+                                        <option value="crianças"      <?php save_value_select('cat_vol','crianças');      ?> >Crianças</option>
+                                        <option value="educação"      <?php save_value_select('cat_vol','educação');      ?> >Educação</option>
+                                        <option value="tecnologia"    <?php save_value_select('cat_vol','tecnologia');    ?> >Tecnologia</option>
+                                        <option value="assistencia"   <?php save_value_select('cat_vol','assistencia');   ?> >Assistencia</option>
+                                        <option value="administração" <?php save_value_select('cat_vol','administração'); ?> >Administração</option>
+                                        <option value="meio ambiente" <?php save_value_select('cat_vol','meio ambiente'); ?> >Meio Ambiente</option>
+                                        <option value="outros"                                                                             >Outras Diversificações...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group phone-field">
+                                    <label for="periodo">Periodo de Participação:</label>
+                                    <select class="select" id="periodo" name="periodo" required>
+                                        <option value="" selected disabled> selecione seu periodo </option>
+                                        <option value="manhã"       <?php save_value_select('periodo','manhã');       ?> >Manhã</option>
+                                        <option value="tarde"       <?php save_value_select('periodo','tarde');       ?> >Tarde</option>
+                                        <option value="noite"       <?php save_value_select('periodo','noite');       ?> >Noite</option>
+                                        <option value="madrugada"   <?php save_value_select('periodo','madrugada');   ?> >Madrugada</option>
+                                        <option value="integral"    <?php save_value_select('periodo','integral');    ?> >Integral</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group phone-field">
+                                    <label for="estado">Qual é a sua Situação Atual?</label>
+                                    <select class="select" id="estado" name="estado" required>
+                                        <option value="" selected disabled> selecione sua situação </option>
+                                        <option value="Estudante Fundamental"   <?php save_value_select('estado','Estudante Fundamental');   ?> >Estudante Fundamental</option>
+                                        <option value="Estudante Médio"         <?php save_value_select('estado','Estudante Médio');         ?> >Estudante Médio</option>
+                                        <option value="Formado"                 <?php save_value_select('estado','Formado');                 ?> >Formado</option>
+                                        <option value="Estudante Universitário" <?php save_value_select('estado','Estudante Universitário'); ?> >Estudante Universitário</option>
+                                        <option value="Empregado"               <?php save_value_select('estado','Empregado');               ?> >Empregado</option>
+                                        <option value="Aposentado"              <?php save_value_select('estado','Aposentado');              ?> >Aposentado</option>
+                                    </select>
+                                </div>
+                                <div class="form-group phone-field">
+                                    <label for="pcd">Você possui alguma Deficiência?</label>
+                                    <input type="tel" id="pcd" name="pcd" list="pcd_options" value='<?php echo save_value('pcd','voluntario'); ?>'>
+
+                                    <datalist id="pcd_options">
+                                        <option value="Não"></option>
+                                        <option value="Prefiro não dizer..."></option>
+                                    </datalist>
+                                </div>
+                            </div>
             
                             <div class="bio-container">
                                 <p id="bio-label">CONTE UM POUCO SOBRE VOCÊ E SUAS EXPERIÊNCIAS.</p>
-                                <textarea maxlength="1000" rows="10" cols="120" name="about" placeholder="Descreva suas habilidades, competências, qualificações, experiências, etc." required value='<?php echo save_value('about','voluntario'); ?>'
+                                <textarea maxlength="1000" rows="5" cols="120" name="about" placeholder="Descreva suas habilidades, competências, experiências, etc." required value='<?php echo save_value('about','voluntario'); ?>'
                                 ><?php echo save_value('about','voluntario'); ?></textarea>
                             </div>
                     </div>
@@ -193,9 +257,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             </div>
         </div>
 </div>
-<script src='js/notification.js' defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+  <script src='js/notification.js' defer></script>
 <script src="js/whatsapp.js"></script>
 <script src="js/phone.js"></script>
+<script src="js/cpf.js"></script>
 <script src="js/terms_accept.js"></script>
 <script src="js/direct_forms.js"></script>
 </body>

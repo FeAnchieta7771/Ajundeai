@@ -1,7 +1,8 @@
-<?php 
+<?php
 // ! FUNÇÕES DE INTERAÇÕES AO BANCO
 // ================================
-function select($pdo, $sql, $param = []){
+function select($pdo, $sql, $param = [])
+{
     /*
     Executa o comando SQL SELECT ao banco
 
@@ -14,26 +15,27 @@ function select($pdo, $sql, $param = []){
                 em erro, retorna o erro encontrado
 
     */
-    if($pdo === null){
+    if ($pdo === null) {
         include "conexao.php";
         $pdo = $conn;
     }
 
-    try{
+    try {
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($param);
-        
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    } catch (PDOException $e){
-        
+    } catch (PDOException $e) {
+
         throw new Exception($e->getMessage());
     }
 }
 
 
-function insert($pdo, $sql, $param = []){
+function insert($pdo, $sql, $param = [])
+{
     /*
     Executa o comando SQL INSERT ao banco
 
@@ -44,28 +46,29 @@ function insert($pdo, $sql, $param = []){
 
     Retorno: em sucesso, retorna true se a inserção funcionou
                          retorna false se não funciou apesar de não ter dado erro no sql
-                         
+
                 em erro, retorna o erro encontrado
 
     */
-    if($pdo === null){
+    if ($pdo === null) {
         include "conexao.php";
         $pdo = $conn;
     }
 
-    try{
+    try {
         $stmt = $pdo->prepare($sql);
         $result = $stmt->execute($param);
-        
+
         return $result;
 
-    } catch (PDOException $e){
-        
+    } catch (PDOException $e) {
+
         throw new Exception($e->getMessage());
     }
 }
 
-function delete($pdo, $sql, $condictions = []){
+function delete($pdo, $sql, $condictions = [])
+{
     /*
     Executa o comando SQL DELETE ao banco
 
@@ -76,28 +79,29 @@ function delete($pdo, $sql, $condictions = []){
 
     Retorno: em sucesso, retorna true se a exclusão funcionou
                          retorna false se não funciou apesar de não ter dado erro no sql
-                         
+
                 em erro, retorna o erro encontrado
 
     */
-    if($pdo === null){
+    if ($pdo === null) {
         include "conexao.php";
         $pdo = $conn;
     }
 
-    try{
+    try {
         $stmt = $pdo->prepare($sql);
         $result = $stmt->execute($condictions);
-        
+
         return $result;
 
-    } catch (PDOException $e){
-        
+    } catch (PDOException $e) {
+
         throw new Exception($e->getMessage());
     }
 }
 
-function update($pdo, $sql, $param = []){
+function update($pdo, $sql, $param = [])
+{
     /*
     Executa o comando SQL UPDATE ao banco
 
@@ -108,23 +112,23 @@ function update($pdo, $sql, $param = []){
 
     Retorno: em sucesso, retorna true se a exclusão funcionou
                          retorna false se não funciou apesar de não ter dado erro no sql
-                         
+
                 em erro, retorna o erro encontrado
 
     */
-    if($pdo === null){
+    if ($pdo === null) {
         include "conexao.php";
         $pdo = $conn;
     }
 
-    try{
+    try {
         $stmt = $pdo->prepare($sql);
         $result = $stmt->execute($param);
-        
+
         return $result;
 
-    } catch (PDOException $e){
-        
+    } catch (PDOException $e) {
+
         throw new Exception($e->getMessage());
     }
 }

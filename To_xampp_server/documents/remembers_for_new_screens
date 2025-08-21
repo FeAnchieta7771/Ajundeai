@@ -61,7 +61,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 <?php
 session_start();
 
-// ... [Caso também for uma tela dinâmica, adicione aqui]
+$_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
+
+include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();

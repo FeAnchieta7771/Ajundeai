@@ -60,4 +60,31 @@ function Convert_whats_to_show($whats){
     return $whats_for_show;
 }
 
+// ===========================================================================================
+// FUNÇÃO DE TRATAMENTOS DE WHATSAPP
+
+function Is_cpf_correct($cpf){
+    // +55 (##) #####-####
+    return strlen($cpf) == 12;
+}
+
+function Convert_cpf_to_db($cpf){
+    // (##) ####-####
+    $search = array("-");
+    $replace = array("");
+    $cpf_for_db = str_replace($search, $replace, $cpf);
+
+    return $cpf_for_db;
+}
+
+function Convert_cpf_to_show($cpf){
+    // ############# => (##) ####-####
+    $cpf_for_show = substr($cpf, 0, 9) .
+                    "-" . substr($cpf, 8, 2);
+    
+    return $cpf_for_show;
+}
+
+
+
 ?>

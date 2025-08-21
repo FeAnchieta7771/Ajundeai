@@ -38,6 +38,7 @@ function is_checked_before($name){
   <title>AjundeAi • Pesquisa</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/header.css">
+      <link rel="stylesheet" href="css/notification.css">
   <style>
    
     * {
@@ -262,13 +263,13 @@ function is_checked_before($name){
           <main class="container">
           <aside class="filtros">
                <h2>FILTROS</h2>
-               <label><input type="checkbox" value="saúde" name="saúde" <?php is_checked_before("saúde"); ?>> Saúde</label>
-               <label><input type="checkbox" value="eventos" name="eventos" <?php is_checked_before("eventos"); ?>> Eventos</label>
-               <label><input type="checkbox" value="animais" name="animais" <?php is_checked_before("animais"); ?>> Animais</label>
-               <label><input type="checkbox" value="crianças" name="crianças" <?php is_checked_before("crianças"); ?>> Crianças</label>
-               <label><input type="checkbox" value="educação" name="educação" <?php is_checked_before("educação"); ?>> Educação</label>
-               <label><input type="checkbox" value="tecnologia" name="tecnologia" <?php is_checked_before("tecnologia"); ?>> Tecnologia</label>
-               <label><input type="checkbox" value="assistencia" name="assistencia" <?php is_checked_before("assistencia"); ?>> Assist. Social</label>
+               <label><input type="checkbox" value="saúde"         name="saúde"         <?php is_checked_before("saúde"); ?>> Saúde</label>
+               <label><input type="checkbox" value="eventos"       name="eventos"       <?php is_checked_before("eventos"); ?>> Eventos</label>
+               <label><input type="checkbox" value="animais"       name="animais"       <?php is_checked_before("animais"); ?>> Animais</label>
+               <label><input type="checkbox" value="crianças"      name="crianças"      <?php is_checked_before("crianças"); ?>> Crianças</label>
+               <label><input type="checkbox" value="educação"      name="educação"      <?php is_checked_before("educação"); ?>> Educação</label>
+               <label><input type="checkbox" value="tecnologia"    name="tecnologia"    <?php is_checked_before("tecnologia"); ?>> Tecnologia</label>
+               <label><input type="checkbox" value="assistencia"   name="assistencia"   <?php is_checked_before("assistencia"); ?>> Assist. Social</label>
                <label><input type="checkbox" value="administração" name="administração" <?php is_checked_before("administração"); ?>> Administração</label>
                <label><input type="checkbox" value="meio ambiente" name="meio_ambiente" <?php is_checked_before("meio_ambiente"); ?>> Meio Ambiente</label>
                <button class="btn btn-buscar" style="font-family: 'Horizon', sans-serif; font-size: 18px">BUSCAR</button>
@@ -295,5 +296,8 @@ function is_checked_before($name){
       </div>
     </section>
   </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+  <script src='js/notification.js' defer></script>
 </body>
 </html>

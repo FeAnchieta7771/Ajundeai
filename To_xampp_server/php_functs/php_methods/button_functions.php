@@ -57,7 +57,7 @@ function save_button($id_vaga)
             $sql = "INSERT INTO registro (id_vaga, id_voluntario, categoria_registro, situacao) 
              VALUES (?, ?, ?, ?)";
 
-            $result = insert(null,$sql, [$id_vaga, $_SESSION['id'], 'salvo', 'nada']);
+            $result = insert(null, $sql, [$id_vaga, $_SESSION['id'], 'salvo', 'nada']);
 
             if ($result) {
 
@@ -81,7 +81,7 @@ function unsave_button($id_vaga)
     try {
         $sql = "DELETE FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
 
-        $result = delete(null,$sql, [$id_vaga, $_SESSION['id']]);
+        $result = delete(null, $sql, [$id_vaga, $_SESSION['id']]);
 
         if ($result == 0) {
             echo "Erro na inserção.";
@@ -115,7 +115,7 @@ function send_button($id_vaga)
                     $sql = "INSERT INTO registro (id_vaga, id_voluntario, categoria_registro, situacao) 
                     VALUES (?, ?, ?, ?)";
 
-                    $result = insert($conn,$sql, [$id_vaga, $_SESSION['id'], 'cadastrado', 'aguarde']);
+                    $result = insert($conn, $sql, [$id_vaga, $_SESSION['id'], 'cadastrado', 'aguarde']);
 
                     if ($result == 0) {
                         $conn->rollBack();
@@ -172,7 +172,7 @@ function send_button($id_vaga)
                     SET categoria_registro = ?, situacao = ?
                     WHERE id_vaga = ? AND id_voluntario = ?";
 
-                    $result = update($conn,$sql, ['cadastrado', 'aguarde', $id_vaga, $_SESSION['id']]);
+                    $result = update($conn, $sql, ['cadastrado', 'aguarde', $id_vaga, $_SESSION['id']]);
 
                     if ($result == 0) {
                         $conn->rollBack();
@@ -186,7 +186,7 @@ function send_button($id_vaga)
                     SET quant_atual = quant_atual + 1
                     WHERE id = ?";
 
-                    $result = update($conn,$sql, [$id_vaga]);
+                    $result = update($conn, $sql, [$id_vaga]);
 
                     if ($result == 0) {
                         $conn->rollBack();
@@ -199,7 +199,7 @@ function send_button($id_vaga)
                     SET quant_cadastro = quant_cadastro + 1
                     WHERE id = ?";
 
-                    $result = update($conn,$sql, [$_SESSION['id']]);
+                    $result = update($conn, $sql, [$_SESSION['id']]);
 
                     if ($result == 0) {
                         $conn->rollBack();
@@ -242,7 +242,7 @@ function unsend_button($id_vaga)
 
         $sql = "DELETE FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
 
-        $result = delete($conn,$sql, [$id_vaga, $_SESSION['id']]);
+        $result = delete($conn, $sql, [$id_vaga, $_SESSION['id']]);
 
         if ($result == 0) {
             $conn->rollBack();
@@ -255,7 +255,7 @@ function unsend_button($id_vaga)
         SET quant_atual = quant_atual - 1
         WHERE id = ?";
 
-        $result = update($conn,$sql, [$id_vaga]);
+        $result = update($conn, $sql, [$id_vaga]);
 
         if ($result == 0) {
             $conn->rollBack();
@@ -263,12 +263,12 @@ function unsend_button($id_vaga)
             Show_error('');
         }
         // ================================================================
-        
+
         $sql = "UPDATE voluntario
         SET quant_cadastro = quant_cadastro - 1
         WHERE id = ?";
 
-        $result = update($conn,$sql, [$_SESSION['id']]);
+        $result = update($conn, $sql, [$_SESSION['id']]);
 
         if ($result == 0) {
             $conn->rollBack();
@@ -290,7 +290,7 @@ function is_registry_before($id_vaga, $id)
 {
     try {
         $sql = "SELECT COUNT(*) as 'lines' FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
-        $result_search = select(null,$sql, [$id_vaga, $id]);
+        $result_search = select(null, $sql, [$id_vaga, $id]);
 
         if ($result_search[0]['lines'] == 0) {
             return true;
@@ -303,10 +303,11 @@ function is_registry_before($id_vaga, $id)
     }
 }
 
-function is_permited_send_limit($id_vol){
+function is_permited_send_limit($id_vol)
+{
     try {
         $sql = "SELECT quant_cadastro FROM voluntario WHERE id = ?";
-        $result_search = select(null,$sql, [$id_vol]);
+        $result_search = select(null, $sql, [$id_vol]);
 
         if ($result_search[0]['quant_cadastro'] < 3) {
             return true;

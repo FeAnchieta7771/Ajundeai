@@ -58,6 +58,13 @@
             margin-top: 5px;
             width: 100%;
         }
+        select {
+            padding: 10px;
+            border: 1px solid #004652;
+            border-radius: 4px;
+            margin-top: 5px;
+            width: 100%;
+        }
         
         .background {
             position: absolute;
@@ -114,6 +121,10 @@
         .account-option input {
             margin: 0;
         }
+
+        .account-option select {
+            margin: 0;
+        }
         
         .account-logo {
             width: 24px;
@@ -136,7 +147,7 @@
             margin-bottom: 5px;
         }
         
-        .form-group input, .form-group textarea {
+        .form-group input, .form-group textarea, .form-group select {
             width: 100%;
             padding: 12px;
             border: 1px solid #ccc;
@@ -212,6 +223,10 @@
         }
 
         .role-selector input {
+            margin-right: 5px;
+        }
+
+        .role-selector select {
             margin-right: 5px;
         }
 

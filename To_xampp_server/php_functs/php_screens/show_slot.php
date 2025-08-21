@@ -267,7 +267,7 @@ function text_html_header_error()
 }
 function text_html_main($buttom_delete,$num_vaga_atual, $num_vagas_total, $telephone, $whats, $email, $description)
 {
-    require 'php_functs/php_methods/phones.php';
+    require 'php_functs/php_methods/formatting.php';
 
     $whatsapp_show = "";
 
