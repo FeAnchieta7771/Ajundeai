@@ -103,7 +103,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                                     <input type="password" id="password" name="password" placeholder="Sua senha:" maxlength="20" required value='<?php echo save_value('password','voluntario'); ?>'>
                                 </div>
                             </div>
-            
+             
                             <!-- Linha do Telefone (voluntário) e Senha (ambos) -->
                             <div class="form-row">
                                 <div class="form-group">

@@ -21,7 +21,7 @@ function disfuncaoeretil()
         $id_voluntario = $_GET['id_voluntario'];
 
         try {
-            $sql = "SELECT nome_voluntario, email, telefone, whatsapp, sobre, whatsapp FROM voluntario WHERE id = ?";
+            $sql = "SELECT * FROM voluntario WHERE id = ?";
 
             $result = select(null, $sql, [$id_voluntario]);
 
@@ -29,30 +29,87 @@ function disfuncaoeretil()
             Show_error($e);
         }
 
-        echo '<div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" value= ' . $result[0]['nome_voluntario'] . ' readonly>
+        include 'php_functs/php_methods/formatting.php';
+
+        $phone_for_show = Convert_phone_to_show($result[0]['telefone']);
+        $cpf_for_show = Convert_cpf_to_show($result[0]['cpf']);
+
+        if(!empty($result[0]['whatsapp'])){
+            $whats_for_show = Convert_whats_to_show($result[0]['whatsapp']);
+        }
+
+
+        echo '        <div class="fh1">
+           <div class="color_name"><i class="bx  bxs-user"  ></i> VOLUNTARIO <strong>' . strtoupper($result[0]['nome_voluntario']) . '</strong></div>
         </div>
-        <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" name="email" value = ' . $result[0]['email'] . ' readonly>
-        </div>
+        
+        <div id="container">
+          
+
+          </div>
+
+            <div class="tab-contents">
+
+                <div class="content show" id="home">
+                <div class="form-container">
+                    <form class="forms" method="POST" action="php_functs/doAccount.php">
+                        <input type="hidden" name="account_state" value="voluntario">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">NOME:</label>
+                                <input type="text" id="name" name="nome" value= ' . $result[0]['nome_voluntario'] . ' readonly>
+                            </div>
+                        </div>
+                
+                        <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="email">E-MAIL:</label>
+                                    <input type="email" id="email" name="email" value = ' . $result[0]['email'] . ' readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">CPF:</label>
+                                    <input type="text" id="email" name="email" value = "' . $cpf_for_show . '" readonly>
+                                </div>
+                        </div>
+
+                        <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="password">TELEFONE:</label>
+                                    <input type="localiza" id="localiza" name="localiza" value= "' . $phone_for_show . '" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">WHATSAPP:</label>
+                                    <input type="text" id="email" name="email" value = "' . $whats_for_show . '" readonly>
+                                </div>
+                        </div>
+
+                        <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="password">PREFERÊNCIA DE VAGA:</label>
+                                    <input type="localiza" id="localiza" name="localiza" value= "' . $result[0]['categoria_trabalho'] . '" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">PERÍODO DE PARTICIPAÇÃO:</label>
+                                    <input type="text" id="email" name="email" value = ' . $result[0]['periodo'] . ' readonly>
+                                </div>
+                        </div>
+
+                        <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="password">SITUAÇÃO ATUAL:</label>
+                                    <input type="localiza" id="localiza" name="localiza" value= "' . $result[0]['estado_social'] . '" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">DEFICIÊNCIA:</label>
+                                    <input type="text" id="email" name="email" value = ' . $result[0]['pcd'] . ' readonly>
+                                </div>
+                        </div>
             
-        <div class="form-row">
-            <div class="form-group">
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" value= "' . $result[0]['telefone'] . '" readonly>
-            </div>
-            <div class="form-group">
-                <label for="whatsapp">Whatsapp:</label>
-                <input type="whatsapp" id="whatsapp" name="whatsapp" value= ' . $result[0]['whatsapp'] . ' readonly>
-            </div>
-        </div>
-            
-        <div class="form-group">
-            <label for="curriculo">Currículo:</label>
-            <textarea id="curriculo" name="curriculo" readonly>' . $result[0]['sobre'] . ' </textarea>
-        </div>';
+                            <div class="bio-container">
+                                <p id="bio-label">CURRICULO:</p>
+                                <textarea maxlength="1000" rows="5" cols="120" name="about" readonly>' . $result[0]['sobre'] . '</textarea>
+                            </div>
+                </div>';
 
 
     }

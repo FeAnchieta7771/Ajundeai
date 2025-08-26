@@ -40,7 +40,7 @@ function show_registered_slots($result) {
 
     if ($numLinhas <= 0) {
         // Mensagem quando o voluntário não tem vagas cadastradas
-        echo "<div class='quantSlot'><h3>VOCÊ NÃO ESTÁ CADASTRADO EM NENHUMA VAGA</h3></div>";
+        echo "<div class='quantSlot' ><h3 style='color: #e76f00'>PAINEL DE VAGAS CADASTRADAS  •  NENHUMA VAGA CADASTRADA</h3></div>";
         echo "<div class='scroll-wrapper'>";
         echo "<div class='vaga-card' style='background-color:rgb(222, 222, 222); border: none;'>";
         echo "  <img src='img/icons_orange/not_found.png' alt='Ícone' />";
@@ -54,7 +54,7 @@ function show_registered_slots($result) {
     } else {
         $plural_s = ($numLinhas > 1) ? "S" : "";
         $plural_foi = ($numLinhas > 1) ? "RAM" : "I";
-        echo "<div class='quantSlot'><h3>VOCÊ SE CADASTROU EM ".$numLinhas. "/3 VAGA".$plural_s." PERMITIDAS!</h3></div>";
+        echo "<div class='quantSlot' ><h3 style='color: #e76f00'>PAINEL DE VAGAS CADASTRADAS  •  ".$numLinhas. "/3 VAGA".$plural_s." PERMITIDAS!</h3></div>";
         echo "<div class='scroll-wrapper'>";
 
         foreach ($result as $vaga) {

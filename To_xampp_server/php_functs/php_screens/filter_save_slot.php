@@ -104,14 +104,12 @@ function show_filter($result){
             echo "</div>";
         } else {
 
-            $plural_foi = "I";
             $plural_s = "";
 
             if($numLinhas > 1){
                 $plural_s = "S";
-                $plural_foi = "RAM";
             }
-            echo "<div class='quantSlot'><h3>".$numLinhas. " VAGA".$plural_s." FO".$plural_foi." ENCONTRADA".$plural_s."!</h3>";
+            echo "<div class='quantSlot'><h3 style='color: #2289e6;'>PAINEL DE VAGAS SALVAS  •  ".$numLinhas. " VAGA".$plural_s."</h3>";
             echo "</div><div class='scroll-wrapper'>";
 
             #exibição das vagas encontradas

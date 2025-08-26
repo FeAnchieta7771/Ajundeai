@@ -53,9 +53,9 @@ function Convert_whats_to_db($whats){
 
 function Convert_whats_to_show($whats){
     // ############# => (##) ####-####
-    $whats_for_show = "+55 (" . substr($whats, 2, 2) .
-                        ") " . substr($whats, 4, 5) .
-                        "-" . substr($whats, 9, 4);
+    $whats_for_show = "+".substr($whats,0,2)." (" . substr($whats, 2, 2) .
+                            ") " . substr($whats, 4, 4) .
+                            "-" . substr($whats, 8, 4);
     
     return $whats_for_show;
 }
@@ -79,7 +79,7 @@ function Convert_cpf_to_db($cpf){
 
 function Convert_cpf_to_show($cpf){
     // ############# => (##) ####-####
-    $cpf_for_show = substr($cpf, 0, 9) .
+    $cpf_for_show = substr($cpf,0,3). "." . substr($cpf,3,3) . "." . substr($cpf, 6, 3) .
                     "-" . substr($cpf, 8, 2);
     
     return $cpf_for_show;

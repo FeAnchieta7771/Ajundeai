@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         Show_incorrect_text("Já existe um Registro com esse Nome, Insira outro", 'name_repated_error');
     }
 
-    if (!Is_cpf_correct($cpf)) {
+    if ($accout == 'voluntario' && !Is_cpf_correct($cpf)) {
         Show_incorrect_text("O Número de CPF é invalido, Por favor verifique", 'cpf_error');
     }
 

@@ -51,18 +51,20 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     body {
       background-color: #ffffff;
+      background-image: url("../../img/save_voluntary.png");
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     body::-webkit-scrollbar {
     display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
 }
 
-    header {
-      background-color: #e76f00;
-      padding: 15px 30px;
+        .container {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 25px 40px;
+      gap: 40px;
     }
 
     /* .logo img {
@@ -305,21 +307,25 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       display: flex;
       align-items: center;
       width: 100%;
-      justify-content: center;
       background-color: #004d61;
       padding: 10px 0;
-
       background-image: url("../../img/detalhe-painel.png");
       background-repeat: no-repeat;
     }
 
     .painel-bar h1 {
       color: white;
-      font-size: 3rem;
+      font-size: 2rem;
+      margin-left: 33%;
     }
-        .painel-bar a{
+    .painel-a2{
       color: white;
-      margin: 10px;
+      margin-left: 45px;
+    }
+
+    .painel-a1{
+      color: white;
+      margin-left: 20%;
     }
 
       .slot{
@@ -338,6 +344,13 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         display: contents;
 
     }
+
+        .quantSlot{
+      border-bottom: 5px solid #e76f00;
+      padding-bottom: -20px;
+      margin-bottom: 1rem;
+      margin-right: 10px
+    }
   </style>
 </head>
 
@@ -355,13 +368,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <?php show_message(); ?>
 
     <div class="painel-bar">
-    <h1>PAINEL DE CONTROLE</h1>
+      <h1>PAINEL DE CONTROLE</h1>
 
-    <a href="save_voluntary.php">Vagas Salvas</a>
-    <a href="register_voluntary.php">Vacas Cadastradas</a>
-  </div>
-  <!-- Título -->
-  <h3 style="margin-left: 40px; margin-top: 30px;">SUAS VAGAS APLICADAS</h3>
+      <a class="painel-a1" href="save_voluntary.php"><strong>Vagas Salvas</strong></a>
+      <a class="painel-a2" href="register_voluntary.php"><strong>Vacas Cadastradas</strong></a>
+    </div>
 
   <!-- Conteúdo principal -->
   <main class="container">

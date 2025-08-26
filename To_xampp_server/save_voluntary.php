@@ -1,4 +1,3 @@
-<!-- Tela de aprestação das vagas salvas pelo usuário -->
 <?php
 session_start();
 
@@ -28,6 +27,7 @@ function is_checked_before($name){
 }
 ?>
 
+<!-- Tela de Apresentação das vagas cadastradas pelo usuário -->
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -36,7 +36,15 @@ function is_checked_before($name){
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link rel="icon" href="img\Logo_Aba.png">
-  <title>AjundeAi • Controle de Vags</title>
+
+    <link
+      href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+  <link rel="stylesheet" href="css/notification.css">
+
+  <title>AjundeAi • Controle de Vagas</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/header.css">
       <link rel="stylesheet" href="css/notification.css">
@@ -50,13 +58,17 @@ function is_checked_before($name){
 
     body {
       background-color: #ffffff;
+      background-image: url("../../img/backgraud-deashboard.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+
     }
 
     body::-webkit-scrollbar {
-    display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
+      display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
     }
 
-    .container {
+        .container {
       display: flex;
       flex-wrap: wrap;
       padding: 25px 40px;
@@ -97,18 +109,26 @@ function is_checked_before($name){
 
     .vagas {
       flex: 1;
-      min-width: 280px;
+      min-width: 300px;
     }
 
     .vagas h3 {
       color: #003f5c;
       margin-bottom: 20px;
       font-weight: bold;
+      font-size: 1.5rem;
+    }
+
+    .vaga-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
     }
 
 
     .vaga-card {
-      border: 2px solid #e66922;
+      border: 2px solid #e76f00;
       padding: 20px;
       margin-bottom: 20px;
       display: flex;
@@ -119,14 +139,6 @@ function is_checked_before($name){
       align-items: center;
       /* Alinha verticalmente no centro */
       width: 85%;
-      transition: .15s;
-    }
-
-        .vaga-wrapper {
-      position: relative;
-      display: flex;
-      align-items: center;
-      margin-bottom: 30px;
     }
 
     .vaga-card img {
@@ -136,27 +148,63 @@ function is_checked_before($name){
 
     .vaga-info h4 {
       color: #e76f00;
-      font-size: 1.6rem;
-      margin-bottom: 5px;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
     }
 
     .vaga-info span {
       display: block;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
       color: #196e78;
       font-weight: bold;
     }
 
     .vaga-info p {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #444;
     }
 
-    .engloba {
+    .status-icon-externo {
+      position: absolute;
+      right: -20px;
+      /* Ajustado para aproximar os ícones */
+      font-size: 28px;
       display: flex;
       align-items: center;
+      justify-content: center;
+      height: 100%;
     }
 
+    .btn-azul {
+      padding: 20px;
+      font-size: 30px;
+      margin-left: 75px;
+      height: 74px;
+      display: flex;
+      /* Adicionado para que align-items funcione */
+      align-items: center;
+      background-color: #2289e6;
+      color: white;
+      border: 1px solid #2289e6;
+      color: white;
+    }
+
+
+
+    .icon-legenda {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+      font-weight: bold;
+      color: #004d61;
+    }
+
+    .icon-legenda i {
+      margin-right: 6px;
+      font-size: 20px;
+    }
+
+    /* Estilo básico do botão */
     .btn-azul {
       padding: 20px;
       font-size: 30px;
@@ -169,38 +217,68 @@ function is_checked_before($name){
       border: 1px solid #2289e6;
     }
 
-    .btn-azul:hover {
-      background-color: white;
-      color: #2289e6;
+
+    /* Estilo para o botão verde (check) */
+    .btn-verde {
+      background-color: #28a745;
+      border-color: #28a745;
+    }
+
+
+    /* Estilo para o botão vermelho (X) */
+    .btn-vermelho {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+
+
+    /* Estilo para o botão preto (ampulheta) */
+    .btn-preto {
+      background-color: #000000;
+      border-color: #000000;
+    }
+
+    .situacao-titulo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      margin-bottom: 10px
+    }
+
+    .situacao-opcoes {
+      display: none;
+      margin-bottom: 15px
+    }
+
+    .situacao-opcoes.ativo {
+      display: block
     }
 
     .painel-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
+      width: 100%;
       background-color: #004d61;
       padding: 10px 0;
-
       background-image: url("../../img/detalhe-painel.png");
       background-repeat: no-repeat;
     }
 
     .painel-bar h1 {
       color: white;
-      font-size: 3rem;
+      font-size: 2rem;
+      margin-left: 33%;
     }
 
-    .painel-bar a{
+    .painel-a2{
       color: white;
-      margin: 10px;
+      margin-left: 45px;
     }
 
-        .vaga-info h3 {
-      color: #e76f00;
-      font-size: 1.7rem;
-      margin-bottom: 5px;
-      font-family: 'Horizon', sans-serif;
-      transition: .2s;
+    .painel-a1{
+      color: white;
+      margin-left: 20%;
     }
 
       .slot{
@@ -217,22 +295,20 @@ function is_checked_before($name){
         all: unset;
         cursor: pointer;
         display: contents;
-      }
-        
-        .vaga-card-btn{
-        background: none;
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        text-align: left;
-        width: 100%;
-        }
+    }
 
-    
+    .quantSlot{
+      border-bottom: 5px solid #2289e6;
+      padding-bottom: -20px;
+      margin-bottom: 1rem;
+      margin-right: 10px
+    }
+
   </style>
 </head>
 
 <body>
+  <!-- Header com logo e botões -->
   <div class="notifications"></div>
   <header>
       <div class="logo">
@@ -244,15 +320,15 @@ function is_checked_before($name){
   </header>
   <?php show_message(); ?>
 
-      <div class="painel-bar">
-    <h1>PAINEL DE CONTROLE</h1>
+    <div class="painel-bar">
+      <h1>PAINEL DE CONTROLE</h1>
 
-    <a href="save_voluntary.php">Vagas Salvas</a>
-    <a href="register_voluntary.php">Vacas Cadastradas</a>
-  </div>
+      <a class="painel-a1" href="save_voluntary.php"><strong>Vagas Salvas</strong></a>
+      <a class="painel-a2" href="register_voluntary.php"><strong>Vacas Cadastradas</strong></a>
+    </div>
+
   <forms>
     <form method="GET" action="save_voluntary.php">
-    <h1 style="color: #2289e6; margin-top: 40px; margin-left: 40px;">SUAS VAGAS SALVAS</h1>
     <main class="container">
       <aside class="filtros">
         <h2>FILTROS</h2>
@@ -270,35 +346,56 @@ function is_checked_before($name){
     </form>
   </forms>
 
-  <section class="vagas">
-    <?php include 'php_functs\php_screens\filter_save_slot.php'; do_filter_save_slot(); ?>
-    <!-- ! AVISO GUILHERME,  -->
-
-     <!-- <div class="scroll-wrapper"> -->
-      <!-- Aqui os blocos podem ser gerados via PHP -->
-       <!-- <forms>
-        <div class="engloba">
-          <div class="vaga-card">
-            <img src="img\icons_orange\outro.png" alt="Ícone" />
-            <div class="vaga-info">
-              <h4>NOME DA VAGA</h4>
-              <span>5/10 • Nome da ONG</span>
-              <p>Descrição pequena que está dentro do banco que o Guilherme
-                ainda tem que fazer e passar o arquivo pra mim.</p>
-            </div>
+    <!-- Bloco de Vagas-->
+    <section class="vagas">
+      <?php include 'php_functs\php_screens\filter_save_slot.php'; do_filter_save_slot(); ?>
+      
+      <!--- <div class="vaga-wrapper">
+        <div class="vaga-card">
+          <img src="img\icons_orange\outro.png" alt="Ícone" />
+          <div class="vaga-info">
+            <h4>NOME DA VAGA</h4>
+            <span>5/10 • Nome da ONG</span>
+            <p>Descrição pequena que está dentro do banco que o Guilherme ainda tem que fazer e passar o arquivo pra
+              mim.</p>
           </div>
-          <button class="btn-azul"><i class='bx bxs-bookmark'></i></button>
         </div>
-      </forms>  -->
+        <button class="btn-azul btn-preto"><i class='bx bxs-hourglass'></i></button>
 
-      <!-- Repita o .vaga-card conforme necessário -->
-    </div>
+      </div>
 
-  </section>
+      <div class="vaga-wrapper">
+        <div class="vaga-card">
+          <img src="img\icons_orange\outro.png" alt="Ícone" />
+          <div class="vaga-info">
+            <h4>NOME DA VAGA</h4>
+            <span>5/10 • Nome da ONG</span>
+            <p>Descrição pequena que está dentro do banco que o Guilherme ainda tem que fazer e passar o arquivo pra
+              mim.</p>
+          </div>
+        </div>
+        <button class="btn-azul btn-verde"><i class='bx bx-check'></i></button>
+
+      </div>
+
+      <div class="vaga-wrapper">
+        <div class="vaga-card">
+          <img src="img\icons_orange\outro.png" alt="Ícone" />
+          <div class="vaga-info">
+            <h4>NOME DA VAGA</h4>
+            <span>5/10 • Nome da ONG</span>
+            <p>Descrição pequena que está dentro do banco que o Guilherme ainda tem que fazer e passar o arquivo pra
+              mim.</p>
+          </div>
+        </div>
+        <button class="btn-azul btn-vermelho"><i class='bx bx-x'></i></button>
+
+      </div>-->
+
+    </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
-<script src='js/notification.js' defer></script>
+  <script src='js/notification.js' defer></script>
 </body>
-
 </html>

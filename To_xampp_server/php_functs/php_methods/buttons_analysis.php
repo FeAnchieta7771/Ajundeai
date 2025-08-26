@@ -35,7 +35,7 @@ function get_buttons()
                         <input type="hidden" name="action_analysis" value="approve">
                         <input type="hidden" name="id_voluntario" value="' . $id_voluntario . '">
                         <input type="hidden" name="id_vaga" value="' . $id_vaga . '"/>
-                        <button type="submit" name="action" class="btn approve-btn">Aprovar</button>
+                        <button class="btapro" id="btcan_vol" type="cancel">APROVAR</button>
                     </form>
 
                     <form action="php_functs\php_screens\analysis.php" method="POST">
@@ -43,7 +43,7 @@ function get_buttons()
                         <input type="hidden" name="action_analysis" value="disapprove">
                         <input type="hidden" name="id_voluntario" value="' . $id_voluntario . '">
                         <input type="hidden" name="id_vaga" value="' . $id_vaga . '"/>
-                        <button type="submit" name="action" class="btn disapprove-btn">Desaprovar</button>
+                        <button class="btcan" id="btcan_vol" type="cancel">DESAPROVAR</button>
                     </form>
                 </div>';
                 break;
