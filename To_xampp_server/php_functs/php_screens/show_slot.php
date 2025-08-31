@@ -26,7 +26,7 @@ function do_select($sql, $param = [])
 {
 
     try {
-        $result = select(null,$sql, $param);
+        $result = select(null, $sql, $param);
         return $result;
 
     } catch (PDOException $e) {
@@ -123,7 +123,7 @@ function do_slot()
                 do_slot_with_user_logged($id, $_SESSION['id']);
 
             } else {
-                user_not_logged(false, $id,false, 4);
+                user_not_logged(false, $id, false, 4);
 
             }
 
@@ -138,8 +138,8 @@ function do_slot_with_user_logged($id_vaga, $id_user)
 {
 
     $result_register = do_select("SELECT * FROM registro WHERE id_vaga = ? AND id_voluntario = ?", [$id_vaga, $id_user]);
-    
-    $user_cadastred = do_select("SELECT voluntario.quant_cadastro FROM voluntario WHERE voluntario.id = ?",[$id_user]);
+
+    $user_cadastred = do_select("SELECT voluntario.quant_cadastro FROM voluntario WHERE voluntario.id = ?", [$id_user]);
 
     $result = do_select("SELECT vaga.*, ong.nome_ong, ong.email, ong.telefone, ong.whatsapp
              FROM vaga JOIN ong ON ong.id = vaga.id_ong WHERE vaga.id = ?", [$id_vaga]);
@@ -149,12 +149,12 @@ function do_slot_with_user_logged($id_vaga, $id_user)
 
         $html = text_html_header($result[0]['nome'], $result[0]['nome_ong']);
 
-        $html .= text_html_main("",$result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
+        $html .= text_html_main("", $result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
 
         if (is_ong_logged()) {
 
             // uma ong é incapaz de se voluntariar a uma vaga
-            $html .= text_html_buttons('', $result[0]['localizacao'],'');
+            $html .= text_html_buttons('', $result[0]['localizacao'], '');
 
         } else if ($result_register[0]['categoria_registro'] == 'cadastrado') {
 
@@ -162,44 +162,44 @@ function do_slot_with_user_logged($id_vaga, $id_user)
             switch ($result_register[0]['situacao']) {
                 case 'aguarde':
                     $status_button = button_types('submited');
-                    $html .= text_html_buttons($status_button, $result[0]['localizacao'],$user_cadastred[0]['quant_cadastro']);
+                    $html .= text_html_buttons($status_button, $result[0]['localizacao'], intval($user_cadastred[0]['quant_cadastro']));
                     break;
                 case 'aprovado':
                     $status_button = button_types('aproved');
-                    $html .= text_html_buttons($status_button, $result[0]['localizacao'],$user_cadastred[0]['quant_cadastro']);
+                    $html .= text_html_buttons($status_button, $result[0]['localizacao'], intval($user_cadastred[0]['quant_cadastro']));
                     break;
                 case 'negado':
                     $status_button = button_types('denied');
-                    $html .= text_html_buttons($status_button, $result[0]['localizacao'],$user_cadastred[0]['quant_cadastro']);
+                    $html .= text_html_buttons($status_button, $result[0]['localizacao'], intval($user_cadastred[0]['quant_cadastro']));
                     break;
             }
 
         } else if ($result_register[0]['categoria_registro'] == 'salvo') {
 
             $status_button = button_types('saved');
-            $html .= text_html_buttons($status_button, $result[0]['localizacao'],$user_cadastred[0]['quant_cadastro']);
+            $html .= text_html_buttons($status_button, $result[0]['localizacao'], intval($user_cadastred[0]['quant_cadastro']));
         }
 
         echo $html;
 
     } else if (!empty($result_register) and $result_register[0]['categoria_registro'] == 'salvo') {
 
-        user_not_logged(true, $id_vaga,true,$user_cadastred[0]['quant_cadastro']);
+        user_not_logged(true, $id_vaga, true, intval($user_cadastred[0]['quant_cadastro']));
 
     } else if (is_ong_logged()) {
-        
+
         $html = text_html_header($result[0]['nome'], $result[0]['nome_ong']);
 
-        $html .= text_html_main("",$result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
+        $html .= text_html_main("", $result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
 
         // uma ong é incapaz de se voluntariar a uma vaga
-        $html .= text_html_buttons('', $result[0]['localizacao'],4);
+        $html .= text_html_buttons('', $result[0]['localizacao'], 4);
 
         echo $html;
 
-    } else{
+    } else {
 
-        user_not_logged(false, $id_vaga,true,$user_cadastred[0]['quant_cadastro']);
+        user_not_logged(false, $id_vaga, true, intval($user_cadastred[0]['quant_cadastro']));
     }
 
 }
@@ -237,11 +237,11 @@ function do_slot_to_ong($id_vaga)
     $html = text_html_header($result_slot[0]['nome'], $result_slot[0]['nome_ong']);
 
     $buttom_delete = '<button id="delete" class="vaga-excluir"><i class="bx  bxs-trash"  ></i></button>';
-    $html .= text_html_main($buttom_delete,$result_slot[0]['quant_atual'], $result_slot[0]['quant_limite'], $result_slot[0]['telefone'], $result_slot[0]['whatsapp'], $result_slot[0]['email'], $result_slot[0]['descr_total']);
+    $html .= text_html_main($buttom_delete, $result_slot[0]['quant_atual'], $result_slot[0]['quant_limite'], $result_slot[0]['telefone'], $result_slot[0]['whatsapp'], $result_slot[0]['email'], $result_slot[0]['descr_total']);
 
     echo $html;
     // Exibição dos valores da vaga pelo @result_register
-    text_html_voluntarys($result_register, $id_vaga);
+    text_html_voluntarys($result_register, $id_vaga, $result_slot[0]['nome'], $result_slot[0]['categoria_vaga']);
 }
 
 function text_html_header($name_vaga, $name_ong)
@@ -265,18 +265,18 @@ function text_html_header_error()
             </div>
             </header>';
 }
-function text_html_main($buttom_delete,$num_vaga_atual, $num_vagas_total, $telephone, $whats, $email, $description)
+function text_html_main($buttom_delete, $num_vaga_atual, $num_vagas_total, $telephone, $whats, $email, $description)
 {
     require 'php_functs/php_methods/formatting.php';
 
     $whatsapp_show = "";
 
-    if(!empty($whats)){
+    if (!empty($whats)) {
         $whats_format = Convert_whats_to_show($whats);
 
         $whatsapp_show = '
           <p class="vaga-conteudo-contatos">
-            <img src="/img/whats.png" width="15" height="15" /> '.$whats_format.'
+            <img src="/img/whats.png" width="15" height="15" /> ' . $whats_format . '
           </p>';
     }
 
@@ -285,26 +285,26 @@ function text_html_main($buttom_delete,$num_vaga_atual, $num_vagas_total, $telep
     return '<main class="vaga-container">
       <div class="vaga-descricao">
         <h3 class="vaga-descricao-titulo">
-        '.$buttom_delete.'
+        ' . $buttom_delete . '
           DESCRIÇÃO DA VAGA
           <div><i class="bx bxs-user"></i>' . $num_vaga_atual . '/' . $num_vagas_total . '</div>
         </h3>
         <div class="vaga-contatos">
           <p class="vaga-conteudo-contatos">
-            <i class="bx bxs-phone" style="font-size: medium"></i> '.$phone_format.'
+            <i class="bx bxs-phone" style="font-size: medium"></i> ' . $phone_format . '
           </p>
-          '.$whatsapp_show.'
+          ' . $whatsapp_show . '
         </div>
         <div class="vaga-contatos">
           <p class="vaga-conteudo-contatos">
             <i class="bx bxs-envelope" style="font-size: medium"></i>
-            '.$email.'
+            ' . $email . '
           </p>
         </div>
         <br />
         
         <p class="vaga-descricao-texto">
-          '.htmlspecialchars($description).'
+          ' . htmlspecialchars($description) . '
         </p>
       </div>';
     // return '    <main class="vaga-container">
@@ -332,10 +332,10 @@ function text_html_buttons($buttons, $location, $quant_cadastro)
     $inform_limit = "";
     $cadastro_livre = 3 - $quant_cadastro;
 
-    if($cadastro_livre > 0){
+    if ($cadastro_livre > 0) {
         $inform_limit = "
         <div class='alert_limit'>Você ainda pode se cadastrar em $cadastro_livre Vaga(s)</div>";
-    } else if($cadastro_livre == 0) {
+    } else if ($cadastro_livre == 0) {
         $inform_limit = "
         <div class='alert_limit_busy'>Você bateu o limite de 3 Vagas cadastradas. <a href='register_voluntary.php'>GERENCIAR MINHAS VAGAS</a></div>";
     }
@@ -345,7 +345,7 @@ function text_html_buttons($buttons, $location, $quant_cadastro)
         <form method="GET" action="php_functs/php_methods/button_functions.php">
           ' . $buttons . '
         </div>
-        '.$inform_limit.'
+        ' . $inform_limit . '
         <div class="voluntarios">
           <h4>
             <i class="bx  bxs-location" style="font-size: 35px" ></i>
@@ -369,10 +369,16 @@ function text_html_buttons_error()
 }
 
 //Retorno: exibição dinâmica dos voluntários cadastrados á vaga
-function text_html_voluntarys($result_register, $id_vaga)
+function text_html_voluntarys($result_register, $id_vaga, $name_slot, $category)
 {
+    $_SESSION['tela_retrasada'] = $_SESSION['tela_anterior'];
+    $_SESSION['categoria_vaga'] = strtolower($category);
+
     echo '<div class="vaga-lateral">
-        <button class="vaga-procura-voluntario">Buscar Voluntário <i class="bx  bxs-user-search" style="font-size: x-large; margin-left: 0.5rem;" ></i> </button>
+        <form method="GET" action="looking_voluntary.php">
+            <input type="hidden" name="categoria_trabalho" value="' . $category . '"/>
+            <button class="vaga-procura-voluntario">Buscar Voluntário <i class="bx  bxs-user-search" style="font-size: x-large; margin-left: 0.5rem;" ></i> </button>
+        </form>
         <div class="voluntarios">
           <h4>
             <i class="bx bx-contact-book" style="font-size: 35px"></i>
@@ -380,6 +386,7 @@ function text_html_voluntarys($result_register, $id_vaga)
           </h4>
           <br />
           <div class="fixa-scroll">';
+
     $numLinhas = count($result_register);
 
     // echo '<div class="vaga-lateral"><div class="voluntarios">';
@@ -394,13 +401,14 @@ function text_html_voluntarys($result_register, $id_vaga)
             echo '<form method="GET" action="analysis_voluntary_ong.php">
               <input type="hidden" name="id_voluntario" value="' . $voluntarys['id'] . '"/>
               <input type="hidden" name="id_vaga" value="' . $id_vaga . '"/>
+              <input type="hidden" name="name_slot" value="' . $name_slot . '"/>
               <button class="voluntario-btn">
-                <div class="voluntary '.$voluntarys['situacao'].'">
+                <div class="voluntary ' . $voluntarys['situacao'] . '">
                   <i class="bx bxs-user"></i>
                   <div class="voluntary-content">
-                    <div class="name-voluntary">'. htmlspecialchars($voluntarys['nome_voluntario']) .'</div>
+                    <div class="name-voluntary">' . htmlspecialchars($voluntarys['nome_voluntario']) . '</div>
                     <span>';
-            
+
             if ($voluntarys['situacao'] == 'aguarde') {
                 echo 'EM ' . strtoupper($voluntarys['situacao']) . '</span>';
 
@@ -408,7 +416,7 @@ function text_html_voluntarys($result_register, $id_vaga)
 
                 echo strtoupper($voluntarys['situacao']) . '</span>';
             }
-            
+
             echo '</span>
                   </div>
                   <!-- <i class="" onclick="(this.parentElement).remove()"></i> -->
@@ -416,8 +424,8 @@ function text_html_voluntarys($result_register, $id_vaga)
                 `
               </button>
             </form>';
-            
-            
+
+
             // <div class="fixa">
             //     <form method="GET" action="analysis_voluntary_ong.php">
             //     <input type="hidden" name="id_voluntario" value="' . $voluntarys['id'] . '"/>
@@ -453,27 +461,27 @@ function user_not_logged($is_logged, $id_vaga, $_isLogedButHaventAnyRegister, $q
 
     $html = text_html_header($result[0]['nome'], $result[0]['nome_ong']);
 
-    $html .= text_html_main("",$result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
+    $html .= text_html_main("", $result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
 
     $button_definition = 4;
 
-    if($_isLogedButHaventAnyRegister){
+    if ($_isLogedButHaventAnyRegister) {
         $button_definition = $quant_cadastro;
     }
 
     if (!empty($result) and $result[0]['quant_atual'] == $result[0]['quant_limite']) {
         // falta o botao para quando o estiver lotado.
         $status_button = button_types('busy');
-        $html .= text_html_buttons($status_button, $result[0]['localizacao'],$button_definition);
+        $html .= text_html_buttons($status_button, $result[0]['localizacao'], $button_definition);
     } else {
 
         if ($is_logged) {
             $status_button = button_types('saved');
-            $html .= text_html_buttons($status_button, $result[0]['localizacao'],$button_definition);
+            $html .= text_html_buttons($status_button, $result[0]['localizacao'], $button_definition);
         }
         // está livre
         $status_button = button_types('basic');
-        $html .= text_html_buttons($status_button, $result[0]['localizacao'],$button_definition);
+        $html .= text_html_buttons($status_button, $result[0]['localizacao'], $button_definition);
     }
     echo $html;
 }

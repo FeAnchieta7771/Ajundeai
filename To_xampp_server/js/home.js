@@ -52,12 +52,12 @@ const items = document.querySelectorAll('.image_div');
 items.forEach(item => observer.observe(item));
 
 
-let volun_button = document.getElementById('Cadastro_volunt');
+let volun_button = document.querySelectorAll('#Cadastro_volunt');
 let ong_button = document.getElementById('Cadastro_ong');
 
-volun_button.onclick = function(){
+volun_button.forEach( volun => volun.addEventListener('click', () => {
   localStorage.setItem('Botao_guia', 'voluntario');
-}
+}))
 
 ong_button.onclick = function(){
   localStorage.setItem('Botao_guia', 'ong');

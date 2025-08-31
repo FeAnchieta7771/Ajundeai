@@ -11,7 +11,7 @@ function Show_incorrect_text($text, $e)
     exit();
 }
 
-function get_buttons()
+function get_buttons($name_slot)
 {
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
@@ -19,10 +19,19 @@ function get_buttons()
         $id_voluntario = $_GET['id_voluntario'];
 
         try {
+            include '../php_db/conexao.php';
+            $conn->beginTransaction();
+
             $sql = "SELECT situacao FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
-            $result = select(null, $sql, [$id_vaga, $id_voluntario]);
+            $result = select($conn, $sql, [$id_vaga, $id_voluntario]);
+
+            $sql = "SELECT email FROM ong WHERE id = ?";
+            $email_ong = select($conn,$sql,[$_SESSION['id']]);
+
+            $conn->commit();
 
         } catch (PDOException $e) {
+            $conn->rollBack();
             Show_incorrect_text("Algo deu Errado no Servidor, tente novamente mais tarde", $e);
         }
 
@@ -34,6 +43,10 @@ function get_buttons()
 
                         <input type="hidden" name="action_analysis" value="approve">
                         <input type="hidden" name="id_voluntario" value="' . $id_voluntario . '">
+                        <input type="hidden" name="email_ong" value="' . $email_ong[0]['email'] . '">
+                        <input type="hidden" name="email_vol" value="' . $_SESSION['email_vol'] . '">
+                        <input type="hidden" name="name_slot" value="' . $name_slot . '">
+                        <input type="hidden" name="name_vol" value="' . $_SESSION['nome_vol'] . '">
                         <input type="hidden" name="id_vaga" value="' . $id_vaga . '"/>
                         <button class="btapro" id="btcan_vol" type="cancel">APROVAR</button>
                     </form>
@@ -42,6 +55,10 @@ function get_buttons()
 
                         <input type="hidden" name="action_analysis" value="disapprove">
                         <input type="hidden" name="id_voluntario" value="' . $id_voluntario . '">
+                        <input type="hidden" name="email_ong" value="' . $email_ong[0]['email'] . '">
+                        <input type="hidden" name="email_vol" value="' . $_SESSION['email_vol'] . '">
+                        <input type="hidden" name="name_slot" value="' . $name_slot . '">
+                        <input type="hidden" name="name_vol" value="' . $_SESSION['nome_vol'] . '">
                         <input type="hidden" name="id_vaga" value="' . $id_vaga . '"/>
                         <button class="btcan" id="btcan_vol" type="cancel">DESAPROVAR</button>
                     </form>
@@ -67,6 +84,8 @@ function get_buttons()
                 break;
 
         }
+
+        unset($_SESSION['email_vol'],$_SESSION['nome_vol']);
 
     }
 }

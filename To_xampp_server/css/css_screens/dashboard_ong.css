@@ -1,0 +1,181 @@
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background-color: #ffffff;
+        background-image: url("../../img/backgraud-deashboard.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .painel-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #004d61;
+        padding: 10px 0;
+
+        background-image: url("../../img/detalhe-painel.png");
+        background-repeat: no-repeat;
+    }
+
+    .painel-bar h1 {
+        color: white;
+        font-size: 3rem;
+    }
+
+    main {
+        padding: 40px 20px;
+        max-width: 900px;
+        /* Limita a largura máxima */
+        margin: 0 auto;
+        /* Centraliza na tela */
+    }
+
+    .section-title {
+        font-weight: bold;
+        color: #009bce;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-bottom: solid 4px #009bce;
+    }
+
+    .engloba {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .vaga-card form {
+        all: unset;
+        cursor: pointer;
+        display: contents;
+
+    }
+
+    .vaga-card {
+        border: 2px solid #196e78;
+        padding: 20px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        background-color: #f9f9f9;
+        flex-wrap: wrap;
+        height: 170px;
+        align-items: center;
+        /* Alinha verticalmente no centro */
+        transition: .15s;
+    }
+
+    .vaga-card button {
+        all: unset;
+        cursor: pointer;
+        display: contents;
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .vaga-card:hover {
+        background-color: rgb(161, 255, 247);
+    }
+
+    .vaga-card:hover h4 {
+        color: #e76f00;
+        font-size: 1.52rem;
+    }
+
+    .vaga-card img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+    }
+
+    .vaga-info {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .vaga-info h4 {
+        color: #0075f2;
+        font-size: 1.5rem;
+        font-weight: bold;
+        font-family: 'Horizon', sans-serif;
+        transition: .2s;
+        white-space: nowrap;
+        /* Impede quebra de linha */
+        overflow: hidden;
+        /* Esconde o texto que passa do limite */
+        text-overflow: ellipsis;
+    }
+
+    .vaga-info h3 {
+        color: #0075f2;
+        font-size: 1.5rem;
+        font-weight: bold;
+        font-family: 'Horizon', sans-serif;
+        transition: .2s;
+    }
+
+    .vaga-extra {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #004d61;
+        font-size: 1.2rem;
+        font-weight: bold;
+        min-width: 80px;
+    }
+
+    .vaga-extra i {
+        font-size: 60px;
+        margin-bottom: 5px;
+    }
+
+    .button_add {
+        color: white;
+        background-color: #0075f2;
+        box-shadow: 0px 10px 15px -3px rgba(0, 117, 242, 0.46);
+        width: 100px;
+        height: 100px;
+        border-width: 0px;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        transition: .1s;
+    }
+
+    .button_add:hover {
+        width: 200px;
+    }
+
+    .button_add:hover span {
+        display: block;
+    }
+
+    .button_add span {
+        display: none;
+        font-size: 1.2rem;
+        font-family: 'Horizon', sans-serif;
+    }
+
+    .add_vaga {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+    }

@@ -195,7 +195,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                             
                             <div class="divider"></div>
                             
-                            <button class="btlog" id="btlog_vol" name="btlog" type="submit">CADASTRAR-SE</button>
+                            <button class="btlog" id="btlog_vol" name="btlog" type="submit" onclick="localStorage.setItem('Botao_guia', 'voluntario');">CADASTRAR-SE</button>
                         </form>
 
                 </div>
@@ -248,7 +248,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
                     <div class="divider"></div>
                     
-                    <button class="btlog" id="btlog_ong" name="btlog" type="submit">CADASTRAR ONG</button>
+                    <button class="btlog" id="btlog_ong" name="btlog" type="submit" onclick="localStorage.setItem('Botao_guia', 'ong');">CADASTRAR ONG</button>
                     <div id="error" style="color: red;"></div>
                         </form>
 
@@ -257,8 +257,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             </div>
         </div>
 </div>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
-  <script src='js/notification.js' defer></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+<script src='js/notification.js' defer></script>
 <script src="js/whatsapp.js"></script>
 <script src="js/phone.js"></script>
 <script src="js/cpf.js"></script>

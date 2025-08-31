@@ -29,6 +29,9 @@ function disfuncaoeretil()
             Show_error($e);
         }
 
+        $_SESSION['email_vol'] = $result[0]['email'];
+        $_SESSION['nome_vol'] = $result[0]['nome_voluntario'];
+
         include 'php_functs/php_methods/formatting.php';
 
         $phone_for_show = Convert_phone_to_show($result[0]['telefone']);

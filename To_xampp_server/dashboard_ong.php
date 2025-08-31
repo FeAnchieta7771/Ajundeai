@@ -12,7 +12,7 @@ include 'php_functs/php_methods/functions.php';
 // busca situação de login do usuário
 $login_state = is_logged();
 
-if(!$login_state){
+if (!$login_state) {
   header('Location: index.php');
   exit();
 }
@@ -30,231 +30,56 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 <!-- Tela de exibição da situação das vagas da Ong registrada -->
 <!-- Acima de tudo -->
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link
-      href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
-      rel="stylesheet"
-    />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
   <link rel="icon" href="img/Logo_Aba.png">
   <title>AjundeAi • Vagas da ONG</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/notification.css">
+  <link rel="stylesheet" href="css\css_screens\dashboard_ong.css">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    body {
-      background-color: #ffffff;
-      background-image: url("../../img/backgraud-deashboard.png");
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-    }
-
     body::-webkit-scrollbar {
-            display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
-    }
-
-    .painel-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #004d61;
-      padding: 10px 0;
-
-      background-image: url("../../img/detalhe-painel.png");
-      background-repeat: no-repeat;
-    }
-
-    .painel-bar h1 {
-      color: white;
-      font-size: 3rem;
-    }
-
-    main {
-      padding: 40px 20px;
-      max-width: 900px;         /* Limita a largura máxima */
-      margin: 0 auto;           /* Centraliza na tela */
-    }
-
-    .section-title {
-      font-weight: bold;
-      color: #009bce;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: solid 4px #009bce;
-    }
-
-    .engloba {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .vaga-card form{
-        all: unset;
-        cursor: pointer;
-        display: contents;
-
-    }
-
-    .vaga-card {
-      border: 2px solid #196e78;
-      padding: 20px;
-      display: flex;
-      gap: 20px;
-      align-items: center;
-      background-color: #f9f9f9;
-      flex-wrap: wrap;
-      height: 170px;
-      align-items: center;     /* Alinha verticalmente no centro */
-      transition: .15s;
-    }
-
-    .vaga-card button{
-        all: unset;
-        cursor: pointer;
-        display: contents;
-        width: 100%;
-        height: 100%;
-
-    }
-
-    .vaga-card:hover{
-      background-color: rgb(161, 255, 247);
-    }
-
-    .vaga-card:hover h4{
-      color:#e76f00;
-      font-size: 1.52rem;
-    }
-
-    .vaga-card img {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-    }
-
-    .vaga-info {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .vaga-info h4 {
-      color: #0075f2;
-      font-size: 1.5rem;
-      font-weight: bold;
-      font-family: 'Horizon', sans-serif;
-      transition: .2s;
-      white-space: nowrap;         /* Impede quebra de linha */
-      overflow: hidden;            /* Esconde o texto que passa do limite */
-      text-overflow: ellipsis; 
-    }
-
-    .vaga-info h3 {
-      color: #0075f2;
-      font-size: 1.5rem;
-      font-weight: bold;
-      font-family: 'Horizon', sans-serif;
-      transition: .2s;
+      display: none;
+      /* Para navegadores baseados em WebKit (Chrome, Safari) */
     }
 
     .vaga-info p {
-        font-size: 1rem;
-        color: #444;
-        width: 100%; /* ou defina uma largura fixa, se preferir */
-        line-height: 1.4;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+      font-size: 1rem;
+      color: #444;
+      width: 100%;
+      /* ou defina uma largura fixa, se preferir */
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
 
-        /* Importante para funcionar corretamente */
-        text-overflow: ellipsis;
-        word-break: break-word; /* quebra palavras longas */
-    }
-
-    .vaga-extra {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #004d61;
-      font-size: 1.2rem;
-      font-weight: bold;
-      min-width: 80px;
-    }
-
-    .vaga-extra i {
-      font-size: 60px;
-      margin-bottom: 5px;
-    }
-
-    .button_add{
-      color: white;
-      background-color: #0075f2;
-      box-shadow: 0px 10px 15px -3px rgba(0, 117, 242, 0.46);
-      width: 100px;
-      height: 100px;
-      border-width: 0px;
-      border-radius: 100px;
-      display: flex;              
-      justify-content: center;
-      align-items: center;        
-      gap: 10px;                  
-      cursor: pointer;
-      transition: .1s;
-    }
-
-    .button_add:hover{
-      width: 200px;
-    }
-
-    .button_add:hover span{
-      display: block;
-    }
-
-    .button_add span{
-      display: none;
-      font-size: 1.2rem;
-      font-family: 'Horizon', sans-serif;
-    }
-
-    .add_vaga{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      vertical-align: middle;
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
+      /* Importante para funcionar corretamente */
+      text-overflow: ellipsis;
+      word-break: break-word;
+      /* quebra palavras longas */
     }
   </style>
 </head>
 
 <body>
-<div class="notifications"></div>
-<header>
+  <div class="notifications"></div>
+  <header>
     <div class="logo">
-        <a href="index.php">
-            <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
-        </a>
+      <a href="index.php">
+        <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+      </a>
     </div>
     <?php echo $buttons_header; ?>
-</header>
-<?php show_message(); ?>
+  </header>
+  <?php show_message(); ?>
 
   <div class="painel-bar">
     <h1>PAINEL DE CONTROLE</h1>
@@ -262,15 +87,16 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
   <div class="add_vaga">
     <form method="GET" action="create_slot_ong.php">
-    <button type="submit" class="button_add">
-      <i class='bx  bx-plus' style="font-size: 40px; line-height: 1; display: inline-block;" ></i>  
-      <span>Criar Vaga</span>
-    </button>
+      <button type="submit" class="button_add">
+        <i class='bx  bx-plus' style="font-size: 40px; line-height: 1; display: inline-block;"></i>
+        <span>Criar Vaga</span>
+      </button>
     </form>
   </div>
   <main>
     <div class="section-title">Suas Vagas</div>
-    <?php include 'php_functs/php_screens/filter_dashboard.php'; do_dashboard(); ?>
+    <?php include 'php_functs/php_screens/filter_dashboard.php';
+    do_dashboard(); ?>
     <!-- <div class="engloba">
       <div class="vaga-card">
         <img src="img/icons_orange/outro.png" alt="Ícone da vaga" />
@@ -284,11 +110,12 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         </div>
       </div> -->
 
-      <!-- Adicione outros cards abaixo -->
+    <!-- Adicione outros cards abaixo -->
     </div>
   </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
   <script src='js/notification.js' defer></script>
-  </body>
-  </html>
+</body>
+
+</html>

@@ -121,12 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     } catch (PDOException $e) {
 
-        echo "<script>
-            window.alert('Ocorreu algo no Servidor, tente novamente mais tarde');
-        </script>";
-
-        header('Location: ../account.php');
-        exit();
+        Show_error($e);
     }
 }
 

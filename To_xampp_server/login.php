@@ -28,10 +28,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-      href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
-      rel="stylesheet"
-    />
+  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
   <link rel="icon" href="img\Logo_Aba.png">
   <title>AjundeAi • Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -88,16 +85,16 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
               <div class="form-container">
                 <label for="email">NOME OU EMAIL</label>
                 <input type="text" name="email" placeholder="Insira nome ou email aqui" maxlength="150" required
-                  value='<?php echo save_value('nome_email','voluntario');?>'>
+                  value='<?php echo save_value('nome_email', 'voluntario'); ?>'>
                 <br>
                 <br>
                 <label for="password">SENHA</label>
                 <input type="password" name="password" placeholder="Insira sua senha aqui" maxlength="20" required
-                  value='<?php echo save_value('password','voluntario');?>'>
+                  value='<?php echo save_value('password', 'voluntario'); ?>'>
               </div>
 
               <p class="signup">Não possui uma conta? <a href="account.php">CADASTRE-SE</a></p>
-              <button class="btlog" type="submit">LOGIN</button>
+              <button class="btlog" type="submit" onclick="localStorage.setItem('Botao_guia', 'voluntario');">LOGIN</button>
             </form>
           </div>
         </div>
@@ -110,16 +107,16 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
               <div class="form-container">
                 <label for="email">NOME OU EMAIL DA ONG</label>
                 <input type="text" name="email" placeholder="Insira nome ou email aqui" maxlength="150"
-                  value='<?php echo save_value('nome_email','ong');?>'>
+                  value='<?php echo save_value('nome_email', 'ong'); ?>'>
                 <br>
                 <br>
                 <label for="password">SENHA DE REGISTRO</label>
                 <input type="password" name="password" placeholder="Insira sua senha aqui" maxlength="20"
-                  value='<?php echo save_value('password','ong');?>'>
+                  value='<?php echo save_value('password', 'ong'); ?>'>
               </div>
 
               <p class="signup">Não possui uma conta? <a href="account.php">CADASTRE-SE</a></p>
-              <button class="btlog" type="submit">LOGIN</button>
+              <button class="btlog" type="submit" onclick="localStorage.setItem('Botao_guia', 'voluntario');">LOGIN</button>
             </form>
           </div>
         </div>
