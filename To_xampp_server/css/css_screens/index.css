@@ -10,7 +10,11 @@
       }
 
       .hero {
-        background: linear-gradient(135deg, #003a45 60%, #005e55 100%);
+        background-image: url("../../img/index-img.png");
+        background-repeat: no-repeat;
+        justify-content: center;
+        background-size: cover;
+        justify-content: center;
         position: relative;
         padding: 180px 20px;
         text-align: center;

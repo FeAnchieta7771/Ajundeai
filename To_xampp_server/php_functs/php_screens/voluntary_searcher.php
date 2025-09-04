@@ -90,12 +90,11 @@ function show_filter($result)
         foreach ($result as $user_result) {
             // busca a imagem a partir da categoria da vaga
             $url = image_filter($user_result['categoria_trabalho']);
-            echo '<div class="vaga-card">';
 
             echo "<form method='GET' action='../show_slot_voluntary.php'>";
             echo "<input type='hidden' name='type' value='filter_base'>";
             echo "<input type='hidden' name='id_vaga' value=" . $user_result['id'] . ">";
-            echo "<button type='submit'>";
+            echo "<button class='vaga-card' type='submit'>";
 
             echo "<i class='bxs-user' ></i>";
             echo '<img src="'.$url.'" alt="Ícone" />';

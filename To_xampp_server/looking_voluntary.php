@@ -102,6 +102,7 @@ if (isset($_GET['voltar'])) {
       border-bottom: 2px solid #15728a;
       padding-bottom: 2px;
       font-size: 1.3rem;
+      font-family: "Horizon", sans-serif;
     }
 
     .filtros label {
@@ -127,7 +128,6 @@ if (isset($_GET['voltar'])) {
     }
 
     .vagas h3 {
-      color: #003f5c;
       margin-bottom: 20px;
       font-weight: bold;
       font-size: 1.5rem;
@@ -153,11 +153,23 @@ if (isset($_GET['voltar'])) {
       align-items: center;
       /* Alinha verticalmente no centro */
       width: 100%;
+      text-align: left;
+    }
+
+    .vaga-card:hover {
+      background-color: rgb(193, 250, 246);
+      cursor:pointer;
     }
 
     .vaga-card img {
       width: 120px;
       height: 120px;
+    }
+
+    .vaga-info{
+        width: 100%;
+        text-align: left;
+        display: grid;
     }
 
     .vaga-info h4 {
@@ -166,9 +178,27 @@ if (isset($_GET['voltar'])) {
       margin-bottom: 8px;
     }
 
+    .vaga-info h4:hover {
+      color: #004aad;
+      font-size: 2.03rem;
+      margin-bottom: 8px;
+    }
+
     .vaga-info p {
       font-size: 1rem;
       color: #444;
+      text-overflow: ellipsis;
+      text-align: left;
+      flex: 1;
+    
+      /* width: 10rem; */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      /* number of lines to show */
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
     .status-icon-externo {
@@ -245,10 +275,11 @@ if (isset($_GET['voltar'])) {
     }
 
     .quantSlot{
-      border-bottom: 5px solid #2289e6;
+      border-bottom: 5px solid #e66922;
       padding-bottom: -20px;
       margin-bottom: 1rem;
-      margin-right: 10px
+      margin-right: 10px;
+      color: #e66922 !important
     }
 
     .bxs-user{
