@@ -149,7 +149,7 @@ function do_slot_with_user_logged($id_vaga, $id_user)
 
         $html = text_html_header($result[0]['nome'], $result[0]['nome_ong']);
 
-        $html .= text_html_main("", $result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
+        $html .= text_html_main( $result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
 
         if (is_ong_logged()) {
 
@@ -190,7 +190,7 @@ function do_slot_with_user_logged($id_vaga, $id_user)
 
         $html = text_html_header($result[0]['nome'], $result[0]['nome_ong']);
 
-        $html .= text_html_main("", $result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
+        $html .= text_html_main($result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
 
         // uma ong é incapaz de se voluntariar a uma vaga
         $html .= text_html_buttons('', $result[0]['localizacao'], 4);
@@ -236,8 +236,8 @@ function do_slot_to_ong($id_vaga)
     // Exibição dos valores da vaga pelo @result_slot
     $html = text_html_header($result_slot[0]['nome'], $result_slot[0]['nome_ong']);
 
-    $buttom_delete = '<button id="delete" class="vaga-excluir"><i class="bx  bxs-trash"  ></i></button>';
-    $html .= text_html_main($buttom_delete, $result_slot[0]['quant_atual'], $result_slot[0]['quant_limite'], $result_slot[0]['telefone'], $result_slot[0]['whatsapp'], $result_slot[0]['email'], $result_slot[0]['descr_total']);
+    // $buttom_delete = '<button id="delete" class="vaga-excluir"><i class="bx  bxs-trash"  ></i></button>';
+    $html .= text_html_main( $result_slot[0]['quant_atual'], $result_slot[0]['quant_limite'], $result_slot[0]['telefone'], $result_slot[0]['whatsapp'], $result_slot[0]['email'], $result_slot[0]['descr_total']);
 
     echo $html;
     // Exibição dos valores da vaga pelo @result_register
@@ -265,7 +265,7 @@ function text_html_header_error()
             </div>
             </header>';
 }
-function text_html_main($buttom_delete, $num_vaga_atual, $num_vagas_total, $telephone, $whats, $email, $description)
+function text_html_main( $num_vaga_atual, $num_vagas_total, $telephone, $whats, $email, $description)
 {
     require 'php_functs/php_methods/formatting.php';
 
@@ -285,7 +285,6 @@ function text_html_main($buttom_delete, $num_vaga_atual, $num_vagas_total, $tele
     return '<main class="vaga-container">
       <div class="vaga-descricao">
         <h3 class="vaga-descricao-titulo">
-        ' . $buttom_delete . '
           DESCRIÇÃO DA VAGA
           <div><i class="bx bxs-user"></i>' . $num_vaga_atual . '/' . $num_vagas_total . '</div>
         </h3>
@@ -461,7 +460,7 @@ function user_not_logged($is_logged, $id_vaga, $_isLogedButHaventAnyRegister, $q
 
     $html = text_html_header($result[0]['nome'], $result[0]['nome_ong']);
 
-    $html .= text_html_main("", $result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
+    $html .= text_html_main( $result[0]['quant_atual'], $result[0]['quant_limite'], $result[0]['telefone'], $result[0]['whatsapp'], $result[0]['email'], $result[0]['descr_total']);
 
     $button_definition = 4;
 

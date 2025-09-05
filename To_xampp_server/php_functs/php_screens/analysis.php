@@ -2,6 +2,13 @@
 
 include '../php_db/methods.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../../PHPMailer/src/Exception.php';
+require '../../PHPMailer/src/PHPMailer.php';
+require '../../PHPMailer/src/SMTP.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -116,96 +123,115 @@ function aproved($id_vaga, $id_voluntario, $name_slot,$name_vol){
 
 function setEmail($type, $name_slot,$name_vol) {
 
-    $email_vol = $_POST['email_vol'];
-    $email_ong = $_POST['email_ong'];
+    include '../../db/gmail_params/code/cAJU.php';
+    include '../../db/gmail_params/gmail/gAJU.php';
 
+    $g_jundiai = $gmail_ajundeai;
+    $c_jundiai = $code_ajundeai;
+    // ----------------------
+    // Configurações da vaga
+    // ----------------------
     $candidate_name = $name_vol;
+    $position_name  = $name_slot;
     $org_name       = $_SESSION['name'];
-    $org_email      = $email_ong;
-    $to             = $email_vol;
-    $subject        = "APROVAÇÃO na vaga $name_slot — próximos passos";
+    $portal_link    = 'https://ajundeai.org/vagas/analista-dados';
 
-    if ($type == 'aprroved'){
+    // ----------------------
+    // PHPMailer
+    // ----------------------
+    $mail = new PHPMailer(true);
 
-        $portal_link    = 'https://portal.exemplo.org/vagas/analista-dados';
+    try {
+        // Configuração do SMTP
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com';        // servidor SMTP
+        $mail->SMTPAuth   = true;
+        $mail->Username   = $g_jundiai;  // e-mail do serviço
+        $mail->Password   = $c_jundiai;    // senha de app
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS
+        $mail->Port       = 587;
 
-        // Partes do e-mail
-        $textBody = "Olá $candidate_name,\n\n"
-            ."Temos uma ótima notícia! A ONG $org_name, após analisar o seu currículo, confirmou sua aprovação para a vaga $name_slot.\n\n"
-            ."Para consultar orientações, próximos passos e mensagens, acesse o portal do Ajundeai, faça o login, e vá até a aba 'Vagas':\n"
-            ."$portal_link\n\n"
-            ."Este e-mail foi enviado automaticamente pelo sistema Ajundeai em nome da ONG $org_name\n."
-            ."Se tiver dúvidas, responda a esta mensagem ou entre em contato diretamente com a ONG.\n\n"
-            ."Atenciosamente,\n"
-            ."Equipe Ajundeai\n"
-            ."https://ajundeai.org \n";
+        // Remetente
+        $mail->setFrom('ajundeai.service@gmail.com', 'Ajundeai');
+        $mail->addReplyTo($_POST['email_ong'], $org_name); // ONG pode responder
 
-        $htmlBody = "<p>Olá {{candidate_name}},</p>"
-            ."<p>Temos uma ótima notícia! A ONG <strong>$org_name</strong>, após analisar o seu currículo, confirmou sua <strong>aprovação</strong> para a vaga <strong>$name_slot</strong>.</p>"
-            ."<p>Para consultar orientações, próximos passos e mensagens, acesse o portal do <strong>Ajundeai</strong>, faça o login, e vá até a aba 'Vagas':"
-            ."<br><a href='$portal_link'>{{portal_link}}</a></p>"
-            ."<p>Este e-mail foi enviado automaticamente pelo sistema <strong>Ajundeai</strong> em nome da ONG <strong>$org_name</strong>."
-            ."Se tiver dúvidas, responda a esta mensagem ou entre em contato diretamente com a ONG.</p>"
-            ."<p>Atenciosamente,<br>"
-            ."Equipe Ajundeai<br>"
-            ."<a href='https://ajundeai.org'>ajundeai.org</a></p>";
+        // Destinatário
+        $mail->addAddress($_POST['email_vol'], $candidate_name);
 
-    } else if ($type == 'disapprove'){
+        // Conteúdo do e-mail
+        $mail->isHTML(true);
 
-        $portal_link    = 'https://portal.exemplo.org/vagas/analista-dados';
+        if ($type == 'aprroved'){
+            $mail->Subject = "Aprovação na vaga $position_name — ONG $org_name";
 
-        // Partes do e-mail
-        $textBody = "Olá $candidate_name,\n\n"
-            ."Agradecemos sua candidatura para a vaga $name_slot, vinculada à ONG $org_name.\n\n"
-            ."Após análise do seu currículo, infelizmente você não foi selecionado(a) para esta oportunidade.\n"  
-            ."Sua participação foi muito importante, e recomendamos que continue acompanhando novas vagas no Ajundeai, pois podem surgir oportunidades alinhadas ao seu perfil.\n"
-            ."Acesse: $portal_link\n\n"
-            ."Este e-mail foi enviado automaticamente pelo sistema Ajundeai em nome da ONG $org_name.\n"  
-            ."Em caso de dúvidas, você pode responder a esta mensagem ou contatar diretamente a ONG.\n\n"
-            ."Desejamos sucesso em seus próximos passos!\n"
-            ."Equipe Ajundeai\n"
-            ."https://ajundeai.org \n";
+            // Corpo HTML
+            $mail->Body = "
+            <p>Olá $candidate_name,</p>
+            <p>Temos uma ótima notícia! A ONG <strong>$org_name</strong>, após analisar o seu currículo, confirmou sua <strong>aprovação</strong> para a vaga <strong>$name_slot</strong>.</p>
+            <p>Para consultar orientações, próximos passos e mensagens, acesse o portal do <strong>Ajundeai</strong>, faça o login, e vá até a aba 'Vagas':
+            <br><a href='$portal_link'>$portal_link</a></p>
+            <p>Este e-mail foi enviado automaticamente pelo sistema <strong>Ajundeai</strong> em nome da ONG <strong>$org_name</strong>.
+            Se tiver dúvidas, responda a esta mensagem ou entre em contato diretamente com a ONG.</p>
+            <p>Atenciosamente,<br>
+            Equipe Ajundeai<br>
+            <a href='https://ajundeai.org'>ajundeai.org</a></p>
+            ";
 
-        $htmlBody = "<p>Olá {{candidate_name}},</p>"
-            ."<p>Agradecemos sua candidatura para a vaga <strong>$name_slot</strong>, vinculada à ONG <strong>$org_name</strong>.</p>"
-            ."<p>Após análise do seu currículo, infelizmente você não foi selecionado(a) para esta oportunidade." 
-            ."Sua participação foi muito importante, e recomendamos que continue acompanhando novas vagas no Ajundeai, pois podem surgir oportunidades alinhadas ao seu perfil.</p>"
-            ."<p>Recomendamos que continue acompanhando novas vagas no <strong>Ajundeai</strong>, pois podem surgir oportunidades alinhadas ao seu perfil e interesses:"
-            ."<br>Acesse: <a href='$portal_link'>'portal_link'</a></p>"
-            ."<p>Este e-mail foi enviado automaticamente pelo sistema <strong>Ajundeai</strong> em nome da ONG <strong>$org_name</strong>."  
-            ."Em caso de dúvidas, você pode responder a esta mensagem ou contatar diretamente a ONG.</p>"
-            ."<p>Desejamos sucesso em seus próximos passos!<br>"
-            ."Equipe Ajundeai<br>"
-            ."<a href='https://ajundeai.org'>ajundeai.org</a></p>";
-    }
+            // Corpo em texto simples (alternativo)
+            $mail->AltBody = "Olá $candidate_name,
+                
+            Temos uma ótima notícia! A ONG $org_name, após analisar o seu currículo, confirmou sua aprovação para a vaga $position_name.
+            
+            Para consultar orientações, próximos passos e mensagens, acesse o portal do Ajundeai, faça o login, e vá até a aba 'Vagas':
+            $portal_link
+            
+            Este e-mail foi enviado automaticamente pelo sistema Ajundeai em nome da ONG $org_name.
+            Se tiver dúvidas, responda a esta mensagem ou entre em contato diretamente com a ONG.
+            
+            Atenciosamente,
+            Equipe Ajundeai
+            https://ajundeai.org
+            ";
 
-    // Fronteira MIME
-    $boundary = md5(uniqid(time(), true));
+        }  else if ($type == 'disapprove'){
+            $mail->Subject = "Atualização sobre sua candidatura à vaga $position_name — ONG $org_name";
 
-    // Cabeçalhos
-    $headers  = "From: $org_name <$org_email>\r\n";
-    $headers .= "Reply-To: $org_email\r\n";
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
+            // Corpo HTML
+            $mail->Body = "
+            <p>Olá $candidate_name,</p>
+            <p>Agradecemos sua candidatura para a vaga <strong>$position_name</strong>, vinculada à ONG <strong>$org_name</strong>.</p>
+            <p>Após análise do seu currículo, infelizmente você não foi selecionado(a) para esta oportunidade.
+            Sua participação foi muito importante, e recomendamos que continue acompanhando novas vagas no Ajundeai, pois podem surgir oportunidades alinhadas ao seu perfil.</p>
+            <p>Recomendamos que continue acompanhando novas vagas no <strong>Ajundeai</strong>, pois podem surgir oportunidades alinhadas ao seu perfil e interesses:
+            <br>Acesse: <a href='$portal_link'>'portal_link'</a></p>
+            <p>Este e-mail foi enviado automaticamente pelo sistema <strong>Ajundeai</strong> em nome da ONG <strong>$org_name</strong>.  
+            Em caso de dúvidas, você pode responder a esta mensagem ou contatar diretamente a ONG.</p>
+            <p>Desejamos sucesso em seus próximos passos!<br>
+            Equipe Ajundeai<br>
+            <a href='https://ajundeai.org'>ajundeai.org</a></p>";
 
-    // Corpo MIME
-    $message  = "--$boundary\r\n";
-    $message .= "Content-Type: text/plain; charset=UTF-8\r\n";
-    $message .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-    $message .= $textBody . "\r\n";
-    $message .= "--$boundary\r\n";
-    $message .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $message .= "Content-Transfer-Encoding: 8bit\r\n\r\n";
-    $message .= $htmlBody . "\r\n";
-    $message .= "--$boundary--";
+            // Corpo em texto simples (alternativo)
+            $mail->AltBody = "Olá $candidate_name,
+            
+            Agradecemos sua candidatura para a vaga $position_name, vinculada à ONG $org_name.
+            
+            Após análise do seu currículo, infelizmente você não foi selecionado(a) para esta oportunidade.  
+            Sua participação foi muito importante, e recomendamos que continue acompanhando novas vagas no Ajundeai, pois podem surgir oportunidades alinhadas ao seu perfil.
+            Acesse: $portal_link
+            
+            Este e-mail foi enviado automaticamente pelo sistema Ajundeai em nome da ONG $org_name.  
+            Em caso de dúvidas, você pode responder a esta mensagem ou contatar diretamente a ONG.
+            
+            Desejamos sucesso em seus próximos passos!
+            Equipe Ajundeai
+            https://ajundeai.org";
+        }
+        // Enviar
+        $mail->send();
+        // echo "E-mail de aprovação enviado com sucesso!";
 
-    // Envio
-    $ok = mail($to, $subject, $message, $headers);
-
-    if ($ok) {
-    echo "E-mail enviado com sucesso.";
-    } else {
-    echo "Falha ao enviar e-mail.";
+    } catch (Exception $e) {
+        echo "Falha ao enviar e-mail: {$mail->ErrorInfo}";
     }
 
 }
