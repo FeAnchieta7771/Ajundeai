@@ -150,6 +150,8 @@ function setEmail($type, $name_slot,$name_vol) {
         $mail->Password   = $c_jundiai;    // senha de app
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // TLS
         $mail->Port       = 587;
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = 'base64';
 
         // Remetente
         $mail->setFrom('ajundeai.service@gmail.com', 'Ajundeai');
@@ -162,7 +164,7 @@ function setEmail($type, $name_slot,$name_vol) {
         $mail->isHTML(true);
 
         if ($type == 'aprroved'){
-            $mail->Subject = "Aprovação na vaga $position_name — ONG $org_name";
+            $mail->Subject = "| NOTIFICAÇÃO AJUNDEAI | Aprovação na vaga $position_name — ONG $org_name";
 
             // Corpo HTML
             $mail->Body = "
@@ -194,7 +196,7 @@ function setEmail($type, $name_slot,$name_vol) {
             ";
 
         }  else if ($type == 'disapprove'){
-            $mail->Subject = "Atualização sobre sua candidatura à vaga $position_name — ONG $org_name";
+            $mail->Subject = "| NOTIFICAÇÃO AJUNDEAI | Atualização sobre sua candidatura à vaga $position_name — ONG $org_name";
 
             // Corpo HTML
             $mail->Body = "

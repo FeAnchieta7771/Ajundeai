@@ -19,7 +19,7 @@ function get_buttons($name_slot)
         $id_voluntario = $_GET['id_voluntario'];
 
         try {
-            include '../php_db/conexao.php';
+            include 'php_functs/php_db/conexao.php';
             $conn->beginTransaction();
 
             $sql = "SELECT situacao FROM registro WHERE id_vaga = ? AND id_voluntario = ?";
@@ -67,14 +67,14 @@ function get_buttons($name_slot)
 
             case 'aprovado':
                 echo '<div class="status-container">
-                    <img src="status_logo.png" alt="Status Logo" class="status-logo">
+                    <img src="img/approved.png" alt="Status Logo" class="status-logo">
                     <span class="status-text">Aprovado</span>
                 </div>';
                 break;
 
             case 'negado':
                 echo '<div class="status-container">
-                    <img src="status_logo.png" alt="Status Logo" class="status-logo">
+                    <img src="img/denied.png" alt="Status Logo" class="status-logo">
                     <span class="status-text">Desaprovado</span>
                 </div>';
                 break;

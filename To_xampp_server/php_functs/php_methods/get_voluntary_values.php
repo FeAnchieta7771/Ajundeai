@@ -55,7 +55,6 @@ function disfuncaoeretil()
 
                 <div class="content show" id="home">
                 <div class="form-container">
-                    <form class="forms" method="POST" action="php_functs/doAccount.php">
                         <input type="hidden" name="account_state" value="voluntario">
                         <div class="form-row">
                             <div class="form-group">

@@ -11,6 +11,7 @@ $is_ong = is_ong_logged();
 
 // setar botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
+print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +59,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         disfuncaoeretil();
         ?>
         <?php include 'php_functs/php_methods/buttons_analysis.php';
-        get_buttons($_POST['name_slot']); ?>
+        get_buttons($_SESSION['name_slot']); ?>
         <!-- <div class="fh1">
            <div class="color_name">VOLUNTARIO[NOME]</div>
         </div>

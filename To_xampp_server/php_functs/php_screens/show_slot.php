@@ -110,7 +110,7 @@ function do_slot()
 
 
         $type_filter = $_GET['type'];
-        $id = $_GET['id_vaga'];
+        $id = (int) $_GET['id_vaga'];
         ////////////////////////////////////////////////////////////////////
 
         // ! ESSE FILTRO VAI PARA PESQUISAS FEITAS PELA
@@ -154,7 +154,7 @@ function do_slot_with_user_logged($id_vaga, $id_user)
         if (is_ong_logged()) {
 
             // uma ong é incapaz de se voluntariar a uma vaga
-            $html .= text_html_buttons('', $result[0]['localizacao'], '');
+            $html .= text_html_buttons('', $result[0]['localizacao'], 3);
 
         } else if ($result_register[0]['categoria_registro'] == 'cadastrado') {
 
@@ -231,6 +231,8 @@ function do_slot_to_ong($id_vaga)
     ORDER BY CASE WHEN registro.situacao = 'aguarde' THEN 1 WHEN registro.situacao = 'aprovado' THEN 2 ELSE 3 END";
 
     $result_register = do_select($sql, [$id_vaga]);
+
+    $_SESSION['name_slot'] = $result_slot[0]['nome'];
 
     // Exibição final dos resultados
     // Exibição dos valores da vaga pelo @result_slot
