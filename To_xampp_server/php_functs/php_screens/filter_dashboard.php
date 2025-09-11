@@ -31,7 +31,7 @@ function do_dashboard(){
         try{
             $result = select(null,$sql,[$id_ong]);
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             Show_error($e);
         }
         show_filter($result);

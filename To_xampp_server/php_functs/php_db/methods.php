@@ -27,7 +27,7 @@ function select($pdo, $sql, $param = [])
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
 
         throw new Exception($e->getMessage());
     }
@@ -61,7 +61,7 @@ function insert($pdo, $sql, $param = [])
 
         return $result;
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
 
         throw new Exception($e->getMessage());
     }
@@ -94,7 +94,7 @@ function delete($pdo, $sql, $condictions = [])
 
         return $result;
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
 
         throw new Exception($e->getMessage());
     }
@@ -127,7 +127,7 @@ function update($pdo, $sql, $param = [])
 
         return $result;
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
 
         throw new Exception($e->getMessage());
     }

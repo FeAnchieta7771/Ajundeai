@@ -1,0 +1,90 @@
+# esta vendo esta merda?
+# entao primeiramente, quando a tela abre, a primeira coisa que tem que aparecer, é qual o tipo do usuario?
+# exemplo, quando o usuario é voluntario, tem que aparecer os campos do voluntario, que ja esta no user profile:
+
+#   <div class="painel">
+#     <!-- Perfil Voluntário -->
+#     <div class="perfil" id="perfilBox">
+#       <div class="perfil-header">
+#         <div class="left">
+#           <i class='bx bxs-user' style="font-size:22px;"></i>
+#           <span>TIPO DA CONTA: VOLUNTÁRIO</span>
+#         </div>
+#         <button class="btn-trash" title="Excluir conta">
+#           <i class='bx bxs-trash'></i>
+#         </button>
+#       </div>
+#       <form id="formPerfil">
+#         <input type="text" name="nome" placeholder="Nome" disabled>
+#         <input type="text" name="cpf" placeholder="CPF" disabled>
+#         <input type="email" name="email" placeholder="Email" disabled>
+#         <input type="password" name="senha" placeholder="Senha" disabled>
+#         <input type="text" name="telefone" placeholder="Telefone" disabled>
+#         <input type="text" name="whatsapp" placeholder="WhatsApp" disabled>
+#         <input type="text" name="categoria" placeholder="Categoria de preferência" disabled>
+#         <input type="text" name="periodo" placeholder="Período" disabled>
+#         <input type="text" name="situacao" placeholder="Situação atual" disabled>
+#         <input type="text" name="deficiencia" placeholder="Deficiência" disabled>
+#         <textarea name="sobre" placeholder="Conte um pouco sobre você e suas experiências" disabled></textarea>
+
+#         <div class="botoes">
+#           <button type="button" class="btn btn-editar" id="btnEditar">Editar</button>
+#           <button type="button" class="btn btn-cancelar" id="btnCancelar" style="display:none;">Cancelar</button>
+#           <button type="submit" class="btn btn-alterar" id="btnAlterar" style="display:none;">Alterar</button>
+#         </div>
+#       </form>
+#     </div>
+
+#     ja caso seja ong tem que aparecer essa coisa gostosa aqui:
+    
+#     <div class="perfil" id="perfilBox">
+
+#   <div class="perfil-header">
+
+#     <div class="left">
+
+#       <i class='bx bxs-buildings' style="font-size:22px;"></i>
+
+#       <span>TIPO DA CONTA: ONG</span>
+
+#     </div>
+
+#   </div>
+
+#   <form id="formPerfil">
+
+#     <input type="text" name="nome" placeholder="Nome" class="input-nome" disabled>
+
+#     <input type="email" name="email" placeholder="Email" disabled>
+
+#     <input type="password" name="senha" placeholder="Senha" disabled>
+
+#     <input type="text" name="telefone" placeholder="Telefone" disabled>
+
+#     <input type="text" name="whatsapp" placeholder="WhatsApp" disabled>
+
+#     <textarea name="sobre" placeholder="Conte um pouco mais sobre a ONG/Instituição" disabled></textarea>
+
+
+#     <div class="botoes">
+
+#       <button type="button" class="btn btn-editar" id="btnEditar">Editar</button>
+
+#       <button type="button" class="btn btn-cancelar" id="btnCancelar" style="display:none;">Cancelar</button>
+
+#       <button type="submit" class="btn btn-alterar" id="btnAlterar" style="display:none;">Alterar</button>
+
+#     </div>
+
+#   </form>
+
+# </div>
+
+# </div>
+
+# nos inputs deve conter os valores dos perfis, mas, quando tanto a ong quanto o voluntario apertarem o botao alterar, 
+# vc tem que fazer os novos valores que forem colocados serem alterados / atualizados no banco,
+# mas ai vem o porem, se o filha da puta gosotoso do norberto colocar cancelar, eu tenho que fazer com q os dados voltem ao normal
+
+# sql para puxar os dados, ai eu vou manter esses dados salvos em uma variavel, se eu clicar em salvar, esses dados são alterados no banco, caso eu clique em cancelar
+# os dados que foram salvos anteriormente na variavel, tanto no da ong quanto no do voluntario

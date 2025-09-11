@@ -6,8 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 function Show_incorrect_text($text, $e)
 {
-    echo $text;
-    echo "<script>console.log($e)</script>";
+    $_SESSION['erro'] = $e;
+    $_SESSION['notification'] = 'server_error';
+
+    header('Location: '.$_SESSION['tela_retrasada']);
     exit();
 }
 
@@ -30,7 +32,7 @@ function get_buttons($name_slot)
 
             $conn->commit();
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             $conn->rollBack();
             Show_incorrect_text("Algo deu Errado no Servidor, tente novamente mais tarde", $e);
         }

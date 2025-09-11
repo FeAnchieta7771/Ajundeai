@@ -9,7 +9,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 function Show_error($e)
 {
-    echo $e;
+    $_SESSION['erro'] = $e;
+    $_SESSION['notification'] = 'server_error';
+
+    header('Location: '.$_SESSION['tela_retrasada']);
     exit();
 }
 
@@ -25,7 +28,7 @@ function disfuncaoeretil()
 
             $result = select(null, $sql, [$id_voluntario]);
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             Show_error($e);
         }
 

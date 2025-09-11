@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         include '../php_db/methods.php';
         $result = select(null,$sql, [$name_email, $name_email]);
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         Show_error($e);
     }
 

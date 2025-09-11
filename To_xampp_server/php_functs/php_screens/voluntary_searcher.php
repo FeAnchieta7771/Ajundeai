@@ -22,7 +22,7 @@ function do_select($sql, $param = [])
         $result = select(null, $sql, $param);
         return $result;
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         Show_error($e);
     }
 }

@@ -19,7 +19,7 @@ try{
     // ========================================
     $conn = new PDO("mysql:host=$host;dbname=$dbname",$user,$password);
 
-} catch (PDOException $e){
+} catch (Exception $e){
         echo "<script>
             console.log('Erro Server: ' + $e);
         </script>";

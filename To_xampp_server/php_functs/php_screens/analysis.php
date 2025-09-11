@@ -17,7 +17,6 @@ if (session_status() === PHP_SESSION_NONE) {
 function Show_error($e)
 {
     $_SESSION['erro'] = $e;
-    $_SESSION['account_state'] = $_POST['account_state'];
     $_SESSION['notification'] = 'server_error';
 
     header('Location: ../../analysis_voluntary_ong.php');
@@ -27,7 +26,6 @@ function Show_error($e)
 function Show_incorrect_text($text, $type_notfication)
 {
     $_SESSION['message'] = $text;
-    $_SESSION['account_state'] = $_POST['account_state'];
     $_SESSION['notification'] = $type_notfication;
 
     header('Location: ../../analysis_voluntary_ong.php');
@@ -82,7 +80,7 @@ function disapprove($id_vaga,$id_voluntario,$name_slot,$name_vol){
 
         setEmail('disapprove',$name_slot,$name_vol);
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         
         $conn->rollBack();
         Show_incorrect_text($e);
@@ -93,7 +91,7 @@ function disapprove($id_vaga,$id_voluntario,$name_slot,$name_vol){
     //     $sql = "UPDATE registro SET situacao = ? WHERE id_vaga = ? AND id_voluntario = ?";
     //     $result = update(null,$sql, ['negado',$id_vaga, $id_voluntario]);
 
-    // } catch (PDOException $e) {
+    // } catch (Exception $e) {
     //     Show_incorrect_text($e);
     // }
 
@@ -102,7 +100,7 @@ function disapprove($id_vaga,$id_voluntario,$name_slot,$name_vol){
     //     $sql = "UPDATE vaga SET quant_atual = quant_atual - 1 WHERE id = ?";
     //     $result = update($sql, [$id_vaga]);
 
-    // } catch (PDOException $e) {
+    // } catch (Exception $e) {
     //     Show_incorrect_text($e);
     // }
 }
@@ -115,7 +113,7 @@ function aproved($id_vaga, $id_voluntario, $name_slot,$name_vol){
 
         setEmail('aprroved',$name_slot,$name_vol);
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         Show_incorrect_text("Norberto é uma gostosa e o william tbm",$e);
     }
     

@@ -65,7 +65,7 @@ function save_button($id_vaga)
                 echo "Erro na inserção.";
             }
 
-        } catch (PDOException $e) {
+        } catch (Exception $e) {
             Show_error($e);
         }
 
@@ -87,7 +87,7 @@ function unsave_button($id_vaga)
             echo "Erro na inserção.";
         }
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         Show_error($e);
     }
 
@@ -154,7 +154,7 @@ function send_button($id_vaga)
                     // ================================================================
                     $conn->commit();
 
-                } catch (PDOException $e) {
+                } catch (Exception $e) {
                     $conn->rollBack();
                     Show_error($e);
 
@@ -210,7 +210,7 @@ function send_button($id_vaga)
                     // ================================================================
                     $conn->commit();
 
-                } catch (PDOException $e) {
+                } catch (Exception $e) {
                     $conn->rollBack();
                     Show_error($e);
                 }
@@ -279,7 +279,7 @@ function unsend_button($id_vaga)
         // ================================================================
         $conn->commit();
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         $conn->rollBack();
         Show_error($e);
     }
@@ -298,7 +298,7 @@ function is_registry_before($id_vaga, $id)
             return false;
         }
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         Show_error($e);
     }
 }
@@ -315,7 +315,7 @@ function is_permited_send_limit($id_vol)
             return false;
         }
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         Show_error($e);
     }
 }

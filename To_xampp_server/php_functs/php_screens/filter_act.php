@@ -8,10 +8,18 @@ $allparams = [];
 /////////////////////////////////////////////////////////////////////////
 function Show_error($e)
 {
-    $html = text_html_header_error();
-    $html .= text_html_main_error($e);
-    $html .= text_html_buttons_error();
-    echo $html;
+    echo "<div class='quantSlot'>
+        <h3>ERRO AO SERRVIDOR</h3></div>";
+    echo "<div class='scroll-wrapper'>";
+    echo "<div class='vaga-card' style='background-color:rgb(222, 222, 222); border: none;'>";
+
+    echo "  <img src='img/icons_orange/problem_data.png' alt='Ícone' />";
+    echo "  <div class='vaga-info'>";
+    echo "    <h3 style='display: flex;'>Infelizmente, ocorreu um erro ao servidor.</h3>";
+    echo "    <span>Tente novamente mais tarde.</span>";
+    echo "  </div>";
+    echo "</div>";
+    echo "</div>";
     exit();
 }
 
@@ -22,7 +30,7 @@ function do_select($sql, $param = [])
         $result = select(null, $sql, $param);
         return $result;
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         Show_error($e);
     }
 }

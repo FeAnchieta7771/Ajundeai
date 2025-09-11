@@ -2,8 +2,17 @@
 
 include '../php_db/methods.php';
 
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}
+
+function Show_error()
+{
+    $_SESSION['notification'] = 'server_error';
+
+    header('Location: ../../create_slot_ong.php');
+    exit();
 }
 // function return_select($sql)
 // {
@@ -68,14 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // $stmt->execute();
 
-    } catch (PDOException) {
+    } catch (Exception) {
 
 
-        echo "<script>
-                window.alert('Ocorreu um erro na criação da vaga.');
-                window.location.href = '../../create_slot_ong.php';
-            </script>";
-        exit();
+        Show_error();
     }
 
     header('Location: ../../source.php');

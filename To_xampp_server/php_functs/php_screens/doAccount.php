@@ -18,7 +18,7 @@ function check_unique_name($table, $name)
         } else {
             return true;
         }
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
         Show_error($e);
     }
 }
@@ -119,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
 
         Show_error($e);
     }
@@ -136,7 +136,7 @@ function last_id($table)
 
         return $result[0]['id'] + 1;
 
-    } catch (PDOException $e) {
+    } catch (Exception $e) {
 
         Show_error($e);
     }

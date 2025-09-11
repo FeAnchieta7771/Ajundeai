@@ -5,6 +5,7 @@ session_start();
 
 // salva a url atual de telas dinâmicas (telas que o usuário fica indo e voltando normalmente durante o mesmo uso)
 // ! Tabelas como login, criação de conta, vagas, voluntários não precisam disso
+$_SESSION['tela_retrasada'] = $_SESSION['tela_anterior']
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
 include 'php_functs/php_methods/functions.php';
