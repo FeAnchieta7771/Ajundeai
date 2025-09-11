@@ -19,7 +19,7 @@ function Show_error($e)
     $_SESSION['erro'] = $e;
     $_SESSION['notification'] = 'server_error';
 
-    header('Location: ../../analysis_voluntary_ong.php');
+    header('Location: '.$_SESSION['tela_anterior']);
     exit();
 }
 
@@ -28,7 +28,7 @@ function Show_incorrect_text($text, $type_notfication)
     $_SESSION['message'] = $text;
     $_SESSION['notification'] = $type_notfication;
 
-    header('Location: ../../analysis_voluntary_ong.php');
+    header('Location: '.$_SESSION['tela_anterior']);
     exit();
 }
 
@@ -114,7 +114,7 @@ function aproved($id_vaga, $id_voluntario, $name_slot,$name_vol){
         setEmail('aprroved',$name_slot,$name_vol);
 
     } catch (Exception $e) {
-        Show_incorrect_text("Norberto é uma gostosa e o william tbm",$e);
+        Show_incorrect_text("",$e);
     }
     
 }
@@ -229,9 +229,10 @@ function setEmail($type, $name_slot,$name_vol) {
         // Enviar
         $mail->send();
         // echo "E-mail de aprovação enviado com sucesso!";
+        $_SESSION['notification'] = 'protocolWithSucess_emailSend';
 
     } catch (Exception $e) {
-        echo "Falha ao enviar e-mail: {$mail->ErrorInfo}";
+        $_SESSION['notification'] = 'protocolWithSucess_emailNotSend';
     }
 
 }

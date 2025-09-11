@@ -200,4 +200,26 @@ function not_permited()
 
     js_notification($type, $icon, $title, $text);
 }
+
+function protocolWithSucess_emailSend()
+{
+
+    $title = json_encode("Você Avaliou o Voluntário. Email Enviado");
+    $text = json_encode("Um email da sua escolha foi enviado a este voluntário...");
+    $type = json_encode("save");
+    $icon = json_encode("bx  bx-message-circle-check");
+
+    js_notification($type, $icon, $title, $text);
+}
+
+function protocolWithSucess_emailNotSend()
+{
+
+    $title = json_encode("Você Avaliou o Voluntário.");
+    $text = json_encode("O sistema não conseguiu enviar um email ao voluntário...");
+    $type = json_encode("emailnotsend");
+    $icon = json_encode("bx  bx-message-circle-dots-2");
+
+    js_notification($type, $icon, $title, $text);
+}
 ?>

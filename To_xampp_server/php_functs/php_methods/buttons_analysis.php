@@ -41,7 +41,7 @@ function get_buttons($name_slot)
 
             case 'aguarde':
                 echo '<div class="button-group">
-                    <form action="php_functs\php_screens\analysis.php" method="POST">
+                    <form style="width: 100%" action="php_functs\php_screens\analysis.php" method="POST">
 
                         <input type="hidden" name="action_analysis" value="approve">
                         <input type="hidden" name="id_voluntario" value="' . $id_voluntario . '">
@@ -53,7 +53,7 @@ function get_buttons($name_slot)
                         <button class="btapro" id="btcan_vol" type="cancel">APROVAR</button>
                     </form>
 
-                    <form action="php_functs\php_screens\analysis.php" method="POST">
+                    <form style="width: 100%" action="php_functs\php_screens\analysis.php" method="POST">
 
                         <input type="hidden" name="action_analysis" value="disapprove">
                         <input type="hidden" name="id_voluntario" value="' . $id_voluntario . '">

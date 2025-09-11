@@ -69,6 +69,16 @@ function voluntary_profile($result){
             </div>
         </form>
         </div>
+
+        <div class='vagas-box'>
+            <h3>Vagas Cadastradas</h3>
+            <small>1/3 cadastros permitidos</small>
+            <button class='btn-controle'>Ver Controle de Vagas</button>
+
+            <div class='vaga-item'><span>Vaga 1</span><button>Sair</button></div>
+            <div class='vaga-item'><span>Vaga 2</span><button>Sair</button></div>
+            <div class='vaga-item'><span>Vaga 3</span><button>Sair</button></div>
+        </div>
     </div>
     ";
 

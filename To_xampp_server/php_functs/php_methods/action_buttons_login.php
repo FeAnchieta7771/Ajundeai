@@ -9,6 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $_SESSION['nothing_else'] = true;
 
     switch($method){
+        case 'user_profile':
+            header('Location: ../../user_profile.php');
+            break;
+        
         case 'volu_painel':
             header('Location: ../../register_voluntary.php');
             break;

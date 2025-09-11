@@ -352,7 +352,7 @@ function text_html_buttons($buttons, $location, $quant_cadastro)
             <i class="bx  bxs-location" style="font-size: 35px" ></i>
             LOCALIZAÇÃO:
           </h4>
-          <p><em><i class="bx  bx-map"  ></i> ' . $location . '</em></p>
+          <p style="word-break: break-all; width: 100%;"><em><i class="bx  bx-map"  ></i> ' . $location . '</em></p>
         </div>
       </div>
 
