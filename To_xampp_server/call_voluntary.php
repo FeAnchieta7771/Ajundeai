@@ -163,7 +163,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                         </div>
                 </div> -->
                 <br>
-                <form method="POST" action="php_functs\php_screens\profile_act.php">
+                <form method="GET" action="php_functs\php_screens\calling_act.php">
                 <input type='hidden' name='name_slot' value="<?php echo $_GET['name_slot']; ?>">
                 <button class="btcall" id="btcan_vol" type="submit">CHAMAR VOLUNTARIO</button>
                 </form>

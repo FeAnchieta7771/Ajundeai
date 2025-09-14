@@ -45,10 +45,10 @@ function setEmail($type, $name_slot,$name_vol, $email_ong, $email_vol) {
 
         // Remetente
         $mail->setFrom('ajundeai.service@gmail.com', 'Ajundeai');
-        $mail->addReplyTo($_POST['email_ong'], $org_name); // ONG pode responder
+        $mail->addReplyTo($email_ong, $org_name); // ONG pode responder
 
         // Destinatário
-        $mail->addAddress($_POST['email_vol'], $candidate_name);
+        $mail->addAddress($email_vol, $candidate_name);
 
         // Conteúdo do e-mail
         $mail->isHTML(true);

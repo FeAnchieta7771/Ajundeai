@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $result_email = setEmail('calling', $_GET['name_slot'], $_SESSION['nome_vol'], $_SESSION['email_login'], $_SESSION['email_vol']);
 

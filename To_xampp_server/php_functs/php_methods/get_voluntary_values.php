@@ -59,14 +59,14 @@ function disfuncaoeretil($id_voluntario)
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">NOME:</label>
-                                <input type="text" id="name" name="nome" value= ' . $result[0]['nome_voluntario'] . ' readonly>
+                                <input type="text" id="name" name="nome" value="' . $result[0]['nome_voluntario'] . '" readonly>
                             </div>
                         </div>
                 
                         <div class="form-row-3">
                                 <div class="form-group">
                                     <label for="email">E-MAIL:</label>
-                                    <input type="email" id="email" name="email" value = ' . $result[0]['email'] . ' readonly>
+                                    <input type="email" id="email" name="email" value = "' . $result[0]['email'] . '" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">CPF:</label>

@@ -27,6 +27,15 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <link rel="stylesheet" href="css/notification.css">
     <link rel="stylesheet" href="css\css_screens\create_slot_ong.css">
     <style>
+        body {
+            background-color: #004d61;
+            /* background-image: url("https://assets.onecompiler.app/43h62qpv7/3y5x8jr6s/login.png"); */
+            background-image: url("img/Background_account.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+
+        }
+
         body::-webkit-scrollbar {
             display: none;
             /* Para navegadores baseados em WebKit (Chrome, Safari) */

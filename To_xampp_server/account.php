@@ -190,7 +190,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
         
                             <div class="terms">
                                 <input type="checkbox" class="check_vol" id="terms" required>
-                                <label for="terms">Aceito que dados como <strong>Nome, Telefone, Email, Whatsapp e minhas experiências</strong> <br>estarão visíveis para as Ongs as quais eu me voluntariar</label>
+                                <label for="terms">Aceito que dados como <strong>Nome, Telefone, Email, Whatsapp, Preferênica de Telas, Situação, PCD e minhas experiências</strong> <br>estarão visíveis para as Ongs as quais eu me voluntariar</label>
                             </div>
                             
                             <div class="divider"></div>
@@ -243,7 +243,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     
                     <div class="terms">
                         <input type="checkbox" class="check_ong" id="terms" required>
-                        <label for="terms">Aceito que dados como <strong>Nome, Email e as informações sobre a ONG</strong> <br> seram visíveis à todos os voluntários do site</label>
+                        <label for="terms">Aceito que dados como <strong>Nome, Email, Telefone, Whatsapp e as informações sobre a ONG</strong> <br> seram visíveis à todos os voluntários do site</label>
                     </div>
 
                     <div class="divider"></div>
