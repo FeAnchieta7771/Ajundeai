@@ -219,9 +219,11 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 </header>
 <?php show_message(); ?>
 
-  <!-- Conteúdo principal -->
+<?php include "php_functs\php_screens\profile_act.php"; account_type($is_ong); ?>
+<!-- 
+  Conteúdo principal
   <div class="painel">
-    <!-- Perfil Voluntário -->
+    Perfil Voluntário
     <div class="perfil" id="perfilBox">
       <div class="perfil-header">
         <div class="left">
@@ -253,7 +255,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       </form>
     </div>
 
-    <!-- Vagas Cadastradas -->
+    Vagas Cadastradas
     <div class="vagas-box">
       <h3>Vagas Cadastradas</h3>
       <small>1/3 cadastros permitidos</small>
@@ -263,7 +265,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <div class="vaga-item"><span>Vaga 2</span><button>Sair</button></div>
       <div class="vaga-item"><span>Vaga 3</span><button>Sair</button></div>
     </div>
-  </div>
+  </div> -->
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
   <script src='js/notification.js' defer></script>
@@ -275,6 +277,13 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     const btnAlterar = document.getElementById('btnAlterar');
     const inputs = form.querySelectorAll('input, textarea');
 
+    const values = []
+
+    inputs.forEach((input, i) => {
+
+      values[i] = input.value;
+    });
+
     btnEditar.addEventListener('click', () => {
       inputs.forEach(el => el.disabled = false);
       perfilBox.classList.add('editando');
@@ -285,6 +294,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     btnCancelar.addEventListener('click', () => {
       inputs.forEach(el => el.disabled = true);
+      inputs.forEach((el, i) => el.value = values[i]);
       perfilBox.classList.remove('editando');
       btnEditar.style.display = 'inline-block';
       btnCancelar.style.display = 'none';

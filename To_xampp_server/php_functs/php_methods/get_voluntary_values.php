@@ -7,29 +7,26 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-function Show_error($e)
+function Show_error()
 {
-    $_SESSION['erro'] = $e;
     $_SESSION['notification'] = 'server_error';
 
     header('Location: '.$_SESSION['tela_retrasada']);
     exit();
 }
 
-function disfuncaoeretil()
+function disfuncaoeretil($id_voluntario)
 {
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
-        $id_voluntario = $_GET['id_voluntario'];
 
         try {
             $sql = "SELECT * FROM voluntario WHERE id = ?";
 
             $result = select(null, $sql, [$id_voluntario]);
 
-        } catch (Exception $e) {
-            Show_error($e);
+        } catch (Throwable $e) {
+            Show_error();
         }
 
         $_SESSION['email_vol'] = $result[0]['email'];

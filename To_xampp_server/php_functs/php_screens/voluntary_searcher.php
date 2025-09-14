@@ -22,7 +22,7 @@ function do_select($sql, $param = [])
         $result = select(null, $sql, $param);
         return $result;
 
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
         Show_error($e);
     }
 }
@@ -36,7 +36,7 @@ function do_voluntary_searcher()
         global $allparams;
         $allparams = [];
 
-
+        $name_slot = $_GET['name_slot'];
 
         $sql = "SELECT nome_voluntario, id, categoria_trabalho, sobre FROM voluntario ";
         // nome, id do viado, categoria de trabalho, e deixa eu ver, o sobre
@@ -48,14 +48,14 @@ function do_voluntary_searcher()
         // $result = return_select($sql);
                 // echo $sql;
         $result = do_select($sql, $allparams);
-        show_filter($result);
+        show_filter($result,$name_slot);
 
     }
 
 }
 
 // A FUNÇÃO fará a exibição dos resultados entregues á ela
-function show_filter($result)
+function show_filter($result,$name_slot)
 {
 
     // iniciar tentiva de consulta
@@ -91,9 +91,9 @@ function show_filter($result)
             // busca a imagem a partir da categoria da vaga
             $url = image_filter($user_result['categoria_trabalho']);
 
-            echo "<form method='GET' action='../show_slot_voluntary.php'>";
-            echo "<input type='hidden' name='type' value='filter_base'>";
-            echo "<input type='hidden' name='id_vaga' value=" . $user_result['id'] . ">";
+            echo "<form method='GET' action='../call_voluntary.php'>";
+            echo "<input type='hidden' name='id_voluntario' value=" . $user_result['id'] . ">";
+            echo "<input type='hidden' name='name_slot' value=" . $name_slot . ">";
             echo "<button class='vaga-card' type='submit'>";
 
             echo "<i class='bxs-user' ></i>";

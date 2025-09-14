@@ -50,6 +50,18 @@ function notificator($type_notfication)
         case 'not_permited':
             not_permited();
             break;
+        case 'protocolWithSucess_emailSend':
+            protocolWithSucess_emailSend();
+            break;
+        case 'protocolWithSucess_emailNotSend':
+            protocolWithSucess_emailNotSend();
+            break;
+        case 'callEmailSend':
+            callEmailSend();
+            break;
+        case 'callEmailNotSend':
+            callEmailNotSend();
+            break;
     }
 }
 
@@ -59,6 +71,7 @@ function js_notification($type, $icon, $title, $text){
         window.addEventListener('load', function(){
         createToast($type, $icon, $title, $text);
         });
+
     </script>";
 }
 
@@ -197,6 +210,50 @@ function not_permited()
     $text = json_encode("O limite de 3 cadastros foram atingidos...");
     $type = json_encode("error");
     $icon = json_encode("bx  bxs-alert-triangle");
+
+    js_notification($type, $icon, $title, $text);
+}
+
+function protocolWithSucess_emailSend()
+{
+
+    $title = json_encode("Você Avaliou o Voluntário. Email Enviado");
+    $text = json_encode("Um email da sua escolha foi enviado a este voluntário...");
+    $type = json_encode("save");
+    $icon = json_encode("bx  bx-message-circle-check");
+
+    js_notification($type, $icon, $title, $text);
+}
+
+function protocolWithSucess_emailNotSend()
+{
+
+    $title = json_encode("Você Avaliou o Voluntário.");
+    $text = json_encode("O sistema não conseguiu enviar um email ao voluntário...");
+    $type = json_encode("emailnotsend");
+    $icon = json_encode("bx  bx-message-circle-dots-2");
+
+    js_notification($type, $icon, $title, $text);
+}
+
+function callEmailSend()
+{
+
+    $title = json_encode("Você Chamou o Voluntário.");
+    $text = json_encode("O sistema não conseguiu enviar um email ao voluntário...");
+    $type = json_encode("save");
+    $icon = json_encode("bx  bx-paper-plane");
+
+    js_notification($type, $icon, $title, $text);
+}
+
+function callEmailNotSend()
+{
+
+    $title = json_encode("Erro ao Chamar o Voluntário.");
+    $text = json_encode("Tente novamente mais tarde...");
+    $type = json_encode("error");
+    $icon = json_encode("bx  bx-message-x");
 
     js_notification($type, $icon, $title, $text);
 }

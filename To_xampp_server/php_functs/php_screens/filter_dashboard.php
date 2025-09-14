@@ -4,7 +4,7 @@ include 'php_functs/php_db/methods.php';
 /////////////////////////////////////////////////////////////////////////
 // ! Este arquivo está disposto a executar os filtros da tela "filter.php"
 /////////////////////////////////////////////////////////////////////////
-function Show_error($e){
+function Show_error(){
     echo '<div class="engloba">';
     echo '<div class="vaga-card" style="background-color:rgb(222, 222, 222); border: none;">';
     echo "<img src='img/icons_orange/problem_data.png' alt='Ícone' />";
@@ -31,8 +31,8 @@ function do_dashboard(){
         try{
             $result = select(null,$sql,[$id_ong]);
 
-        } catch (Exception $e) {
-            Show_error($e);
+        } catch (Throwable $e) {
+            Show_error();
         }
         show_filter($result);
 

@@ -99,6 +99,10 @@
         width: 85%;
     }
 
+    .vaga-info{
+        width: 80%;
+    }
+
     .vaga-card img {
         width: 120px;
         height: 120px;
@@ -120,6 +124,16 @@
     .vaga-info p {
         font-size: 1rem;
         color: #444;
+        text-overflow: ellipsis;
+        text-align: left;
+        flex: 1;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 
     .status-icon-externo {

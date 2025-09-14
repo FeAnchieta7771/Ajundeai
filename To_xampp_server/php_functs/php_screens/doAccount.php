@@ -18,14 +18,13 @@ function check_unique_name($table, $name)
         } else {
             return true;
         }
-    } catch (Exception $e) {
-        Show_error($e);
+    } catch (Throwable $e) {
+        Show_error();
     }
 }
 
-function Show_error($e)
+function Show_error()
 {
-    $_SESSION['erro'] = $e;
     $_SESSION['account_state'] = $_POST['account_state'];
     $_SESSION['notification'] = 'server_error';
 
@@ -103,6 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['whoLogged'] = $accout;
         $_SESSION['name'] = $name;
         $_SESSION['id'] = $id;
+        $_SESSION['email_login'] = $user['email'];
         $_SESSION['isLogin'] = true;
 
         $_SESSION['notification'] = 'create_account_sucess';
@@ -119,9 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
 
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
 
-        Show_error($e);
+        Show_error();
     }
 }
 
@@ -136,9 +136,9 @@ function last_id($table)
 
         return $result[0]['id'] + 1;
 
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
 
-        Show_error($e);
+        Show_error();
     }
 }
 ?>

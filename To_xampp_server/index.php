@@ -369,9 +369,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   </p>
   <footer>
     <div class="contact-info">
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email Icon" />
-      <span>ajundeai_anchieta@gmail.com</span>
-      <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram Icon" />
+      <img style="width: 40px;" src="img\o-email.png" alt="Email Icon" />
+      <span>ajundeai.service@gmail.com</span>
+      <img style="width: 40px;" src="img\logotipo-do-instagram.png" alt="Instagram Icon" />
       <span>@ajundeai_anchieta</span>
       <span><strong>• Ícones feitos por <a href="https://www.flaticon.com/br/autores/freepik" title="Freepik"> Freepik
           </a> from <a href="https://www.flaticon.com/br/" title="Flaticon">www.flaticon.com'</a></strong></span>

@@ -56,7 +56,7 @@ print_r($_SESSION);
 
         <?php
         include 'php_functs/php_methods/get_voluntary_values.php';
-        disfuncaoeretil();
+        disfuncaoeretil($_GET['id_voluntario']);
         ?>
         <?php include 'php_functs/php_methods/buttons_analysis.php';
         get_buttons($_SESSION['name_slot']); ?>

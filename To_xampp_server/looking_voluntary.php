@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+$_SESSION['looking_voluntary'] = $_SERVER['REQUEST_URI'];
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
 include 'php_functs/php_methods/functions.php';
