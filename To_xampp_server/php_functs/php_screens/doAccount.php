@@ -55,11 +55,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $whats = $_SESSION['whats'] = $_POST['whats'] ?? '';
     $about = $_SESSION['about'] = $_POST['about'];
 
+    $vaga = $_POST['vaga'] ?? '';
+    
     $cpf = $_SESSION['cpf'] = $_POST['cpf'] ?? '';
     $cat_vol = $_SESSION['cat_vol'] = $_POST['cat_vol'] ?? '';
     $periodo = $_SESSION['periodo'] = $_POST['periodo'] ?? '';
     $estado = $_SESSION['estado'] = $_POST['estado'] ?? '';
     $pcd = $_SESSION['pcd'] = $_POST['pcd'] ?? '';
+
+    if(!empty($vaga)){
+
+        $_SESSION['vaga'] = $vaga;
+        $cat_vol = $vaga;
+    }
 
     if (!check_unique_name($accout, $name)) {
         Show_incorrect_text("Já existe um Registro com esse Nome, Insira outro", 'name_repated_error');

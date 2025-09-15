@@ -141,9 +141,15 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
                                         <option value="assistencia"   <?php save_value_select('cat_vol','assistencia');   ?> >Assistencia</option>
                                         <option value="administração" <?php save_value_select('cat_vol','administração'); ?> >Administração</option>
                                         <option value="meio ambiente" <?php save_value_select('cat_vol','meio ambiente'); ?> >Meio Ambiente</option>
-                                        <option value="outros"                                                                             >Outras Diversificações...</option>
+                                        <option value="outros"        <?php save_value_select('cat_vol','outros'); ?> >Outras Diversificações...</option>
                                     </select>
                                 </div>
+
+                                <div id="outrasCampo" class="form-group phone-field">
+                                    <label for="outrasTexto">Descreva-a:</label>
+                                    <input type="text" id="outrasTexto" name="vaga" placeholder="Sua Preferência:" maxlength="100" required value='<?php echo save_value('vaga','voluntario'); ?>'>
+                                </div>
+
                                 <div class="form-group phone-field">
                                     <label for="periodo">Periodo de Participação:</label>
                                     <select class="select" id="periodo" name="periodo" required>
@@ -257,6 +263,31 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
             </div>
         </div>
 </div>
+<script defer>
+  const select = document.getElementById('cat_vol');
+  const outrasCampo = document.getElementById('outrasCampo');
+  const Input_vaga = document.getElementById('outrasTexto');
+
+    function InserirOutrosCampos() {
+        if (this.value === 'outros') {
+        outrasCampo.style.display = 'block'; // mostra o campo
+        Input_vaga.required = true;
+        select.style.opacity = 0.5;
+        Input_vaga.focus();
+        select.style.cursor = 'pointer';
+        
+    } else {
+        outrasCampo.style.display = 'none';  // esconde o campo
+        Input_vaga.required = false;
+        select.style.opacity = 1;
+        select.style.cursor = 'default';
+        }
+    }
+
+    select.addEventListener('change',InserirOutrosCampos);
+    window.addEventListener('load', () => InserirOutrosCampos.call(select));
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
 <script src='js/notification.js' defer></script>
 <script src="js/whatsapp.js"></script>

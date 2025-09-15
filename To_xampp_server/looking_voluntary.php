@@ -327,6 +327,7 @@ if (isset($_GET['voltar'])) {
     </div>
 
     <form method="GET">
+    <input type="hidden" name="name_slot" value="<?php echo $_GET['name_slot'] ?>" />
     <main class="container">
         <div>
             <form method="GET" >
