@@ -1,12 +1,43 @@
 <?php
 
-include "php_functs\php_db\methods.php";
+include "../php_db/methods.php";
+include '../php_methods/formatting.php';
 
-function Show_error()
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+function Show_error($result)
 {
     $_SESSION['notification'] = 'server_error';
+            echo $result;
+        exit();
+    // header('Location: ../../login.php');
+}
 
-    header('Location: ../../login.php');
+function check_unique_name($table, $name)
+{
+    try {
+        $sql = "SELECT COUNT(*) as 'lines' FROM $table WHERE nome_$table = ? AND id != ?";
+        $result = select(null, $sql, [$name,$_SESSION['id']]);
+
+        if ($result[0]['lines'] > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    } catch (Throwable $e) {
+        Show_error();
+    }
+}
+
+function Show_incorrect_text($text, $type_notfication)
+{
+    $_SESSION['message'] = $text;
+    $_SESSION['account_state'] = $_POST['account_state'];
+    $_SESSION['notification'] = $type_notfication;
+
+    header('Location: ../../account.php');
     exit();
 }
 
@@ -16,24 +47,25 @@ try {
     if ($usuario == "voluntario") {
 
         $name = $_POST['nome'];
-        $ema = $_POST['email'];
-        $password = $_POST['password'];
-        $telephone = $_POST['telephone'];
-        $whats = $_POST['whats'] ?? '';
-        $about = $_POST['about'];
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $telephone = $_POST['telefone'];
+        $whats = $_POST['whatsapp'] ?? '';
+        $about = $_POST['sobre'];
 
         $cpf = $_POST['cpf'] ?? '';
-        $cat_vol = $_POST['cat_vol'] ?? '';
+        $cat_vol = $_POST['categoria'] ?? '';
         $periodo = $_POST['periodo'] ?? '';
-        $estado = $_POST['estado'] ?? '';
-        $pcd = $_POST['pcd'] ?? '';
+        $estado = $_POST['situacao'] ?? '';
+        $pcd = $_POST['deficiencia'] ?? '';
 
+        $cpf = Convert_cpf_to_db($cpf);
 
-        if (!check_unique_name($accout, $name)) {
+        if (!check_unique_name($usuario, $name)) {
             Show_incorrect_text("Já existe um Registro com esse Nome, Insira outro", 'name_repated_error');
         }
 
-        if ($accout == 'voluntario' && !Is_cpf_correct($cpf)) {
+        if ($usuario == 'voluntario' && !Is_cpf_correct($cpf)) {
             Show_incorrect_text("O Número de CPF é invalido, Por favor verifique", 'cpf_error');
         }
 
@@ -45,14 +77,12 @@ try {
             Show_incorrect_text("O Número do Whatsapp é invalido, Por favor verifique", 'whatsapp_error');
         }
 
-        $telephone_to_db = Convert_phone_to_db($telephone);
-        $whats_to_db = Convert_whats_to_db($whats);
-        $cpf_to_db = Convert_cpf_to_db($cpf);
+        $whats = Convert_whats_to_db($whats);
+        $telephone = Convert_phone_to_db($telephone);
 
-        $sql = "UPDATE voluntario SET nome_voluntario= ?, email= ?, senha= ?, telefone= ?, whatsapp=?, categoria_trabalho, periodo= ?, cpf= ?, pcd= ?, estado_social= ?, sobre ? WHERE id= ?";
-
-        update(null, $sql_command, [$name, $email, $password, $telephone_to_db, $whats_to_db, $cat_vol, $periodo, $cpf_to_db, $pcd, $estado, $about, $_SESSION['id']]);
-
+        $sql = "UPDATE voluntario SET nome_voluntario= ?, email= ?, senha= ?, telefone= ?, whatsapp=?, categoria_trabalho = ?, periodo= ?, cpf= ?, pcd= ?, estado_social= ?, sobre = ? WHERE id= ?";
+        $result = update(null, $sql, [$name, $email,$senha,$telephone,$whats,$cat_vol, $periodo, $cpf, $pcd, $estado, $about, $_SESSION['id']]);
+        header('Location: ../../source.php');
     } else {
 
 
@@ -69,13 +99,13 @@ try {
 
         $sql = "UPDATE ong SET nome_ong= ?, email= ?, senha= ?, sobre= ?, telefone= ?, whatsapp= ? WHERE id= ?";
 
-        update(null, $sql_command, [$name, $email, $password, $about, $telephone_to_db, $whats_to_db, $_SESSION['id']]);
+        $result = update(null, $sql_command, [$name, $email, $senha , $about, $telephone_to_db, $whats_to_db, $_SESSION['id']]);
 
     }
 
 } catch (Throwable $e) {
-
-    Show_error();
+    echo $e->getMessage();
+    // Show_error($result);
 
 }
 ?>

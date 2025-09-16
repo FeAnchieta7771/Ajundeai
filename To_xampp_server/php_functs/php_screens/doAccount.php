@@ -63,6 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $estado = $_SESSION['estado'] = $_POST['estado'] ?? '';
     $pcd = $_SESSION['pcd'] = $_POST['pcd'] ?? '';
 
+
+
     if(!empty($vaga)){
 
         $_SESSION['vaga'] = $vaga;

@@ -53,9 +53,11 @@ function Convert_whats_to_db($whats){
 
 function Convert_whats_to_show($whats){
     // ############# => (##) ####-####
+    //                     +55 (12)34567-8912
+    //
     $whats_for_show = "+".substr($whats,0,2)." (" . substr($whats, 2, 2) .
-                            ") " . substr($whats, 4, 4) .
-                            "-" . substr($whats, 8, 4);
+                            ") " . substr($whats, 4, 5) .
+                            "-" . substr($whats, 9, 4);
     
     return $whats_for_show;
 }
@@ -65,12 +67,12 @@ function Convert_whats_to_show($whats){
 
 function Is_cpf_correct($cpf){
     // +55 (##) #####-####
-    return strlen($cpf) == 12;
+    return strlen($cpf) == 11 || strlen($cpf) == 12;
 }
 
 function Convert_cpf_to_db($cpf){
     // (##) ####-####
-    $search = array("-");
+    $search = array("-",".");
     $replace = array("");
     $cpf_for_db = str_replace($search, $replace, $cpf);
 

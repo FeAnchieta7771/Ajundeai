@@ -1,45 +1,55 @@
 <!-- inicio do código, tenho que verificar qual tipo de conta está logada, e em seguida puxar os dados dessa conta no banco 
 esses dados precisam ser salvos em uma variavel -->
 
+
 <?php 
+
+include "php_functs\php_db\methods.php";
+include 'php_functs/php_methods/formatting.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-function Show_error()
-{
-    $_SESSION['notification'] = 'server_error';
-
-    header('Location: ../../login.php');
-    exit();
-}
 
 function account_type($is_ong){
+
     // se for verdadeiro é ong se der falso é voluntario
     if ($is_ong){
         try{
             $sql = "SELECT * FROM ong WHERE id = ?";
             $result = select(null,$sql, [$_SESSION['id']]);
 
-            $_SESSION['backup'] = $result;
+            $result[0]['telefone'] = Convert_phone_to_show($result[0]['telefone']);
+
+            if(!empty($result[0]['whatsapp'])){
+                $result[0]['whatsapp'] = Convert_whats_to_show($result[0]['whatsapp']);
+            }
+
             ong_profile($result);
 
         }
-        catch (Throwable $e) {
-        Show_error();
+        catch (Exception $e) {
+        Show_error($e);
     }
        
     } else {
+
         try{
             $sql = "SELECT * FROM voluntario WHERE id = ?";
             $result = select(null,$sql, [$_SESSION['id']]);
 
-            $_SESSION['backup'] = $result;
-            voluntary_profile($result);
+                        $result[0]['telefone'] = Convert_phone_to_show($result[0]['telefone']);
+            $result[0]['cpf'] = Convert_cpf_to_show($result[0]['cpf']);
 
+            if(!empty($result[0]['whatsapp'])){
+                $result[0]['whatsapp'] = Convert_whats_to_show($result[0]['whatsapp']);
+            }
+
+            voluntary_profile($result);
         }
-        catch (Throwable $e) {
-        Show_error();
+        catch (Exception $e) {
+        Show_error($e);
         }
     }
 
@@ -65,11 +75,11 @@ function voluntary_profile($result){
         <form method= 'POST' action= 'php_functs/php_screens/profile_aplication.php' id='formPerfil'>
             <input type='text' name='nome' placeholder='Nome' value='".$result[0]["nome_voluntario"]."' disabled>
             <input type='hidden' name= 'type_usuario' value ='voluntario'>
-            <input type='text' name='cpf' placeholder='CPF' value='".$result[0]["cpf"]."' disabled>
+            <input type='text' id='cpf' name='cpf' placeholder='#########-##' maxlength='12' value='".$result[0]['cpf']."' disabled>
             <input type='email' name='email' placeholder='Email' value='".$result[0]["email"]."' disabled>
             <input type='password' name='senha' placeholder='Senha' value='".$result[0]["senha"]."' disabled>
-            <input type='text' name='telefone' placeholder='Telefone' value='".$result[0]["telefone"]."' disabled>
-            <input type='text' name='whatsapp' placeholder='WhatsApp' value='".$result[0]["whatsapp"]."' disabled>
+            <input type='text' id='telefone' name='telefone' placeholder='Telefone' value='".$result[0]["telefone"]."' disabled>
+            <input type='text' id='whatsapp' name='whatsapp' placeholder='WhatsApp' value='".$result[0]["whatsapp"]."' disabled>
             <input type='text' name='categoria' placeholder='Categoria de preferência' value='".$result[0]["categoria_trabalho"]."' disabled>
             <input type='text' name='periodo' placeholder='Período' value='".$result[0]["periodo"]."' disabled>
             <input type='text' name='situacao' placeholder='Situação atual' value='".$result[0]["estado_social"]."' disabled>
@@ -129,7 +139,7 @@ function ong_profile($result){
 
         <input type='text' name='whatsapp' placeholder='WhatsApp' value='".$result[0]["whatsapp"]."' disabled>
 
-        <textarea name='sobre' placeholder='Conte um pouco mais sobre a ONG/Instituição' value='".$result[0]["sobre"]."' disabled></textarea>
+        <textarea name='sobre' placeholder='Conte um pouco mais sobre a ONG/Instituição' disabled>".$result[0]["sobre"]."</textarea>
 
 
         <div class='botoes'>

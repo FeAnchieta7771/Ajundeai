@@ -7,7 +7,7 @@ include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
-
+ 
 if(!$login_state){
   header('Location: index.php');
   exit();
@@ -18,6 +18,7 @@ $is_ong = is_ong_logged();
 
 // setar botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
+echo $_SESSION['id'];
 
 ?>
 
@@ -27,7 +28,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AjundeAi - Perfil Voluntário</title>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/header.css" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
     body { background: #fff; }
@@ -195,17 +197,6 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   </style>
 </head>
 
-  <title>AjundeAi • Perfil de usuário</title>
-
-     
-
-  <link
-    href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css"
-    rel="stylesheet"
-  />
-
-  <link rel="stylesheet" href="css/notification.css">
-
 <body>
 <div class="notifications"></div>
 
@@ -269,6 +260,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
   <script src='js/notification.js' defer></script>
+  <script src="js/whatsapp.js"></script>
+<script src="js/phone.js"></script>
+<script src="js/cpf.js"></script>
   <script>
     const form = document.getElementById('formPerfil');
     const perfilBox = document.getElementById('perfilBox');
@@ -301,15 +295,6 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       btnAlterar.style.display = 'none';
     });
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Alterações salvas!');
-      inputs.forEach(el => el.disabled = true);
-      perfilBox.classList.remove('editando');
-      btnEditar.style.display = 'inline-block';
-      btnCancelar.style.display = 'none';
-      btnAlterar.style.display = 'none';
-    });
   </script>
 </body>
 </html>
