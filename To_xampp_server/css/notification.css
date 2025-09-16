@@ -118,6 +118,13 @@ button{
             to right, #006cb4, #122183 30%
         );
 }
+.toast.emailnotsend{
+    --color: #ffffff;
+    background-image: 
+        linear-gradient(
+            to right, #3f00b4, #631283 30%
+        );
+}
 .toast.unsave{
     --color: #a2c9ff;
     background-image: 

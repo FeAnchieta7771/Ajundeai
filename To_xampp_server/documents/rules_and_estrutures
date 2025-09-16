@@ -26,6 +26,9 @@ em mesmas 3 variáveis:
     // registra o id a qual o usuário está salvo no banco
     $_SESSION['id'] = $user['id'];
 
+    // registra o email a qual o usuário está salvo no banco
+    $_SESSION['email_login'] = $user['email'];
+
 == Voluntário
     // registra qual tipo de usuário está logado
     $_SESSION['whoLogged'] = 'voluntario';
@@ -35,6 +38,9 @@ em mesmas 3 variáveis:
 
     // registra o id a qual o usuário está salvo no banco
     $_SESSION['id'] = $user['id'];
+
+    // registra o email a qual o usuário está salvo no banco
+    $_SESSION['email_login'] = $user['email'];
 
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------

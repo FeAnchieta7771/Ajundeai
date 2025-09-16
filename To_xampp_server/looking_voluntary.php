@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+$_SESSION['looking_voluntary'] = $_SERVER['REQUEST_URI'];
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
 include 'php_functs/php_methods/functions.php';
@@ -326,6 +327,7 @@ if (isset($_GET['voltar'])) {
     </div>
 
     <form method="GET">
+    <input type="hidden" name="name_slot" value="<?php echo $_GET['name_slot'] ?>" />
     <main class="container">
         <div>
             <form method="GET" >

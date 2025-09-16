@@ -6,7 +6,7 @@ $allparams = [];
 /////////////////////////////////////////////////////////////////////////
 // ! Este arquivo está disposto a executar os filtros da tela "filter.php"
 /////////////////////////////////////////////////////////////////////////
-function Show_error($e)
+function Show_error()
 {
     echo "<div class='quantSlot'>
         <h3>ERRO AO SERRVIDOR</h3></div>";
@@ -30,8 +30,8 @@ function do_select($sql, $param = [])
         $result = select(null, $sql, $param);
         return $result;
 
-    } catch (Exception $e) {
-        Show_error($e);
+    } catch (Throwable $e) {
+        Show_error();
     }
 }
 function do_filter()

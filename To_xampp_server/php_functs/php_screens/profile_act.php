@@ -6,6 +6,13 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+function Show_error()
+{
+    $_SESSION['notification'] = 'server_error';
+
+    header('Location: ../../login.php');
+    exit();
+}
 
 function account_type($is_ong){
     // se for verdadeiro é ong se der falso é voluntario
@@ -14,18 +21,25 @@ function account_type($is_ong){
             $sql = "SELECT * FROM ong WHERE id = ?";
             $result = select(null,$sql, [$_SESSION['id']]);
 
+            $_SESSION['backup'] = $result;
+            ong_profile($result);
+
         }
-        catch (Exception $e) {
-        Show_error($e);
+        catch (Throwable $e) {
+        Show_error();
     }
        
     } else {
         try{
             $sql = "SELECT * FROM voluntario WHERE id = ?";
             $result = select(null,$sql, [$_SESSION['id']]);
+
+            $_SESSION['backup'] = $result;
+            voluntary_profile($result);
+
         }
-        catch (Exception $e) {
-        Show_error($e);
+        catch (Throwable $e) {
+        Show_error();
         }
     }
 
@@ -60,7 +74,7 @@ function voluntary_profile($result){
             <input type='text' name='periodo' placeholder='Período' value='".$result[0]["periodo"]."' disabled>
             <input type='text' name='situacao' placeholder='Situação atual' value='".$result[0]["estado_social"]."' disabled>
             <input type='text' name='deficiencia' placeholder='Deficiência' value='".$result[0]["pcd"]."' disabled>
-            <textarea name='sobre' placeholder='Conte um pouco sobre você e suas experiências' value='".$result[0]["sobre"]."' disabled></textarea>
+            <textarea name='sobre' placeholder='Conte um pouco sobre você e suas experiências' disabled>".$result[0]["sobre"]."</textarea>
 
             <div class='botoes'>
             <button type='button' class='btn btn-editar' id='btnEditar'>Editar</button>
@@ -68,6 +82,16 @@ function voluntary_profile($result){
             <button type='submit' class='btn btn-alterar' id='btnAlterar' style='display:none;'>Alterar</button>
             </div>
         </form>
+        </div>
+
+        <div class='vagas-box'>
+            <h3>Vagas Cadastradas</h3>
+            <small>1/3 cadastros permitidos</small>
+            <button class='btn-controle'>Ver Controle de Vagas</button>
+
+            <div class='vaga-item'><span>Vaga 1</span><button>Sair</button></div>
+            <div class='vaga-item'><span>Vaga 2</span><button>Sair</button></div>
+            <div class='vaga-item'><span>Vaga 3</span><button>Sair</button></div>
         </div>
     </div>
     ";

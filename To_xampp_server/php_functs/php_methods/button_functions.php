@@ -65,8 +65,8 @@ function save_button($id_vaga)
                 echo "Erro na inserção.";
             }
 
-        } catch (Exception $e) {
-            Show_error($e);
+        } catch (Throwable $e) {
+            Show_error();
         }
 
     } else {
@@ -87,8 +87,8 @@ function unsave_button($id_vaga)
             echo "Erro na inserção.";
         }
 
-    } catch (Exception $e) {
-        Show_error($e);
+    } catch (Throwable $e) {
+        Show_error();
     }
 
 }
@@ -120,7 +120,7 @@ function send_button($id_vaga)
                     if ($result == 0) {
                         $conn->rollBack();
 
-                        Show_error('');
+                        Show_error();
                         exit();
                     }
                     // ================================================================
@@ -134,7 +134,7 @@ function send_button($id_vaga)
                     if ($result == 0) {
                         $conn->rollBack();
 
-                        Show_error('');
+                        Show_error();
                         exit();
                     }
                     // ================================================================
@@ -148,15 +148,15 @@ function send_button($id_vaga)
                     if ($result == 0) {
                         $conn->rollBack();
 
-                        Show_error('');
+                        Show_error();
                         exit();
                     }
                     // ================================================================
                     $conn->commit();
 
-                } catch (Exception $e) {
+                } catch (Throwable $e) {
                     $conn->rollBack();
-                    Show_error($e);
+                    Show_error();
 
                 }
 
@@ -177,7 +177,7 @@ function send_button($id_vaga)
                     if ($result == 0) {
                         $conn->rollBack();
 
-                        Show_error('');
+                        Show_error();
                         exit();
                     }
                     // ================================================================
@@ -191,7 +191,7 @@ function send_button($id_vaga)
                     if ($result == 0) {
                         $conn->rollBack();
 
-                        Show_error('');
+                        Show_error();
                     }
                     // ================================================================
 
@@ -204,15 +204,15 @@ function send_button($id_vaga)
                     if ($result == 0) {
                         $conn->rollBack();
 
-                        Show_error('');
+                        Show_error();
                         exit();
                     }
                     // ================================================================
                     $conn->commit();
 
-                } catch (Exception $e) {
+                } catch (Throwable $e) {
                     $conn->rollBack();
-                    Show_error($e);
+                    Show_error();
                 }
             }
 
@@ -247,7 +247,7 @@ function unsend_button($id_vaga)
         if ($result == 0) {
             $conn->rollBack();
 
-            Show_error('');
+            Show_error();
         }
         // ================================================================
 
@@ -260,7 +260,7 @@ function unsend_button($id_vaga)
         if ($result == 0) {
             $conn->rollBack();
 
-            Show_error('');
+            Show_error();
         }
         // ================================================================
 
@@ -273,15 +273,15 @@ function unsend_button($id_vaga)
         if ($result == 0) {
             $conn->rollBack();
 
-            Show_error('');
+            Show_error();
             exit();
         }
         // ================================================================
         $conn->commit();
 
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
         $conn->rollBack();
-        Show_error($e);
+        Show_error();
     }
 
 }
@@ -298,8 +298,8 @@ function is_registry_before($id_vaga, $id)
             return false;
         }
 
-    } catch (Exception $e) {
-        Show_error($e);
+    } catch (Throwable $e) {
+        Show_error();
     }
 }
 
@@ -315,8 +315,8 @@ function is_permited_send_limit($id_vol)
             return false;
         }
 
-    } catch (Exception $e) {
-        Show_error($e);
+    } catch (Throwable $e) {
+        Show_error();
     }
 }
 ?>

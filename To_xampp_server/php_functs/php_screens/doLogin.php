@@ -3,9 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-function Show_error($e)
+function Show_error()
 {
-    $_SESSION['erro'] = $e;
     $_SESSION['login_state'] = $_POST['login_state'];
     $_SESSION['notification'] = 'server_error';
 
@@ -39,14 +38,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Busca da senha pelo email
 
     try {
-        $sql = "SELECT id, senha," . $auxiliar_name . " FROM " . $table_login . " WHERE
+        $sql = "SELECT id, senha, email, " . $auxiliar_name . " FROM " . $table_login . " WHERE
          " . $table_login . "." . $auxiliar_name . " = ? OR " . $table_login . ".email = ?";
 
         include '../php_db/methods.php';
         $result = select(null,$sql, [$name_email, $name_email]);
 
     } catch (Exception $e) {
-        Show_error($e);
+        Show_error();
     }
 
     // Procura se algum dos registros possui a senha informada
@@ -57,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['whoLogged'] = $table_login;
             $_SESSION['name'] = $user[$auxiliar_name];
             $_SESSION['id'] = $user['id'];
+            $_SESSION['email_login'] = $user['email'];
             $_SESSION['isLogin'] = true;
 
             $_SESSION['notification'] = 'login_sucess';
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Exibição de Erro
     // caso nenhum valor a cima tenha funciona,
     // significa que não foi encontrado
-    Show_incorrect_text("login_error");
+    Show_incorrect_text('login_error');
     exit();
 }
 

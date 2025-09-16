@@ -37,6 +37,13 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <link rel="stylesheet" href="css/notification.css">
 
   <style>
+    body {
+      background-image: url("img/desingLogin.png");
+      background-color: #004652;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
     body::-webkit-scrollbar {
       display: none;
       /* Para navegadores baseados em WebKit (Chrome, Safari) */
@@ -94,7 +101,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
               </div>
 
               <p class="signup">Não possui uma conta? <a href="account.php">CADASTRE-SE</a></p>
-              <button class="btlog" type="submit" onclick="localStorage.setItem('Botao_guia', 'voluntario');">LOGIN</button>
+              <button class="btlog" type="submit"
+                onclick="localStorage.setItem('Botao_guia', 'voluntario');">LOGIN</button>
             </form>
           </div>
         </div>
@@ -116,7 +124,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
               </div>
 
               <p class="signup">Não possui uma conta? <a href="account.php">CADASTRE-SE</a></p>
-              <button class="btlog" type="submit" onclick="localStorage.setItem('Botao_guia', 'voluntario');">LOGIN</button>
+              <button class="btlog" type="submit"
+                onclick="localStorage.setItem('Botao_guia', 'voluntario');">LOGIN</button>
             </form>
           </div>
         </div>

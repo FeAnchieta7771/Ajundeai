@@ -6,6 +6,7 @@ include 'php_functs/php_methods/functions.php';
 // salva a url atual de telas dinâmicas
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
+$_SESSION['oi'] = '10';
 // busca situação de login do usuário
 $login_state = is_logged();
 // busca quem está logado
@@ -13,6 +14,7 @@ $is_ong = is_ong_logged();
 // busca botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
+// print_r($_SESSION);
 function is_checked_before($name)
 {
   if (isset($_GET[$name])) {

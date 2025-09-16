@@ -7,29 +7,26 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-function Show_error($e)
+function Show_error()
 {
-    $_SESSION['erro'] = $e;
     $_SESSION['notification'] = 'server_error';
 
     header('Location: '.$_SESSION['tela_retrasada']);
     exit();
 }
 
-function disfuncaoeretil()
+function disfuncaoeretil($id_voluntario)
 {
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
-        $id_voluntario = $_GET['id_voluntario'];
 
         try {
             $sql = "SELECT * FROM voluntario WHERE id = ?";
 
             $result = select(null, $sql, [$id_voluntario]);
 
-        } catch (Exception $e) {
-            Show_error($e);
+        } catch (Throwable $e) {
+            Show_error();
         }
 
         $_SESSION['email_vol'] = $result[0]['email'];
@@ -62,14 +59,14 @@ function disfuncaoeretil()
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">NOME:</label>
-                                <input type="text" id="name" name="nome" value= ' . $result[0]['nome_voluntario'] . ' readonly>
+                                <input type="text" id="name" name="nome" value="' . $result[0]['nome_voluntario'] . '" readonly>
                             </div>
                         </div>
                 
                         <div class="form-row-3">
                                 <div class="form-group">
                                     <label for="email">E-MAIL:</label>
-                                    <input type="email" id="email" name="email" value = ' . $result[0]['email'] . ' readonly>
+                                    <input type="email" id="email" name="email" value = "' . $result[0]['email'] . '" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">CPF:</label>

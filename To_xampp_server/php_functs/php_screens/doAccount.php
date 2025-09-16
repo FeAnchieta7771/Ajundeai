@@ -11,21 +11,20 @@ function check_unique_name($table, $name)
 {
     try {
         $sql = "SELECT COUNT(*) as 'lines' FROM $table WHERE nome_$table = ?";
-        $result = select(null,$sql, [$name]);
+        $result = select(null, $sql, [$name]);
 
         if ($result[0]['lines'] > 0) {
             return false;
         } else {
             return true;
         }
-    } catch (Exception $e) {
-        Show_error($e);
+    } catch (Throwable $e) {
+        Show_error();
     }
 }
 
-function Show_error($e)
+function Show_error()
 {
-    $_SESSION['erro'] = $e;
     $_SESSION['account_state'] = $_POST['account_state'];
     $_SESSION['notification'] = 'server_error';
 
@@ -49,18 +48,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $accout = $_SESSION['account_state'] = $_POST['account_state'];
 
-    $name       = $_SESSION['nome']         = $_POST['nome'];
-    $email      = $_SESSION['email']        = $_POST['email'];
-    $password   = $_SESSION['password']     = $_POST['password'];
-    $telephone  = $_SESSION['telephone']    = $_POST['telephone'];
-    $whats      = $_SESSION['whats']        = $_POST['whats'] ?? '';
-    $about      = $_SESSION['about']        = $_POST['about'];
+    $name = $_SESSION['nome'] = $_POST['nome'];
+    $email = $_SESSION['email'] = $_POST['email'];
+    $password = $_SESSION['password'] = $_POST['password'];
+    $telephone = $_SESSION['telephone'] = $_POST['telephone'];
+    $whats = $_SESSION['whats'] = $_POST['whats'] ?? '';
+    $about = $_SESSION['about'] = $_POST['about'];
 
-    $cpf        = $_SESSION['cpf']          = $_POST['cpf'] ?? '';
-    $cat_vol    = $_SESSION['cat_vol']      = $_POST['cat_vol'] ?? '';
-    $periodo    = $_SESSION['periodo']      = $_POST['periodo'] ?? '';
-    $estado     = $_SESSION['estado']       = $_POST['estado'] ?? '';
-    $pcd        = $_SESSION['pcd']          = $_POST['pcd'] ?? '';
+    $vaga = $_POST['vaga'] ?? '';
+    
+    $cpf = $_SESSION['cpf'] = $_POST['cpf'] ?? '';
+    $cat_vol = $_SESSION['cat_vol'] = $_POST['cat_vol'] ?? '';
+    $periodo = $_SESSION['periodo'] = $_POST['periodo'] ?? '';
+    $estado = $_SESSION['estado'] = $_POST['estado'] ?? '';
+    $pcd = $_SESSION['pcd'] = $_POST['pcd'] ?? '';
+
+    if(!empty($vaga)){
+
+        $_SESSION['vaga'] = $vaga;
+        $cat_vol = $vaga;
+    }
 
     if (!check_unique_name($accout, $name)) {
         Show_incorrect_text("Já existe um Registro com esse Nome, Insira outro", 'name_repated_error');
@@ -81,64 +88,71 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telephone_to_db = Convert_phone_to_db($telephone);
     $whats_to_db = Convert_whats_to_db($whats);
     $cpf_to_db = Convert_cpf_to_db($cpf);
-    $id = last_id($accout);
 
     try {
+        // registro ao banco em que o usuário em questão foi negado para a vaga
+        include '../php_db/conexao.php';
+
+        $conn->beginTransaction();
 
         if ($accout == 'voluntario') {
 
             $sql_command = "INSERT INTO $accout(nome_voluntario,email,senha,telefone,whatsapp,categoria_trabalho,periodo,cpf,estado_social,pcd,sobre,quant_cadastro)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,0)";
 
-            insert(null,$sql_command,[$name,$email,$password,$telephone_to_db,$whats_to_db,$cat_vol,$periodo,$cpf_to_db,$estado,$pcd,$about]);
+            insert(null, $sql_command, [$name, $email, $password, $telephone_to_db, $whats_to_db, $cat_vol, $periodo, $cpf_to_db, $estado, $pcd, $about]);
 
         } else if ($accout == 'ong') {
 
             $sql_command = "INSERT INTO $accout(nome_ong,email,senha,sobre,telefone,whatsapp)
             VALUES (?,?,?,?,?,?)";
 
-            insert(null,$sql_command,[$name,$email,$password,$about,$telephone_to_db,$whats_to_db]);
+            insert(null, $sql_command, [$name, $email, $password, $about, $telephone_to_db, $whats_to_db]);
         }
 
-        $_SESSION['whoLogged'] = $accout;
-        $_SESSION['name'] = $name;
-        $_SESSION['id'] = $id;
-        $_SESSION['isLogin'] = true;
+        $id = last_id($accout,$name);
 
-        $_SESSION['notification'] = 'create_account_sucess';
+        $conn->commit();
 
-        if ($accout == 'ong') {
+    } catch (Throwable $e) {
+        $conn->rollBack();
+        Show_error();
+    }
 
-            header('Location: ../../dashboard_ong.php');
-            exit();
+    $_SESSION['whoLogged'] = $accout;
+    $_SESSION['name'] = $name;
+    $_SESSION['id'] = $id;
+    $_SESSION['email_login'] = $email;
+    $_SESSION['isLogin'] = true;
 
-        } else if ($accout == 'voluntario') {
+    $_SESSION['notification'] = 'create_account_sucess';
 
-            header('Location: ../../source.php');
-            exit();
-        }
+    if ($accout == 'ong') {
 
+        header('Location: ../../dashboard_ong.php');
+        exit();
 
-    } catch (Exception $e) {
+    } else if ($accout == 'voluntario') {
 
-        Show_error($e);
+        header('Location: ../../source.php');
+        exit();
     }
 }
 
-function last_id($table)
+function last_id($table,$name)
 {
 
 
     try {
-        $sql = "SELECT id FROM $table ORDER BY id DESC LIMIT 1;";
+        $sql = "SELECT id FROM $table WHERE nome_".$table." = ?";
 
-        $result = select(null,$sql, []);
+        $result = select(null, $sql, [$name]);
 
-        return $result[0]['id'] + 1;
+        return $result[0]['id'];
 
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
 
-        Show_error($e);
+        throw new Exception($e->getMessage());
     }
 }
 ?>

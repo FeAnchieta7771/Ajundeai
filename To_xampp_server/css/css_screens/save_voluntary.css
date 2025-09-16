@@ -91,6 +91,10 @@
         height: 120px;
     }
 
+    .vaga-info{
+        width: 85%;
+    }
+
     .vaga-info h4 {
         color: #e76f00;
         font-size: 1.4rem;
@@ -107,6 +111,17 @@
     .vaga-info p {
         font-size: 1rem;
         color: #444;
+        font-size: 1em;
+        color: #444;
+        text-overflow: ellipsis;
+        text-align: left;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 
     .status-icon-externo {

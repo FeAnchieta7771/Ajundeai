@@ -8,10 +8,18 @@ $allparams = [];
 /////////////////////////////////////////////////////////////////////////
 function Show_error($e)
 {
-    $html = text_html_header_error();
-    $html .= text_html_main_error($e);
-    $html .= text_html_buttons_error();
-    echo $html;
+    echo "<div class='quantSlot'>
+        <h3>ERRO AO SERRVIDOR</h3></div>";
+    echo "<div class='scroll-wrapper'>";
+    echo "<div class='vaga-card' style='background-color:rgb(222, 222, 222); border: none;'>";
+
+    echo "  <img src='img/icons_orange/problem_data.png' alt='Ícone' />";
+    echo "  <div class='vaga-info'>";
+    echo "    <h3 style='display: flex;'>Infelizmente, ocorreu um erro ao servidor.</h3>";
+    echo "    <span>Tente novamente mais tarde.</span>";
+    echo "  </div>";
+    echo "</div>";
+    echo "</div>";
     exit();
 }
 
@@ -22,7 +30,7 @@ function do_select($sql, $param = [])
         $result = select(null, $sql, $param);
         return $result;
 
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
         Show_error($e);
     }
 }
@@ -36,7 +44,7 @@ function do_voluntary_searcher()
         global $allparams;
         $allparams = [];
 
-
+        $name_slot = $_GET['name_slot'];
 
         $sql = "SELECT nome_voluntario, id, categoria_trabalho, sobre FROM voluntario ";
         // nome, id do viado, categoria de trabalho, e deixa eu ver, o sobre
@@ -46,16 +54,16 @@ function do_voluntary_searcher()
         // print_r($allparams);
         // echo $sql;
         // $result = return_select($sql);
-                // echo $sql;
+                echo $sql;
         $result = do_select($sql, $allparams);
-        show_filter($result);
+        show_filter($result,$name_slot);
 
     }
 
 }
 
 // A FUNÇÃO fará a exibição dos resultados entregues á ela
-function show_filter($result)
+function show_filter($result,$name_slot)
 {
 
     // iniciar tentiva de consulta
@@ -91,9 +99,9 @@ function show_filter($result)
             // busca a imagem a partir da categoria da vaga
             $url = image_filter($user_result['categoria_trabalho']);
 
-            echo "<form method='GET' action='../show_slot_voluntary.php'>";
-            echo "<input type='hidden' name='type' value='filter_base'>";
-            echo "<input type='hidden' name='id_vaga' value=" . $user_result['id'] . ">";
+            echo "<form method='GET' action='../call_voluntary.php'>";
+            echo "<input type='hidden' name='id_voluntario' value=" . $user_result['id'] . ">";
+            echo "<input type='hidden' name='name_slot' value=" . $name_slot . ">";
             echo "<button class='vaga-card' type='submit'>";
 
             echo "<i class='bxs-user' ></i>";
@@ -239,18 +247,20 @@ function filter_base_checkbox($sql)
         // remoção do OR restante
         $sql = substr($sql, 0, strlen($sql) - 3);
 
-        if (isset($_GET["categoria_trabalho"])) {
-            $sql .= " ORDER BY CASE WHEN voluntario.categoria_trabalho = ? THEN 1 ELSE 2 END";
-            $allparams[] = $_SESSION['categoria_vaga'];
-        }
-
-        $allparams = array_values($allparams);
-
-
     } else if ($quant_filter == 0) {
+        
         // remoção do WHERE restante
         $sql = substr($sql, 0, strlen($sql) - 6);
     }
+
+    if (isset($_GET["categoria_trabalho"])) {
+        // $sql .= " ORDER BY CASE WHEN voluntario.categoria_trabalho = ? THEN 1 ELSE 2 END";
+        // $allparams[] = $_SESSION['categoria_vaga'];
+
+        $sql .= " ORDER BY CASE WHEN REPLACE(TRIM(voluntario.categoria_trabalho), ' ', '') LIKE REPLACE(TRIM(?), ' ', '') COLLATE utf8mb4_unicode_ci THEN 1 ELSE 2 END";
+        $allparams[] = "%".$_SESSION['categoria_vaga']."%";
+    }
+    $allparams = array_values($allparams);
 
     return $sql;
 }

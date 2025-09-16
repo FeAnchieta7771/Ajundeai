@@ -29,7 +29,7 @@ function do_select($sql, $param = [])
         $result = select(null, $sql, $param);
         return $result;
 
-    } catch (Exception $e) {
+    } catch (Throwable $e) {
         Show_error($e);
     }
 }
@@ -352,7 +352,7 @@ function text_html_buttons($buttons, $location, $quant_cadastro)
             <i class="bx  bxs-location" style="font-size: 35px" ></i>
             LOCALIZAÇÃO:
           </h4>
-          <p><em><i class="bx  bx-map"  ></i> ' . $location . '</em></p>
+          <p style="word-break: break-all; width: 100%;"><em><i class="bx  bx-map"  ></i> ' . $location . '</em></p>
         </div>
       </div>
 
@@ -378,6 +378,7 @@ function text_html_voluntarys($result_register, $id_vaga, $name_slot, $category)
     echo '<div class="vaga-lateral">
         <form method="GET" action="looking_voluntary.php">
             <input type="hidden" name="categoria_trabalho" value="' . $category . '"/>
+            <input type="hidden" name="name_slot" value="' . $name_slot . '"/>
             <button class="vaga-procura-voluntario">Buscar Voluntário <i class="bx  bxs-user-search" style="font-size: x-large; margin-left: 0.5rem;" ></i> </button>
         </form>
         <div class="voluntarios">
