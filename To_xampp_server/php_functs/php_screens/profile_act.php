@@ -92,11 +92,13 @@ function voluntary_profile($result, $result_vaga)
             <i class='bx bxs-user' style='font-size:22px;'></i>
             <span>TIPO DA CONTA: VOLUNTÁRIO</span>
             </div>
+            <form method='POST' action='php_functs/php_methods/excluir_profile.php'>
             <button class='btn-trash' title='Excluir conta'>
             <i class='bx bxs-trash'></i>
             </button>
+            </form>
         </div>
-        <form method= 'POST' action= 'php_functs/php_screens/profile_aplication.php' id='formPerfil'>
+        <form class='form' method= 'POST' action= 'php_functs/php_screens/profile_aplication.php' id='formPerfil'>
             <input type='text' name='nome' placeholder='Nome' value='" . $result[0]["nome_voluntario"] . "' disabled>
             <input type='hidden' name= 'type_usuario' value ='voluntario'>
             <input type='text' id='cpf' name='cpf' placeholder='#########-##' maxlength='12' value='" . $result[0]['cpf'] . "' disabled>
@@ -129,8 +131,20 @@ function voluntary_profile($result, $result_vaga)
             echo "<form method='GET' action='../show_slot_voluntary.php'>
                 <input type='hidden' name='type' value='filter_base'>
                 <input type='hidden' name='id_vaga' value=" . $vaga['id'] . ">
-                <button><div class='vaga-item'><span>" . $vaga['nome'] . "</span><span>" . $vaga['nome_ong'] . "</span></div></button></form>";
+                <button class='button_vaga'>
+                <img src='img/icons_blue/outro.png' width='50' height='50' alt='Ícone' />
+                <div class='vaga-info'>
+                <h4 style='font-family: 'Horizon', sans-serif;'><a style='text-decoration: none'>" . $vaga['nome'] . "</a></h4>
+                <span>" . $vaga['nome_ong'] . "
+                </span></div></button></form>";
         }
+
+        //foreach ($result_vaga as $vaga) {
+        //     echo "<form method='GET' action='../show_slot_voluntary.php'>
+        //         <input type='hidden' name='type' value='filter_base'>
+        //         <input type='hidden' name='id_vaga' value=" . $vaga['id'] . ">
+        //         <button><div class='vaga-item'><span>" . $vaga['nome'] . "</span><span>" . $vaga['nome_ong'] . "</span></div></button></form>";
+        // }
     }
 
     echo "
@@ -158,7 +172,7 @@ function ong_profile($result)
 
     </div>
 
-    <form method= 'POST' action= 'php_functs/php_screens/user_profile.php'id=' formPerfil'>
+    <form method= 'POST' class='form' action= 'php_functs/php_screens/user_profile.php'id=' formPerfil'>
 
         <input type='text' name='nome' placeholder='Nome' class='input-nome' value='" . $result[0]["nome_ong"] . "' disabled>
 

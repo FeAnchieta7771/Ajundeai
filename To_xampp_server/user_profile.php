@@ -35,7 +35,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <link rel="stylesheet" href="css/notification.css">
     <link rel="stylesheet" href="css/header.css" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #fff; }
 
     /* Layout principal */
@@ -72,6 +72,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       justify-content: space-between;
       gap: 10px;
       border-bottom: 2px solid #e76f00;
+      font-family: 'Horizon', sans-serif;
     }
     .perfil-header .left {
       display: flex;
@@ -87,14 +88,14 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     }
     .btn-trash:hover { color: #ffd6cc; }
 
-    form {
+    .form {
       padding: 20px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
     }
 
-    form input, form textarea {
+    .form input, .form textarea {
       width: 100%;
       padding: 10px;
       border: 2px solid #004d61;
@@ -104,20 +105,20 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       font-size: 0.95rem;
     }
 
-    form textarea {
+    .form textarea {
       grid-column: span 2;
       height: 120px;
       resize: vertical;
     }
 
-    form input:disabled, form textarea:disabled {
+    .form input:disabled, .form textarea:disabled {
       background: #ddd;
       color: #777;
       cursor: not-allowed;
     }
 
-    .perfil.editando form input,
-    .perfil.editando form textarea {
+    .perfil.editando .form input,
+    .perfil.editando .form textarea {
       background: #fff;
       color: #004d61;
       border-color: #fff;
@@ -198,6 +199,67 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
     }
 
+    .button_vaga{
+      width: 100%;
+      display: flex;
+      gap: 15px;
+      border: solid 2px transparent;
+      background-color: #a3cfff55;
+      cursor: pointer;
+      transition: .15s;
+      margin: 10px 0px;
+    }
+
+    .button_vaga:hover{
+      border: solid 2px #007bff;
+      background-color: #a3cfff2a;
+      border-radius: 5px;
+    }
+
+    .button_vaga:hover h4{
+      color: #007bff;
+    }
+
+    .vaga-info{
+        width: 100%;
+        text-align: left;
+        display: grid;
+    }
+
+    .vaga-info h4 {
+        color: #007bff;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        font-family: 'Horizon', sans-serif;
+        transition: .2s;
+    }
+
+    .vaga-info span {
+        display: block;
+        margin-bottom: 5px;
+        align-items: center;
+        color: #196e78;
+        font-weight: bold;
+        font-family: 'Antique', sans-serif;
+    }
+
+    .vaga-info p {
+        font-size: 1em;
+        color: #444;
+        text-overflow: ellipsis;
+        text-align: left;
+        flex: 1;
+      
+        /* width: 10rem; */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        /* number of lines to show */
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+
   </style>
 </head>
 
@@ -216,6 +278,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
 <?php include "php_functs\php_screens\profile_act.php"; account_type($is_ong); ?>
 <!-- 
+
   Conteúdo principal
   <div class="painel">
     Perfil Voluntário
@@ -256,9 +319,9 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
       <small>1/3 cadastros permitidos</small>
       <button class="btn-controle">Ver Controle de Vagas</button>
 
-      <div class="vaga-item"><span>Vaga 1</span><button>Sair</button></div>
-      <div class="vaga-item"><span>Vaga 2</span><button>Sair</button></div>
-      <div class="vaga-item"><span>Vaga 3</span><button>Sair</button></div>
+      COMO O PHP CHAMA ESSE BOTÃO
+      <button><div class='vaga-item'><span>" . $vaga['nome'] . "</span><span>" . $vaga['nome_ong'] . "</span></div></button></form>"
+
     </div>
   </div> -->
 

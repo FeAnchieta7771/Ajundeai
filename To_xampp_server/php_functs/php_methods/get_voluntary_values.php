@@ -15,7 +15,7 @@ function Show_error()
     exit();
 }
 
-function disfuncaoeretil($id_voluntario)
+function show_data_voluntary($id_voluntario)
 {
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
