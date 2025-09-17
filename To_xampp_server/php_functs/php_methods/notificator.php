@@ -62,6 +62,12 @@ function notificator($type_notfication)
         case 'callEmailNotSend':
             callEmailNotSend();
             break;
+        case 'profile_error':
+            profile_error();
+            break;
+        case 'profile_sucess':
+            profile_sucess();
+            break;
     }
 }
 
@@ -254,6 +260,27 @@ function callEmailNotSend()
     $text = json_encode("Tente novamente mais tarde...");
     $type = json_encode("error");
     $icon = json_encode("bx  bx-message-x");
+
+    js_notification($type, $icon, $title, $text);
+}
+
+function profile_error()
+{
+
+    $title = json_encode("Não foi possível alterar a Conta.");
+    $text = json_encode("Tente novamente mais tarde...");
+    $type = json_encode("error");
+    $icon = json_encode("bx  bx-alert-square");
+
+    js_notification($type, $icon, $title, $text);
+}
+function profile_sucess()
+{
+
+    $title = json_encode("Alteração feita com Sucesso!");
+    $text = json_encode("Seus dados foram atualizados ao banco...");
+    $type = json_encode("sucess");
+    $icon = json_encode("bx  bx-save");
 
     js_notification($type, $icon, $title, $text);
 }

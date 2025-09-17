@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+$_SESSION['tela_retrasada_profile'] = $_SESSION['tela_anterior'];
 $_SESSION['tela_anterior'] = $_SERVER['REQUEST_URI'];
 
 include 'php_functs/php_methods/functions.php';
@@ -18,7 +19,8 @@ $is_ong = is_ong_logged();
 
 // setar botões do header
 $buttons_header = set_model_buttons_header($login_state, $is_ong);
-echo $_SESSION['id'];
+// echo $_SESSION['id'];
+// print_r($_SESSION);
 
 ?>
 
@@ -29,6 +31,8 @@ echo $_SESSION['id'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AjundeAi - Perfil Voluntário</title>
   <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
+  <link rel="icon" href="img/Logo_Aba.png" />
+  <link rel="stylesheet" href="css/notification.css">
     <link rel="stylesheet" href="css/header.css" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }

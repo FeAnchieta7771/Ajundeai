@@ -64,7 +64,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     <h1>PAINEL DE CONTROLE</h1>
 
     <a class="painel-a1" href="save_voluntary.php"><strong>Vagas Salvas</strong></a>
-    <a class="painel-a2" href="register_voluntary.php"><strong>Vacas Cadastradas</strong></a>
+    <a class="painel-a2" href="save_voluntary.php"style="color: #e76f00" ><strong>VAGAS CADASTRADAS</strong></a>
   </div>
 
   <!-- Conteúdo principal -->

@@ -74,7 +74,7 @@ function is_checked_before($name){
     <div class="painel-bar">
       <h1>PAINEL DE CONTROLE</h1>
 
-      <a class="painel-a1" href="save_voluntary.php"><strong>Vagas Salvas</strong></a>
+      <a class="painel-a1" href="save_voluntary.php"style="color: #e76f00" ><strong>VAGAS SALVAS</strong></a>
       <a class="painel-a2" href="register_voluntary.php"><strong>Vacas Cadastradas</strong></a>
     </div>
 
