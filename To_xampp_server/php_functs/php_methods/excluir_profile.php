@@ -39,6 +39,7 @@ if (session_status() === PHP_SESSION_NONE) {
             Show_error($e);
         }
 
+        $_SESSION['notification'] = 'delete_account_sucess';
         $_SESSION['tela_anterior'] = '/index.php';
         header('Location: ../../logout.php');
 
