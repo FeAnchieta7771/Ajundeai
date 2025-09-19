@@ -54,7 +54,7 @@ function do_voluntary_searcher()
         // print_r($allparams);
         // echo $sql;
         // $result = return_select($sql);
-                echo $sql;
+                // echo $sql;
         $result = do_select($sql, $allparams);
         show_filter($result,$name_slot);
 
