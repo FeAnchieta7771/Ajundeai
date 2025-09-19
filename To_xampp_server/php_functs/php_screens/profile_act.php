@@ -172,7 +172,7 @@ function ong_profile($result)
 
     </div>
 
-    <form method= 'POST' class='form' action= 'php_functs/php_screens/user_profile.php'id=' formPerfil'>
+    <form method= 'POST' class='form' action= 'php_functs/php_screens/user_profile.php'id='formPerfil'>
 
         <input type='text' name='nome' placeholder='Nome' class='input-nome' value='" . $result[0]["nome_ong"] . "' disabled>
 
