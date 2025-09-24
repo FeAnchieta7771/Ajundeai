@@ -68,6 +68,9 @@ function notificator($type_notfication)
         case 'profile_sucess':
             profile_sucess();
             break;
+        case 'delete_account_sucess':
+            delete_account_sucess();
+            break;
     }
 }
 
@@ -281,6 +284,16 @@ function profile_sucess()
     $text = json_encode("Seus dados foram atualizados ao banco...");
     $type = json_encode("sucess");
     $icon = json_encode("bx  bx-save");
+
+    js_notification($type, $icon, $title, $text);
+}
+function delete_account_sucess()
+{
+
+    $title = json_encode("Conta Deletada com Sucesso!");
+    $text = json_encode("Foi bom enquanto durou...");
+    $type = json_encode("error");
+    $icon = json_encode("bx  bx-trash");
 
     js_notification($type, $icon, $title, $text);
 }
