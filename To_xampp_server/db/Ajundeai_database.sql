@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15/09/2025 às 19:44
+-- Tempo de geração: 16/09/2025 às 13:25
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -22,6 +22,7 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `ajundeai` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `ajundeai`;
+
 
 -- --------------------------------------------------------
 
@@ -44,56 +45,56 @@ CREATE TABLE `ong` (
 --
 
 INSERT INTO `ong` (`id`, `nome_ong`, `email`, `senha`, `sobre`, `telefone`, `whatsapp`) VALUES
-(16, 'ONG Amigos do Meio Ambiente', 'contato@ongamigosdoambiente.org', 'greenpass123', 'Dedicada à preservação de ecossistemas locais, plantio de árvores e conscientização ambiental.', '(11) 98765-4321', '(11) 98765-4321'),
-(17, 'Instituto Esperança Viva', 'faleconosco@esperancaviva.com', 'esperanca_2024', 'Focada em oferecer apoio psicológico e social para crianças em situação de vulnerabilidade.', '(21) 99876-5432', '(21) 99876-5432'),
-(18, 'Cão e Gato Solidário', 'ajuda@caosolidario.com', 'miau_auau!', 'Resgate e reabilitação de animais abandonados, além de campanhas de adoção responsável.', '(31) 98765-1234', '(31) 98765-1234'),
-(19, 'ONG Futuro Brilhante', 'contato@futurobrilhante.org', 'futuro-brilhante', 'Oferece aulas de reforço escolar e atividades extracurriculares para jovens de comunidades carentes.', '(41) 98765-5678', '(41) 98765-5678'),
-(20, 'Mãos Unidas contra a Fome', 'fomezero@maosunidas.com', 'maosunidas!', 'Distribuição de alimentos e cestas básicas para famílias em insegurança alimentar.', '(51) 99123-4567', '(51) 99123-4567'),
-(21, 'Associação Viver Melhor', 'vivermelhor@viver.org', 'vivermelhor_abc', 'Fomenta a inclusão social de pessoas com deficiência através de oficinas de arte e esporte.', '(61) 98765-9876', '(61) 98765-9876'),
-(22, 'ONG Semente da Paz', 'paz@sementedapaz.org', 'semente-paz', 'Promoção de mediação de conflitos e cultura de paz em bairros de alta violência.', '(71) 99876-9876', '(71) 99876-9876'),
-(23, 'Instituto de Pesquisa Marítima', 'contato@pesquisamaritima.com', 'maritima2024', 'Estuda a vida marinha e os impactos da poluição nos oceanos.', '(81) 99876-5432', '(81) 99876-5432'),
-(24, 'ONG Guardiões da Floresta', 'floresta@guardioes.org', 'floresta_protegida', 'Atua na proteção de áreas de mata nativa contra desmatamento ilegal e queimadas.', '(91) 98765-0123', '(91) 98765-0123'),
-(25, 'ONG Amiga da Terceira Idade', 'idoso@ongamiga.com', 'terceiraidade!', 'Proporciona atividades de lazer, saúde e integração para idosos.', '(11) 99876-0987', '(11) 99876-0987'),
-(26, 'Instituto Conectando Vidas', 'contato@conectandovidas.org', 'vida_online_10', 'Promove a inclusão digital para a população mais velha.', '(21) 98765-1234', '(21) 98765-1234'),
-(27, 'ONG Resgate Animal', 'resgate@ongresgateanimal.com', 'resgatepet!', 'Especializada no resgate de animais silvestres feridos.', '(31) 99123-4567', '(31) 99123-4567'),
-(28, 'ONG Sorriso no Rosto', 'sorriso@sorrisonorosto.org', 'sorriso_smile', 'Levar alegria e brincadeiras para crianças em hospitais.', '(41) 99876-5432', '(41) 99876-5432'),
-(29, 'ONG Acolhendo Refugiados', 'refugiados@acolher.org', 'acolher_100', 'Oferece abrigo e apoio para refugiados e imigrantes em busca de uma nova vida.', '(51) 98765-1234', '(51) 98765-1234'),
-(30, 'Instituto de Artes e Cultura', 'arteecultura@artes.com', 'artes_on', 'Incentivo à produção artística e cultural em comunidades de baixa renda.', '(61) 99876-7890', '(61) 99876-7890'),
-(31, 'ONG Coração Amigo', 'coracaoamigo@ong.org', 'amigo_coracao', 'Apoio a famílias de crianças com doenças crônicas.', '(71) 98765-4321', '(71) 98765-4321'),
-(32, 'ONG Cidadania Ativa', 'contato@cidadaniaativa.com', 'cidadania_br', 'Promove a educação cívica e a participação cidadã.', '(81) 99876-9876', '(81) 99876-9876'),
-(33, 'Grupo de Apoio para Mulheres', 'mulheres@grupoapoio.org', 'poder_feminino', 'Oferece suporte jurídico e psicológico para mulheres vítimas de violência.', '(91) 98765-4321', '(91) 98765-4321'),
-(34, 'ONG Escola Verde', 'escola@escola_verde.org', 'verde_escola', 'Criação de hortas escolares e educação ambiental para crianças.', '(11) 99876-1234', '(11) 99876-1234'),
-(35, 'ONG Plantando o Bem', 'contato@plantandoobem.com', 'plantar_bem_!', 'Coleta seletiva e reciclagem de lixo em áreas urbanas.', '(21) 98765-5678', '(21) 98765-5678'),
-(36, 'ONG Salva Vidas', 'salvavidas@ong.org', 'vida_salva_!', 'Apoio a projetos de doação de sangue e órgãos.', '(31) 99123-7890', '(31) 99123-7890'),
-(37, 'ONG Crescer Juntos', 'crescerjuntos@ong.com', 'crescerjuntos_22', 'Desenvolvimento de habilidades profissionais em jovens.', '(41) 98765-0123', '(41) 98765-0123'),
-(38, 'ONG Amigos do Hospital', 'amigohospital@hospital.org', 'amigo_hospital_!', 'Ajuda na manutenção de hospitais públicos e na compra de equipamentos.', '(51) 99876-5432', '(51) 99876-5432'),
-(39, 'ONG Consciência Animal', 'contato@conscienciaanimal.com', 'animal_consciente', 'Campanhas de conscientização sobre o bem-estar animal.', '(61) 98765-9876', '(61) 98765-9876'),
-(40, 'Instituto Cuidar do Próximo', 'cuidar@cuidardoproximo.org', 'proximo_cuidar', 'Distribuição de roupas e cobertores para pessoas em situação de rua.', '(71) 99876-1234', '(71) 99876-1234'),
-(41, 'ONG Gênios do Amanhã', 'geniosdoamanha@genios.com', 'genios_futuro', 'Incentivo à ciência e tecnologia entre crianças e adolescentes.', '(81) 98765-5678', '(81) 98765-5678'),
-(42, 'ONG Vagalume Cultural', 'vagalume@vagalume.org', 'vagalume_arte', 'Promoção de eventos culturais gratuitos em praças e parques.', '(91) 99123-4567', '(91) 99123-4567'),
-(43, 'ONG Corrente do Bem', 'contato@correntedobem.com', 'corrente_dobem', 'Arrecadação de fundos para diversas causas sociais.', '(11) 98765-7890', '(11) 98765-7890'),
-(44, 'ONG Raízes da Amazônia', 'amazonas@raizesdaamazonia.org', 'amazonia_2024', 'Proteção da floresta amazônica e apoio a comunidades locais.', '(21) 99876-9876', '(21) 99876-9876'),
-(45, 'ONG Criança Feliz', 'criancafeliz@ong.com', 'feliz_crianca', 'Oferece atividades recreativas e educativas para crianças carentes.', '(31) 98765-0123', '(31) 98765-0123'),
-(46, 'ONG Voz da Natureza', 'vozdanatureza@natureza.org', 'voz_da_natureza!', 'Atua na denúncia de crimes ambientais e na fiscalização de áreas de preservação.', '(41) 99876-5432', '(41) 99876-5432'),
-(47, 'ONG Amigos da Educação', 'educacao@amigosdaeducacao.com', 'educa_agora', 'Oferece bolsas de estudo e mentoria para estudantes de baixa renda.', '(51) 98765-1234', '(51) 98765-1234'),
-(48, 'ONG Resgate do Patrimônio', 'patrimonio@resgate.org', 'resgate_historico', 'Restauração e conservação de edifícios e monumentos históricos.', '(61) 99876-7890', '(61) 99876-7890'),
-(49, 'ONG Ajudando a Vencer', 'contato@ajudandoavencer.com', 'vencer_sempre', 'Apoio a pessoas com doenças raras e suas famílias.', '(71) 98765-4321', '(71) 98765-4321'),
-(50, 'ONG Caminhos para a Saúde', 'saude@caminhosparasaude.org', 'saude_e_bem', 'Promove campanhas de saúde preventiva e acesso a consultas médicas.', '(81) 99876-9876', '(81) 99876-9876'),
-(51, 'ONG Esporte e Inclusão', 'esporte@esporteinclusao.com', 'esporte_agora', 'Uso do esporte como ferramenta de inclusão social e desenvolvimento pessoal.', '(91) 98765-4321', '(91) 98765-4321'),
-(52, 'ONG Amigos do Bairro', 'bairro@amigosdobairro.org', 'bairro_unido', 'Projetos de melhoria de infraestrutura e segurança em bairros carentes.', '(11) 99876-1234', '(11) 99876-1234'),
-(53, 'ONG Cuidadores da Vida', 'cuidadores@cuidadoresdavida.com', 'cuidar_vidas', 'Oferece suporte para cuidadores de pessoas com doenças degenerativas.', '(21) 98765-5678', '(21) 98765-5678'),
-(54, 'ONG Sabor Solidário', 'sabor@saborsolidario.org', 'sabor_amigo', 'Oficinas de culinária para jovens e distribuição de refeições.', '(31) 99123-7890', '(31) 99123-7890'),
-(55, 'ONG Cultura e Cidadania', 'cultura@culturaecidadania.com', 'cultura_cidada', 'Incentivo à leitura e à participação em atividades culturais.', '(41) 98765-0123', '(41) 98765-0123'),
-(56, 'ONG Abrigo para Todos', 'abrigo@abrigoparatodos.org', 'abrigo_seguro', 'Oferece moradia temporária e assistência para famílias em situação de rua.', '(51) 99876-5432', '(51) 99876-5432'),
-(57, 'ONG Defensores dos Direitos', 'direitos@defensoresdosdireitos.com', 'defensores_!', 'Atua na defesa dos direitos humanos e na conscientização social.', '(61) 98765-9876', '(61) 98765-9876'),
-(58, 'ONG Rede de Solidariedade', 'rede@rededesolidariedade.org', 'solidariedade', 'Conecta voluntários com projetos sociais em diversas áreas.', '(71) 99876-1234', '(71) 99876-1234'),
-(59, 'ONG Lado a Lado', 'ladoalado@ong.com', 'lado_a_lado', 'Apoio a famílias com crianças que possuem doenças raras.', '(81) 98765-5678', '(81) 98765-5678'),
-(60, 'ONG Sem Fronteiras', 'semfronteiras@ong.org', 'fronteiras_!', 'Apoio a refugiados e imigrantes em áreas de fronteira.', '(91) 99123-4567', '(91) 99123-4567'),
-(61, 'ONG Voz da Floresta', 'vozdafloresta@voz.com', 'floresta_voz', 'Proteção da fauna e flora em biomas brasileiros.', '(11) 98765-7890', '(11) 98765-7890'),
-(62, 'ONG Coração na Mão', 'coracaonamao@ong.org', 'coracao_maao', 'Oferece atendimento médico e odontológico para comunidades carentes.', '(21) 99876-9876', '(21) 99876-9876'),
-(63, 'ONG Abrace a Vida', 'abraceavida@abrace.com', 'abrace_a_vida', 'Prevenção ao suicídio e apoio a pessoas com transtornos mentais.', '(31) 98765-0123', '(31) 98765-0123'),
-(64, 'ONG Reciclar para Transformar', 'reciclar@reciclaretransformar.org', 'recicla_trans', 'Incentivo à reciclagem e ao empreendedorismo social.', '(41) 99876-5432', '(41) 99876-5432'),
-(65, 'ONG Amigos do Bem', 'amigosdobem@ong.com', 'bem_amigos!', 'Apoio a famílias em situação de vulnerabilidade com cestas básicas e itens de higiene.', '(51) 98765-1234', '(51) 98765-1234');
+(16, 'ONG Amigos do Meio Ambiente', 'contato@ongamigosdoambiente.org', 'greenpass123', 'Dedicada à preservação de ecossistemas locais, plantio de árvores e conscientização ambiental.', '11987654321', '5511987654321'),
+(17, 'Instituto Esperança Viva', 'faleconosco@esperancaviva.com', 'esperanca_2024', 'Focada em oferecer apoio psicológico e social para crianças em situação de vulnerabilidade.', '21998765432', '5521998765432'),
+(18, 'Cão e Gato Solidário', 'ajuda@caosolidario.com', 'miau_auau!', 'Resgate e reabilitação de animais abandonados, além de campanhas de adoção responsável.', '31987651234', '5531987651234'),
+(19, 'ONG Futuro Brilhante', 'contato@futurobrilhante.org', 'futuro-brilhante', 'Oferece aulas de reforço escolar e atividades extracurriculares para jovens de comunidades carentes.', '41987655678', '5541987655678'),
+(20, 'Mãos Unidas contra a Fome', 'fomezero@maosunidas.com', 'maosunidas!', 'Distribuição de alimentos e cestas básicas para famílias em insegurança alimentar.', '51991234567', '5551991234567'),
+(21, 'Associação Viver Melhor', 'vivermelhor@viver.org', 'vivermelhor_abc', 'Fomenta a inclusão social de pessoas com deficiência através de oficinas de arte e esporte.', '61987659876', '5561987659876'),
+(22, 'ONG Semente da Paz', 'paz@sementedapaz.org', 'semente-paz', 'Promoção de mediação de conflitos e cultura de paz em bairros de alta violência.', '71998769876', '5571998769876'),
+(23, 'Instituto de Pesquisa Marítima', 'contato@pesquisamaritima.com', 'maritima2024', 'Estuda a vida marinha e os impactos da poluição nos oceanos.', '81998765432', '5581998765432'),
+(24, 'ONG Guardiões da Floresta', 'floresta@guardioes.org', 'floresta_protegida', 'Atua na proteção de áreas de mata nativa contra desmatamento ilegal e queimadas.', '91987650123', '5591987650123'),
+(25, 'ONG Amiga da Terceira Idade', 'idoso@ongamiga.com', 'terceiraidade!', 'Proporciona atividades de lazer, saúde e integração para idosos.', '11998760987', '5511998760987'),
+(26, 'Instituto Conectando Vidas', 'contato@conectandovidas.org', 'vida_online_10', 'Promove a inclusão digital para a população mais velha.', '21987651234', '5521987651234'),
+(27, 'ONG Resgate Animal', 'resgate@ongresgateanimal.com', 'resgatepet!', 'Especializada no resgate de animais silvestres feridos.', '31991234567', '5531991234567'),
+(28, 'ONG Sorriso no Rosto', 'sorriso@sorrisonorosto.org', 'sorriso_smile', 'Levar alegria e brincadeiras para crianças em hospitais.', '41998765432', '5541998765432'),
+(29, 'ONG Acolhendo Refugiados', 'refugiados@acolher.org', 'acolher_100', 'Oferece abrigo e apoio para refugiados e imigrantes em busca de uma nova vida.', '51987651234', '5551987651234'),
+(30, 'Instituto de Artes e Cultura', 'arteecultura@artes.com', 'artes_on', 'Incentivo à produção artística e cultural em comunidades de baixa renda.', '61998767890', '5561998767890'),
+(31, 'ONG Coração Amigo', 'coracaoamigo@ong.org', 'amigo_coracao', 'Apoio a famílias de crianças com doenças crônicas.', '71987654321', '5571987654321'),
+(32, 'ONG Cidadania Ativa', 'contato@cidadaniaativa.com', 'cidadania_br', 'Promove a educação cívica e a participação cidadã.', '81998769876', '5581998769876'),
+(33, 'Grupo de Apoio para Mulheres', 'mulheres@grupoapoio.org', 'poder_feminino', 'Oferece suporte jurídico e psicológico para mulheres vítimas de violência.', '91987654321', '5591987654321'),
+(34, 'ONG Escola Verde', 'escola@escola_verde.org', 'verde_escola', 'Criação de hortas escolares e educação ambiental para crianças.', '11998761234', '5511998761234'),
+(35, 'ONG Plantando o Bem', 'contato@plantandoobem.com', 'plantar_bem_!', 'Coleta seletiva e reciclagem de lixo em áreas urbanas.', '21987655678', '5521987655678'),
+(36, 'ONG Salva Vidas', 'salvavidas@ong.org', 'vida_salva_!', 'Apoio a projetos de doação de sangue e órgãos.', '31991237890', '5531991237890'),
+(37, 'ONG Crescer Juntos', 'crescerjuntos@ong.com', 'crescerjuntos_22', 'Desenvolvimento de habilidades profissionais em jovens.', '41987650123', '5541987650123'),
+(38, 'ONG Amigos do Hospital', 'amigohospital@hospital.org', 'amigo_hospital_!', 'Ajuda na manutenção de hospitais públicos e na compra de equipamentos.', '51998765432', '5551998765432'),
+(39, 'ONG Consciência Animal', 'contato@conscienciaanimal.com', 'animal_consciente', 'Campanhas de conscientização sobre o bem-estar animal.', '61987659876', '5561987659876'),
+(40, 'Instituto Cuidar do Próximo', 'cuidar@cuidardoproximo.org', 'proximo_cuidar', 'Distribuição de roupas e cobertores para pessoas em situação de rua.', '71998761234', '5571998761234'),
+(41, 'ONG Gênios do Amanhã', 'geniosdoamanha@genios.com', 'genios_futuro', 'Incentivo à ciência e tecnologia entre crianças e adolescentes.', '81987655678', '5581987655678'),
+(42, 'ONG Vagalume Cultural', 'vagalume@vagalume.org', 'vagalume_arte', 'Promoção de eventos culturais gratuitos em praças e parques.', '91991234567', '5591991234567'),
+(43, 'ONG Corrente do Bem', 'contato@correntedobem.com', 'corrente_dobem', 'Arrecadação de fundos para diversas causas sociais.', '11987657890', '5511987657890'),
+(44, 'ONG Raízes da Amazônia', 'amazonas@raizesdaamazonia.org', 'amazonia_2024', 'Proteção da floresta amazônica e apoio a comunidades locais.', '21998769876', '5521998769876'),
+(45, 'ONG Criança Feliz', 'criancafeliz@ong.com', 'feliz_crianca', 'Oferece atividades recreativas e educativas para crianças carentes.', '31987650123', '5531987650123'),
+(46, 'ONG Voz da Natureza', 'vozdanatureza@natureza.org', 'voz_da_natureza!', 'Atua na denúncia de crimes ambientais e na fiscalização de áreas de preservação.', '41998765432', '5541998765432'),
+(47, 'ONG Amigos da Educação', 'educacao@amigosdaeducacao.com', 'educa_agora', 'Oferece bolsas de estudo e mentoria para estudantes de baixa renda.', '51987651234', '5551987651234'),
+(48, 'ONG Resgate do Patrimônio', 'patrimonio@resgate.org', 'resgate_historico', 'Restauração e conservação de edifícios e monumentos históricos.', '61998767890', '5561998767890'),
+(49, 'ONG Ajudando a Vencer', 'contato@ajudandoavencer.com', 'vencer_sempre', 'Apoio a pessoas com doenças raras e suas famílias.', '71987654321', '5571987654321'),
+(50, 'ONG Caminhos para a Saúde', 'saude@caminhosparasaude.org', 'saude_e_bem', 'Promove campanhas de saúde preventiva e acesso a consultas médicas.', '81998769876', '5581998769876'),
+(51, 'ONG Esporte e Inclusão', 'esporte@esporteinclusao.com', 'esporte_agora', 'Uso do esporte como ferramenta de inclusão social e desenvolvimento pessoal.', '91987654321', '5591987654321'),
+(52, 'ONG Amigos do Bairro', 'bairro@amigosdobairro.org', 'bairro_unido', 'Projetos de melhoria de infraestrutura e segurança em bairros carentes.', '11998761234', '5511998761234'),
+(53, 'ONG Cuidadores da Vida', 'cuidadores@cuidadoresdavida.com', 'cuidar_vidas', 'Oferece suporte para cuidadores de pessoas com doenças degenerativas.', '21987655678', '5521987655678'),
+(54, 'ONG Sabor Solidário', 'sabor@saborsolidario.org', 'sabor_amigo', 'Oficinas de culinária para jovens e distribuição de refeições.', '31991237890', '5531991237890'),
+(55, 'ONG Cultura e Cidadania', 'cultura@culturaecidadania.com', 'cultura_cidada', 'Incentivo à leitura e à participação em atividades culturais.', '41987650123', '5541987650123'),
+(56, 'ONG Abrigo para Todos', 'abrigo@abrigoparatodos.org', 'abrigo_seguro', 'Oferece moradia temporária e assistência para famílias em situação de rua.', '51998765432', '5551998765432'),
+(57, 'ONG Defensores dos Direitos', 'direitos@defensoresdosdireitos.com', 'defensores_!', 'Atua na defesa dos direitos humanos e na conscientização social.', '61987659876', '5561987659876'),
+(58, 'ONG Rede de Solidariedade', 'rede@rededesolidariedade.org', 'solidariedade', 'Conecta voluntários com projetos sociais em diversas áreas.', '71998761234', '5571998761234'),
+(59, 'ONG Lado a Lado', 'ladoalado@ong.com', 'lado_a_lado', 'Apoio a famílias com crianças que possuem doenças raras.', '81987655678', '5581987655678'),
+(60, 'ONG Sem Fronteiras', 'semfronteiras@ong.org', 'fronteiras_!', 'Apoio a refugiados e imigrantes em áreas de fronteira.', '91991234567', '5591991234567'),
+(61, 'ONG Voz da Floresta', 'vozdafloresta@voz.com', 'floresta_voz', 'Proteção da fauna e flora em biomas brasileiros.', '11987657890', '5511987657890'),
+(62, 'ONG Coração na Mão', 'coracaonamao@ong.org', 'coracao_maao', 'Oferece atendimento médico e odontológico para comunidades carentes.', '21998769876', '5521998769876'),
+(63, 'ONG Abrace a Vida', 'abraceavida@abrace.com', 'abrace_a_vida', 'Prevenção ao suicídio e apoio a pessoas com transtornos mentais.', '31987650123', '5531987650123'),
+(64, 'ONG Reciclar para Transformar', 'reciclar@reciclaretransformar.org', 'recicla_trans', 'Incentivo à reciclagem e ao empreendedorismo social.', '41998765432', '5541998765432'),
+(65, 'ONG Amigos do Bem', 'amigosdobem@ong.com', 'bem_amigos!', 'Apoio a famílias em situação de vulnerabilidade com cestas básicas e itens de higiene.', '51987651234', '5551987651234');
 
 -- --------------------------------------------------------
 

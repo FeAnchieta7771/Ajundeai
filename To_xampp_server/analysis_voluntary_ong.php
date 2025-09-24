@@ -65,7 +65,7 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
         <?php
         include 'php_functs/php_methods/get_voluntary_values.php';
-        disfuncaoeretil($_GET['id_voluntario']);
+        show_data_voluntary($_GET['id_voluntario']);
         ?>
         <?php include 'php_functs/php_methods/buttons_analysis.php';
         get_buttons($_SESSION['name_slot']); ?>

@@ -15,4 +15,4 @@ const InputCpf = (event) => {
 
 document.querySelectorAll('input[name="cpf"]').forEach(cpf => {
     cpf.addEventListener('input', InputCpf);
-});
+}); 

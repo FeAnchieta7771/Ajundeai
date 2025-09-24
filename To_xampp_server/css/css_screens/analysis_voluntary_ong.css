@@ -1,4 +1,4 @@
-        * {
+* {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -264,6 +264,15 @@
             width: 100%;
             transition: .15s;
         }
+
+        .btapro:hover {
+            background-color: white;
+            color: rgb(13, 221, 65);
+            transform: scale(1.02);
+        }
+
+
+
         .btcall {
             background-color: #f26b1d;
             font-family: "Horizon", sans-serif;
@@ -293,6 +302,12 @@
             text-decoration: none;
         }
 
+        .btvol:hover {
+            background-color: white;
+            color: rgb(13, 138, 221);
+            transform: scale(1.02);
+        }
+
         .btcan {
             background-color: rgb(255, 0, 0);
             font-family: "Horizon", sans-serif;
@@ -305,6 +320,12 @@
             font-size: 20px;
             width: 100%;
             transition: .15s;
+        }
+
+        .btcan:hover {
+            background-color: white;
+            color: rgb(255, 0, 0);
+            transform: scale(1.02);
         }
 
         .btlog_desativado {
@@ -407,11 +428,12 @@
         .status-container {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
             margin-top: 20px;
             padding: 15px;
-            background-color: #f8f9fa;
             border-radius: 5px;
+            margin-block: 10px;
         }
 
         .status-logo {
@@ -419,7 +441,7 @@
         }
 
         .status-text {
-            font-size: 16px;
+            color: white;
+            font-size: 30px;
             font-weight: bold;
-            color: #333;
         }

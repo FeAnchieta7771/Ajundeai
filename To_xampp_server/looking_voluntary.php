@@ -62,7 +62,7 @@ if (isset($_GET['voltar'])) {
   <link rel="stylesheet" href="css/header.css">
       <link rel="stylesheet" href="css/notification.css">
   <style>
-    * {
+* {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -155,6 +155,7 @@ if (isset($_GET['voltar'])) {
       /* Alinha verticalmente no centro */
       width: 100%;
       text-align: left;
+      transition: .15s;
     }
 
     .vaga-card:hover {
@@ -162,9 +163,22 @@ if (isset($_GET['voltar'])) {
       cursor:pointer;
     }
 
+    .vaga-card:hover h4 {
+        color: #008cff#196e78;
+        font-size: 1.72rem;
+    }
+
+    .vaga-card button {
+        all: unset;
+        cursor: pointer;
+        display: contents;
+        width: 100%;
+        height: 100%;
+    }
+
     .vaga-card img {
-      width: 120px;
-      height: 120px;
+        width: 120px;
+        height: 120px;
     }
 
     .vaga-info{
@@ -174,15 +188,19 @@ if (isset($_GET['voltar'])) {
     }
 
     .vaga-info h4 {
-      color: #004aad;
-      font-size: 2rem;
-      margin-bottom: 8px;
-    }
-
-    .vaga-info h4:hover {
-      color: #004aad;
-      font-size: 2.03rem;
-      margin-bottom: 8px;
+        color: #008cff;
+        font-size: 1.7rem;
+        margin-bottom: 5px;
+        font-family: 'Horizon', sans-serif;
+        transition: .2s;
+        /* width: 10rem; */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      /* number of lines to show */
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
     .vaga-info p {
