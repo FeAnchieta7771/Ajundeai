@@ -98,32 +98,89 @@ function voluntary_profile($result, $result_vaga)
             </button>
             </form>
         </div>
+        <div class='form-container'>
         <form class='form' method= 'POST' action= 'php_functs/php_screens/profile_aplication.php' id='formPerfil'>
-            <input type='text' name='nome' placeholder='Nome' value='" . $result[0]["nome_voluntario"] . "' disabled>
-            <input type='hidden' name= 'type_usuario' value ='voluntario'>
-            <input type='text' id='cpf' name='cpf' placeholder='#########-##' maxlength='12' value='" . $result[0]['cpf'] . "' disabled>
-            <input type='email' name='email' placeholder='Email' value='" . $result[0]["email"] . "' disabled>
-            <input type='password' name='senha' placeholder='Senha' value='" . $result[0]["senha"] . "' disabled>
-            <input type='text' id='telefone' name='telefone' placeholder='Telefone' value='" . $result[0]["telefone"] . "' disabled>
-            <input type='text' id='whatsapp' name='whatsapp' placeholder='WhatsApp' value='" . $result[0]["whatsapp"] . "' disabled>
-            <input type='text' name='categoria' placeholder='Categoria de preferência' value='" . $result[0]["categoria_trabalho"] . "' disabled>
-            <input type='text' name='periodo' placeholder='Período' value='" . $result[0]["periodo"] . "' disabled>
-            <input type='text' name='situacao' placeholder='Situação atual' value='" . $result[0]["estado_social"] . "' disabled>
-            <input type='text' name='deficiencia' placeholder='Deficiência' value='" . $result[0]["pcd"] . "' disabled>
-            <textarea name='sobre' placeholder='Conte um pouco sobre você e suas experiências' disabled>" . $result[0]["sobre"] . "</textarea>
+        <div class='form-row'>
+            <div class='form-group'>
+                <label for='nome'>NOME:</label>
+                <input type='text' id='nome' name='nome' placeholder='Nome' value='" . $result[0]["nome_voluntario"] . "' disabled>
+                <input type='hidden' name= 'type_usuario' value ='voluntario'>
+            </div>
 
+            <div class='form-group'>
+                <label for='cpf'>CPF:</label>
+                <input type='text' id='cpf' name='cpf' placeholder='#########-##' maxlength='12' value='" . $result[0]['cpf'] . "' disabled>
+            </div>
+        </div>
+
+        <div class='form-row'>
+            <div class='form-group'>
+                <label for='email'>E-MAIL:</label>
+                <input type='email' id='email' name='email' placeholder='Email' value='" . $result[0]["email"] . "' disabled>
+            </div>
+
+            <div class='form-group'>
+                <label for='password'>SENHA:</label>
+                <input type='password' id='password' name='senha' placeholder='Senha' value='" . $result[0]["senha"] . "' disabled>
+            </div>
+        </div>
+
+        <div class='form-row'>
+            <div class='form-group'>
+                <label for='telephone'>TELEFONE:</label>
+                <input type='text' id='telephone' name='telephone' placeholder='Telefone' value='" . $result[0]["telefone"] . "' disabled>
+            </div>
+
+            <div class='form-group'>
+                <label for='whats'>WHATSAPP:</label>
+                <input type='text' id='whats' name='whats' placeholder='WhatsApp' value='" . $result[0]["whatsapp"] . "' disabled>
+            </div>
+        </div>
+
+        <div class='form-row'>
+            <div class='form-group'>
+            <label for='cat_vol'>VAGA DE PREFERÊNCIA:</label>
+            <input type='text' id='cat_vol' name='categoria' placeholder='Categoria de preferência' value='" . $result[0]["categoria_trabalho"] . "' disabled>
+            </div>
+
+            <div class='form-group'>
+            <label for='periodo'>PERÍODO:</label>
+            <input type='text' id='periodo' name='periodo' placeholder='Período' value='" . $result[0]["periodo"] . "' disabled>
+            </div>
+        </div>
+
+        <div class='form-row'>
+            <div class='form-group'>
+            <label for='estado'>SITUAÇÃO:</label>
+            <input type='text' id='estado' name='situacao' placeholder='Situação atual' value='" . $result[0]["estado_social"] . "' disabled>
+            </div>
+
+            <div class='form-group'>
+            <label for='pcd'>DEFICIÊNCIA:</label>
+            <input type='text' id='pcd' name='deficiencia' placeholder='Deficiência' value='" . $result[0]["pcd"] . "' disabled>
+            </div>
+        </div>
+
+        <div class='form-row'>
+            <label style='display: block; font-weight: bold; margin-bottom: 5px;' for='sobre'>SOBRE:</label>
+            <textarea name='sobre' id='sobre' placeholder='Conte um pouco sobre você e suas experiências' disabled>" . $result[0]["sobre"] . "</textarea>
+ 
             <div class='botoes'>
             <button type='button' class='btn btn-editar' id='btnEditar'>Editar</button>
             <button type='button' class='btn btn-cancelar' id='btnCancelar' style='display:none;'>Cancelar</button>
             <button type='submit' class='btn btn-alterar' id='btnAlterar' style='display:none;'>Alterar</button>
             </div>
+        </div>
+
         </form>
+        </div>
+
         </div>
 
         <div class='vagas-box'>
             <h3>Vagas Cadastradas</h3>
             <small>" . $numLinhas . "/3 cadastros permitidos</small>
-            <a class='btn-controle' href='../../register_voluntary.php'>Ver Controle de Vagas</a>";
+            <a class='btn-controle' href='../../register_voluntary.php'> <i class='bx bx-search-alt'></i> Ver Controle de Vagas</a>";
 
     if ($numLinhas > 0) {
 
@@ -158,51 +215,62 @@ function ong_profile($result)
 {
 
     echo "    
-    <div class='perfil' id='perfilBox'>
+    <div class='painel'>
+        <div class='perfil' id='perfilBox'>
+            <div class='perfil-header'>
+                <div class='left'>
 
-    <div class='perfil-header'>
+                <i class='bx bxs-buildings' style='font-size:22px;'></i>
+                <span>TIPO DA CONTA: ONG</span>
 
-        <div class='left'>
+                </div>
+            </div>
 
-        <i class='bx bxs-buildings' style='font-size:22px;'></i>
+            <form method= 'POST' class='form' action= 'php_functs/php_screens/profile_aplication.php'id='formPerfil'>
+                <div class='form-row'>
+                    <div class='form-group' style='grid-column: span 2;'>
+                        <label for='nome'>NOME:</label>
+                        <input type='text' id='nome' name='nome' placeholder='Nome' value='" . $result[0]["nome_ong"] . "' disabled>
+                        <input type='hidden' name= 'type_usuario' value ='ong'>
+                    </div>
+                </div>
 
-        <span>TIPO DA CONTA: ONG</span>
+                <div class='form-row'>
+                    <div class='form-group'>
+                        <label for='email'>E-MAIL:</label>
+                        <input type='email' id='email' name='email' placeholder='Email' value='" . $result[0]["email"] . "' disabled>
+                    </div>
 
+                    <div class='form-group'>
+                        <label for='password'>SENHA:</label>
+                        <input type='password' id='password' name='senha' placeholder='Senha' value='" . $result[0]["senha"] . "' disabled>
+                    </div>
+                </div>
+
+                <div class='form-row'>
+                    <div class='form-group'>
+                        <label for='telephone'>TELEFONE:</label>
+                        <input type='text' id='telephone' name='telephone' placeholder='Telefone' value='" . $result[0]["telefone"] . "' disabled>
+                    </div>
+
+                    <div class='form-group'>
+                        <label for='whats'>WHATSAPP:</label>
+                        <input type='text' id='whats' name='whats' placeholder='WhatsApp' value='" . $result[0]["whatsapp"] . "' disabled>
+                    </div>
+                </div>
+
+                <div class='form-row'>
+                    <label style='display: block; font-weight: bold; margin-bottom: 5px;' for='sobre'>SOBRE:</label>
+                    <textarea name='sobre' id='sobre' placeholder='Conte um pouco sobre você e suas experiências' disabled>" . $result[0]["sobre"] . "</textarea>
+        
+                    <div class='botoes'>
+                    <button type='button' class='btn btn-editar' id='btnEditar'>Editar</button>
+                    <button type='button' class='btn btn-cancelar' id='btnCancelar' style='display:none;'>Cancelar</button>
+                    <button type='submit' class='btn btn-alterar' id='btnAlterar' style='display:none;'>Alterar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-
-    </div>
-
-    <form method= 'POST' class='form' action= 'php_functs/php_screens/user_profile.php'id=' formPerfil'>
-
-        <input type='text' name='nome' placeholder='Nome' class='input-nome' value='" . $result[0]["nome_ong"] . "' disabled>
-
-        <input type='hidden' name= 'type_usuario' value ='ong'>
-
-        <input type='email' name='email' placeholder='Email' value='" . $result[0]["email"] . "' disabled>
-
-        <input type='password' name='senha' placeholder='Senha' value='" . $result[0]["senha"] . "' disabled>
-
-        <input type='text' name='telefone' placeholder='Telefone' value='" . $result[0]["telefone"] . "' disabled>
-
-        <input type='text' name='whatsapp' placeholder='WhatsApp' value='" . $result[0]["whatsapp"] . "' disabled>
-
-        <textarea name='sobre' placeholder='Conte um pouco mais sobre a ONG/Instituição' disabled>" . $result[0]["sobre"] . "</textarea>
-
-
-        <div class='botoes'>
-
-        <button type='button' class='btn btn-editar' id='btnEditar'>Editar</button>
-
-        <button type='button' class='btn btn-cancelar' id='btnCancelar' style='display:none;'>Cancelar</button>
-
-        <button type='submit' class='btn btn-alterar' id='btnAlterar' style='display:none;'>Alterar</button>
-
-        </div>
-
-    </form>
-
-    </div>
-
     </div>
 ";
 

@@ -1,4 +1,4 @@
-        * {
+* {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -268,6 +268,7 @@
         .btapro:hover {
             background-color: white;
             color: rgb(13, 221, 65);
+            transform: scale(1.02);
         }
 
 
@@ -304,6 +305,7 @@
         .btvol:hover {
             background-color: white;
             color: rgb(13, 138, 221);
+            transform: scale(1.02);
         }
 
         .btcan {
@@ -323,6 +325,7 @@
         .btcan:hover {
             background-color: white;
             color: rgb(255, 0, 0);
+            transform: scale(1.02);
         }
 
         .btlog_desativado {
@@ -425,10 +428,10 @@
         .status-container {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
             margin-top: 20px;
             padding: 15px;
-            background-color: #f8f9fa;
             border-radius: 5px;
             margin-block: 10px;
         }
@@ -438,7 +441,7 @@
         }
 
         .status-text {
-            font-size: 16px;
+            color: white;
+            font-size: 30px;
             font-weight: bold;
-            color: #333;
         }

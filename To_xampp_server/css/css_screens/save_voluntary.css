@@ -73,7 +73,7 @@
 
 
     .vaga-card {
-        border: 2px solid #e76f00;
+        border: 2px solid #196e78;
         padding: 20px;
         margin-bottom: 20px;
         display: flex;
@@ -84,6 +84,10 @@
         align-items: center;
         /* Alinha verticalmente no centro */
         width: 85%;
+    }
+
+    .vaga-card:hover {
+        background-color: rgb(193, 250, 246);
     }
 
     .vaga-card img {

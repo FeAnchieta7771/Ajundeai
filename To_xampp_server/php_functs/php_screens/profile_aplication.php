@@ -45,8 +45,8 @@ try {
     $name = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    $telephone = $_POST['telefone'];
-    $whats = $_POST['whatsapp'] ?? '';
+    $telephone = $_POST['telephone'];
+    $whats = $_POST['whats'] ?? '';
     $about = $_POST['sobre'];
 
     $cpf = $_POST['cpf'] ?? '';
@@ -97,9 +97,12 @@ try {
 
         $sql = "UPDATE ong SET nome_ong= ?, email= ?, senha= ?, sobre= ?, telefone= ?, whatsapp= ? WHERE id= ?";
 
-        $result = update(null, $sql_command, [$name, $email, $senha, $about, $telephone_to_db, $whats_to_db, $_SESSION['id']]);
+        $result = update(null, $sql, [$name, $email, $senha, $about, $telephone_to_db, $whats_to_db, $_SESSION['id']]);
 
     }
+
+    $_SESSION['name'] = $name;
+    $_SESSION['email_login'] = $email;
 
 } catch (Throwable $e) {
     Show_incorrect_text('profile_error');

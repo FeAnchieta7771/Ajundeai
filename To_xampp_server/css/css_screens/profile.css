@@ -1,0 +1,354 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #fff;
+    /* background-image: url("https://assets.onecompiler.app/43h62qpv7/3y5x8jr6s/login.png"); */
+    background-image: url("../../img/profile_background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.painel {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 30px;
+}
+
+
+.perfil {
+    flex: 2;
+    background: rgba(255, 255, 255, 0.602);
+    border: 2px solid #e76f00;
+    border-radius: 6px;
+    padding: 0;
+    transition: all .3s ease;
+    position: relative;
+    backdrop-filter: blur(5px);
+    /* Adjust the pixel value for blur intensity */
+    -webkit-backdrop-filter: blur(5px);
+    /* For older browser compatibility */
+}
+
+.perfil.editando {
+    background: #004d61;
+    border-color: #004d61;
+    color: #fff;
+}
+
+.perfil-header {
+    background: #e76f00;
+    color: #fff;
+    padding: 15px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 2px solid #e76f00;
+    font-family: 'Horizon', sans-serif;
+    font-size: 1.7rem;
+}
+
+.perfil-header .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-trash {
+    background: #db6a01ff;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.btn-trash:hover {
+    background: red;
+}
+
+.form {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form input,
+.form textarea {
+    width: 100%;
+    padding: 10px;
+    /* border: 2px solid #004d61; */
+    border-radius: 6px;
+    background: #eee;
+    color: #000;
+    font-size: 0.95rem;
+    resize: none;
+}
+
+.form textarea {
+    grid-column: span 2;
+    height: 120px;
+    resize: vertical;
+}
+
+.form input:disabled,
+.form textarea:disabled {
+    background: #ddd;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.perfil.editando .form input,
+.perfil.editando .form textarea {
+    background: #fff;
+    color: #004d61;
+    border-color: #fff;
+}
+
+.botoes {
+    grid-column: span 2;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-editar {
+    border: solid 1px #007bff;
+    background: #007bff;
+    color: #fff;
+    transition: .15s;
+}
+
+.btn-editar:hover {
+    background: #fff;
+    color: #007bff
+}
+
+.btn-alterar {
+    border: solid 1px #28a745;
+    background: #28a745;
+    color: #fff;
+    transition: .15s;
+}
+
+.btn-alterar:hover {
+    background: #fff;
+    color: #28a745;
+}
+
+.btn-cancelar {
+    border: solid 1px #dc3545;
+    background: #dc3545;
+    color: #fff;
+    transition: .15s;
+}
+
+.btn-cancelar:hover {
+    background: #fff;
+    color: #dc3545
+}
+
+.vagas-box {
+    flex: 1;
+    border: 2px solid #00c4b4;
+    border-radius: 6px;
+    padding: 15px;
+    height: fit-content;
+
+    background: rgba(255, 255, 255, 0.798);
+    backdrop-filter: blur(5px);
+    /* Adjust the pixel value for blur intensity */
+    -webkit-backdrop-filter: blur(5px);
+    /* For older browser compatibility */
+}
+
+.vagas-box h3 {
+    color: #004d61;
+    margin-bottom: 5px;
+    font-family: 'Horizon', sans-serif;
+}
+
+.vagas-box small {
+    display: block;
+    margin-bottom: 15px;
+    color: #555;
+    font-family: 'Horizon', sans-serif;
+    font-size: .7rem;
+}
+
+.btn-controle {
+    display: block;
+    width: 100%;
+    background: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: solid 1px #007bff;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: .9rem;
+    cursor: pointer;
+    font-weight: bold;
+    align-items: center;
+    text-decoration: none;
+    transition: .15s;
+    font-family: 'Horizon', sans-serif;
+}
+
+.btn-controle:hover {
+    background: #fff;
+    color: #007bff;
+}
+
+.vaga-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+.vaga-item button {
+    background: #dc3545;
+    border: none;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.input-nome {
+    grid-column: span 2;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.button_vaga {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    border: solid 2px transparent;
+    background-color: #a3cfff55;
+    cursor: pointer;
+    transition: .15s;
+    margin: 10px 0px;
+}
+
+.button_vaga:hover {
+    border: solid 2px #007bff;
+    background-color: #a3cfff2a;
+    border-radius: 5px;
+}
+
+.button_vaga:hover h4 {
+    color: #007bff;
+}
+
+.vaga-info {
+    width: 100%;
+    text-align: left;
+    display: grid;
+}
+
+.vaga-info h4 {
+    color: #007bff;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-family: 'Horizon', sans-serif;
+    transition: .2s;
+}
+
+.vaga-info span {
+    display: block;
+    margin-bottom: 5px;
+    align-items: center;
+    color: #196e78;
+    font-weight: bold;
+    font-family: 'Antique', sans-serif;
+}
+
+.vaga-info p {
+    font-size: 1em;
+    color: #444;
+    text-overflow: ellipsis;
+    text-align: left;
+    flex: 1;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.form-row {
+    /* display: flex;
+      gap: 15px;
+      margin-bottom: 20px; */
+    display: contents;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+textarea {
+    grid-column: span 2;
+    /* ocupa as duas colunas */
+    height: 120px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    resize: none;
+    font-size: 16px;
+    padding: 12px;
+    width: 100%;
+}
+
+.form-container {
+    border-radius: 8px;
+    color: #004652;
+    text-align: left;
+    border-radius: 0px 0px 8px 8px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}

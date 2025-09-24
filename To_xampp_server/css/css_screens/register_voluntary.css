@@ -99,6 +99,10 @@
         width: 85%;
     }
 
+    .vaga-card:hover {
+        background-color: rgb(193, 250, 246);
+    }
+
     .vaga-info{
         width: 80%;
     }

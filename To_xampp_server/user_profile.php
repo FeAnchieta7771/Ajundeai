@@ -8,8 +8,8 @@ include 'php_functs/php_methods/functions.php';
 
 // busca situação de login do usuário
 $login_state = is_logged();
- 
-if(!$login_state){
+
+if (!$login_state) {
   header('Location: index.php');
   exit();
 }
@@ -26,258 +26,42 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AjundeAi - Perfil Voluntário</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://cdn.boxicons.com/fonts/basic/boxicons.min.css" rel="stylesheet" />
   <link rel="icon" href="img/Logo_Aba.png" />
+  <title>AjundeAi - Perfil Voluntário</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/notification.css">
-    <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css\css_screens\profile.css">
+  <link rel="stylesheet" href="css/header.css" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #fff; }
-
-    /* Layout principal */
-    .painel {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 30px;
-    }
-
-    /* Painel do perfil */
-    .perfil {
-      flex: 2;
-      background: rgba(200,200,200,0.3);
-      border: 2px solid #e76f00;
-      border-radius: 6px;
-      padding: 0;
-      transition: all .3s ease;
-      position: relative;
-    }
-    .perfil.editando {
-      background: #004d61;
-      border-color: #004d61;
-      color: #fff;
-    }
-
-    .perfil-header {
-      background: #e76f00;
-      color: #fff;
-      padding: 15px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      border-bottom: 2px solid #e76f00;
-      font-family: 'Horizon', sans-serif;
-    }
-    .perfil-header .left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-trash {
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 22px;
-      cursor: pointer;
-    }
-    .btn-trash:hover { color: #ffd6cc; }
-
-    .form {
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    .form input, .form textarea {
-      width: 100%;
-      padding: 10px;
-      border: 2px solid #004d61;
-      border-radius: 6px;
-      background: #eee;
-      color: #000;
-      font-size: 0.95rem;
-    }
-
-    .form textarea {
-      grid-column: span 2;
-      height: 120px;
-      resize: vertical;
-    }
-
-    .form input:disabled, .form textarea:disabled {
-      background: #ddd;
-      color: #777;
-      cursor: not-allowed;
-    }
-
-    .perfil.editando .form input,
-    .perfil.editando .form textarea {
-      background: #fff;
-      color: #004d61;
-      border-color: #fff;
-    }
-
-    .botoes {
-      grid-column: span 2;
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-    .btn {
-      padding: 10px 16px;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .btn-editar { background: #007bff; color: #fff; }
-    .btn-alterar { background: #28a745; color: #fff; }
-    .btn-cancelar { background: #dc3545; color: #fff; }
-
-    /* Painel lateral */
-    .vagas-box {
-      flex: 1;
-      background: #f9f9f9;
-      border: 2px solid #00c4b4;
-      border-radius: 6px;
-      padding: 15px;
-      height: fit-content; /* ocupa só o necessário */
-    }
-
-    .vagas-box h3 {
-      color: #004d61;
-      margin-bottom: 5px;
-    }
-    .vagas-box small {
-      display: block;
-      margin-bottom: 15px;
-      color: #555;
-    }
-
-    .btn-controle {
-      display: block;
-      width: 100%;
-      background: #007bff;
-      color: #fff;
-      padding: 10px;
-      border: none;
-      border-radius: 6px;
-      margin-bottom: 15px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .vaga-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #fff;
-      border: 1px solid #ddd;
-      padding: 8px 10px;
-      margin-bottom: 10px;
-      border-radius: 6px;
-    }
-    .vaga-item button {
-      background: #dc3545;
-      border: none;
-      color: #fff;
-      padding: 6px 10px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .input-nome { grid-column: span 2; }
-
     body::-webkit-scrollbar {
-    display: none; /* Para navegadores baseados em WebKit (Chrome, Safari) */
-    }
-
-    .button_vaga{
-      width: 100%;
-      display: flex;
-      gap: 15px;
-      border: solid 2px transparent;
-      background-color: #a3cfff55;
-      cursor: pointer;
-      transition: .15s;
-      margin: 10px 0px;
-    }
-
-    .button_vaga:hover{
-      border: solid 2px #007bff;
-      background-color: #a3cfff2a;
-      border-radius: 5px;
-    }
-
-    .button_vaga:hover h4{
-      color: #007bff;
-    }
-
-    .vaga-info{
-        width: 100%;
-        text-align: left;
-        display: grid;
-    }
-
-    .vaga-info h4 {
-        color: #007bff;
-        font-size: 1.2rem;
-        margin-bottom: 5px;
-        font-family: 'Horizon', sans-serif;
-        transition: .2s;
-    }
-
-    .vaga-info span {
-        display: block;
-        margin-bottom: 5px;
-        align-items: center;
-        color: #196e78;
-        font-weight: bold;
-        font-family: 'Antique', sans-serif;
-    }
-
-    .vaga-info p {
-        font-size: 1em;
-        color: #444;
-        text-overflow: ellipsis;
-        text-align: left;
-        flex: 1;
-      
-        /* width: 10rem; */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        /* number of lines to show */
-        line-clamp: 1;
-        -webkit-box-orient: vertical;
+      display: none;
+      /* Para navegadores baseados em WebKit (Chrome, Safari) */
     }
 
   </style>
 </head>
 
 <body>
-<div class="notifications"></div>
+  <div class="notifications"></div>
 
-<header>
+  <header>
     <div class="logo">
-        <a href="index.php">
-            <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
-        </a>
+      <a href="index.php">
+        <img src="img\Logo_Header.png" alt="Logo AjundeAi" />
+      </a>
     </div>
     <?php echo $buttons_header; ?>
-</header>
-<?php show_message(); ?>
+  </header>
+  <?php show_message(); ?>
 
-<?php include "php_functs\php_screens\profile_act.php"; account_type($is_ong); ?>
-<!-- 
+  <?php include "php_functs\php_screens\profile_act.php";
+  account_type($is_ong); ?>
+  <!-- 
 
   Conteúdo principal
   <div class="painel">
@@ -328,8 +112,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
   <script src='js/notification.js' defer></script>
   <script src="js/whatsapp.js"></script>
-<script src="js/phone.js"></script>
-<script src="js/cpf.js"></script>
+  <script src="js/phone.js"></script>
+  <script src="js/cpf.js"></script>
   <script>
     const form = document.getElementById('formPerfil');
     const perfilBox = document.getElementById('perfilBox');
@@ -337,6 +121,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     const btnCancelar = document.getElementById('btnCancelar');
     const btnAlterar = document.getElementById('btnAlterar');
     const inputs = form.querySelectorAll('input, textarea');
+
+    const labels = document.querySelectorAll('div.form-row label');
 
     const values = []
 
@@ -347,6 +133,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
     btnEditar.addEventListener('click', () => {
       inputs.forEach(el => el.disabled = false);
+      labels.forEach(label => label.style.color = 'white');
+
       perfilBox.classList.add('editando');
       btnEditar.style.display = 'none';
       btnCancelar.style.display = 'inline-block';
@@ -356,6 +144,8 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
     btnCancelar.addEventListener('click', () => {
       inputs.forEach(el => el.disabled = true);
       inputs.forEach((el, i) => el.value = values[i]);
+      labels.forEach(label => label.style.color = '#004652');
+
       perfilBox.classList.remove('editando');
       btnEditar.style.display = 'inline-block';
       btnCancelar.style.display = 'none';
@@ -364,4 +154,5 @@ $buttons_header = set_model_buttons_header($login_state, $is_ong);
 
   </script>
 </body>
+
 </html>

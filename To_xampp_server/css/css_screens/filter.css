@@ -161,6 +161,15 @@
         margin-bottom: 5px;
         font-family: 'Horizon', sans-serif;
         transition: .2s;
+        /* width: 10rem; */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      /* number of lines to show */
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
+        
     }
 
     .vaga-info h3 {
@@ -178,6 +187,15 @@
         color: #196e78;
         font-weight: bold;
         font-family: 'Antique', sans-serif;
+
+        /* width: 10rem; */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      /* number of lines to show */
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
     }
 
     .vaga-info p {
